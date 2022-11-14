@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "NDDTraining.Infra/1.0.0": {
+        "dependencies": {
+          "NDDTraining.Domain": "1.0.0"
+        },
+        "runtime": {
+          "NDDTraining.Infra.dll": {}
+        }
+      },
+      "NDDTraining.Domain/1.0.0": {
+        "runtime": {
+          "NDDTraining.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NDDTraining.Infra/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NDDTraining.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

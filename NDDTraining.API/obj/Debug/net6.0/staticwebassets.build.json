@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "fNjGIJci2y3zfzoQ8SRw79DO/+tgY5EUoG6TIfoNBjg=",
+  "Source": "NDDTraining.API",
+  "BasePath": "_content/NDDTraining.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

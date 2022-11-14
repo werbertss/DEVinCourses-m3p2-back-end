@@ -1,0 +1,12 @@
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\bin\Debug\net6.0\NDDTraining.Domain.deps.json
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\bin\Debug\net6.0\NDDTraining.Domain.dll
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\bin\Debug\net6.0\NDDTraining.Domain.pdb
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.dll
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\refint\NDDTraining.Domain.dll
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\NDDTraining.Domain.pdb
+C:\Users\Usuario\Desktop\Nova pasta (3)\Src\NDDTraining.Domain\obj\Debug\net6.0\ref\NDDTraining.Domain.dll

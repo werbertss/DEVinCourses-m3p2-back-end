@@ -39,7 +39,7 @@ Nossos testes de validação acabam sendo mais facilitados <br>
 
 <img src=https://user-images.githubusercontent.com/37316110/201800954-0708018c-5c23-4d9c-b977-0e763510baa2.png alt="Image" height="750" width="750">
 <Apos importarmos a classe que se deseja testar<br>
-criamos uma propriedade dela como mostra a linha 13 chamada de validator<br>
+criamos uma propriedade de nosso CarDTOValidators como mostra a linha 13 chamada de validator<br>
 depois passamos ela via construtor que no caso é o nosso Setup que quem faz o papel de construtor <br>
 para podermos usar em nossos testes de forma que seja que instanciada <br>
 então criamos um testCase e passamos como parametro para dentro do metodo testador validar nossa validação<br>

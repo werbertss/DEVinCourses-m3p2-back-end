@@ -1,3 +1,4 @@
+using NDDTraining.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace NDDTraining.Domain.DTOS
         public TimeSpan Duration { get; set; }
         public bool Active { get; set; }
         public string Category { get; set; }
-        // public virtual List<Module> Module { get; set; }
+        public virtual List<Module> Module { get; set; }
 
           public TrainingDTO()
         {

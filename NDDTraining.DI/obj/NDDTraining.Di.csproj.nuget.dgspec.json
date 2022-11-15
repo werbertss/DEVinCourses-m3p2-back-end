@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Di\\NDDTraining.Di.csproj": {}
+    "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.DI\\NDDTraining.DI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Di\\NDDTraining.Di.csproj": {
+    "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.DI\\NDDTraining.DI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Di\\NDDTraining.Di.csproj",
-        "projectName": "NDDTraining.Di",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Di\\NDDTraining.Di.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Di\\obj\\",
+        "projectUniqueName": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.DI\\NDDTraining.DI.csproj",
+        "projectName": "NDDTraining.DI",
+        "projectPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.DI\\NDDTraining.DI.csproj",
+        "packagesPath": "C:\\Users\\lucas.jesus\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.DI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas.jesus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Infra\\NDDTraining.Infra.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Infra\\NDDTraining.Infra.csproj"
+              "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj": {
+                "projectPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj"
+              },
+              "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Infra\\NDDTraining.Infra.csproj": {
+                "projectPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Infra\\NDDTraining.Infra.csproj"
               }
             }
           }
@@ -62,24 +65,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Domain\\NDDTraining.Domain.csproj": {
+    "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Domain\\NDDTraining.Domain.csproj",
+        "projectUniqueName": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj",
         "projectName": "NDDTraining.Domain",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Domain\\NDDTraining.Domain.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Domain\\obj\\",
+        "projectPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj",
+        "packagesPath": "C:\\Users\\lucas.jesus\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas.jesus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -120,24 +123,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Infra\\NDDTraining.Infra.csproj": {
+    "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Infra\\NDDTraining.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Infra\\NDDTraining.Infra.csproj",
+        "projectUniqueName": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Infra\\NDDTraining.Infra.csproj",
         "projectName": "NDDTraining.Infra",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Infra\\NDDTraining.Infra.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Infra\\obj\\",
+        "projectPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Infra\\NDDTraining.Infra.csproj",
+        "packagesPath": "C:\\Users\\lucas.jesus\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas.jesus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -152,8 +155,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Domain\\NDDTraining.Domain.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Nova pasta (3)\\Src\\NDDTraining.Domain\\NDDTraining.Domain.csproj"
+              "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj": {
+                "projectPath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj"
               }
             }
           }
@@ -167,6 +170,22 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -182,7 +201,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

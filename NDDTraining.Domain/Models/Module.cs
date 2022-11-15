@@ -14,7 +14,7 @@ namespace NDDTraining.Domain.Models
         public string? Image { get; set; }
         public string? DescriptionModule { get; set; }
         public string ?StatusModule { get; set; }
-      
+
 
         public Module()
         {

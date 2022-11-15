@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q7th8MwaOXFCbShM05pgsxjNepvOB48ix+XNTekF8DqVD1EO7zNlZ63XlVzK6HgoXdZaKzVb3LysETkZl7GQHQ==",
+  "dgSpecHash": "IiQUqlCR6MRK7ha1xwUWVw1CVLs+qvnb6MXvzr6KF2tY8WPom3qtLcRScT4+TsOPNWc1dEYwAHPjnAY92ZZO8Q==",
   "success": true,
-  "projectFilePath": "D:\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj",
+  "projectFilePath": "C:\\project\\DEVinCourses-m3p2-back-end\\NDDTraining.Domain\\NDDTraining.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

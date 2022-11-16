@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace NDDTraining.DI.IOC
 {
     public static class DI
     {
+        public static IServiceCollection Register(this IServiceCollection services)
+        {
+            return services;
+        }
     }
 }

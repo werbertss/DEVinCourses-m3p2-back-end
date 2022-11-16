@@ -5,7 +5,7 @@ namespace NDDTraining.Domain.DTOS
 {
     public class UserDTO
     {
-        public int Id { get;internal set; } // caso julgar que seja necessario o uso, remover o internal.
+        public int? Id { get; internal set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

@@ -11,5 +11,7 @@ namespace NDDTraining.Infra.Database.Repositories
   public class RegistrationRepository : BaseRepository<Registration, int>, IRegistrationRepository
   {
     public RegistrationRepository(NDDTrainingDbContext context) : base(context) { }
+
+
   }
 }

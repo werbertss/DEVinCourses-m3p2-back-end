@@ -11,5 +11,6 @@ namespace NDDTraining.Infra.Database.Repositories
   public class ModuleRepository : BaseRepository<Module, int>, IModuleRepository
   {
     public ModuleRepository(NDDTrainingDbContext context) : base(context) { }
+
   }
 }

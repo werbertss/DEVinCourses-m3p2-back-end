@@ -1,0 +1,18 @@
+﻿using System;
+namespace NDDTraining.Domain.Models
+{
+    public class Registration
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int TrainingId { get; set; }
+        public string Status { get; set; }
+        public virtual User user { get; set; }
+        public virtual Training training { get; set; }
+
+        public Registration()
+        {
+        }
+    }
+}
+

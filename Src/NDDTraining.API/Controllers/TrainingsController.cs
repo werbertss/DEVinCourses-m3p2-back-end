@@ -23,4 +23,12 @@ public class TrainingsController : ControllerBase
     {
         return Ok(_trainingService.GetAll(category));
     } 
+
+    [HttpGet("{id}")]
+    public IActionResult GetById(
+        [FromRoute] int id
+    )
+    {
+        return Ok(_trainingService.GetById(id));
+    }
 }

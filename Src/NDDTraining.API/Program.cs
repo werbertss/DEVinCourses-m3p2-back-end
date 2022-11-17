@@ -8,8 +8,12 @@ using NDDTraining.DI.IOC;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+RepositoryIoc.RegisterServices(builder.Services);
 builder.Services.Register();
+builder.Services.RegisterServices();
 builder.Services.AddControllers();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();

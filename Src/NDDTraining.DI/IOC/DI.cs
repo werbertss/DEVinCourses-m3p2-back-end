@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NDDTraining.Domain.Interfaces.Services;
 
 namespace NDDTraining.DI.IOC
 {
@@ -6,7 +7,8 @@ namespace NDDTraining.DI.IOC
     {
         public static IServiceCollection Register(this IServiceCollection services)
         {
-            return services;
+            return services
+                .AddScoped<IModuleService>();
         }
     }
 }

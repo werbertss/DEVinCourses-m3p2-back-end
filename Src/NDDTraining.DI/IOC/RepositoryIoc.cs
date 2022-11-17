@@ -10,7 +10,7 @@ namespace NDDTraining.DI.IOC
 {
     public static class RepositoryIoc
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection builder)
+        public static IServiceCollection RegisterRepositories(this IServiceCollection builder)
         {
            return builder
                 .AddScoped<IModuleRepository, ModuleRepository>();

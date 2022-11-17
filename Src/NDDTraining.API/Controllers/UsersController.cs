@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NDDTraining.Domain.Interfaces.Services;
+using NDDTraining.Domain.Services;
 
 namespace NDDTraining.API.Controllers
 {
@@ -10,6 +8,15 @@ namespace NDDTraining.API.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        
+        private readonly IUserService _userService;
+    
+    public UsersController(IUserService userService)
+    {
+        _userService = userService;
     }
+        
+            
+    }
+
+
 }

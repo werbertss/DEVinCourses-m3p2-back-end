@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-RepositoryIoc.RegisterServices(builder.Services);
-builder.Services.Register();
+builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();
 builder.Services.AddControllers();
 

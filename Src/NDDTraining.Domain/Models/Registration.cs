@@ -1,4 +1,5 @@
-﻿using NDDTraining.Domain.Models.Enums;
+﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models.Enums;
 using System;
 namespace NDDTraining.Domain.Models
 {
@@ -10,25 +11,19 @@ namespace NDDTraining.Domain.Models
         public Status Status { get; set; }
         public virtual User User { get; set; }
         public virtual Training Training { get; set; }
-        public List<Training> TrainingsSuspended { get; set; }
-        public List<Training> TrainingsAvailable { get; set; }
-        public List<Training> TrainingsFinished { get; set; }
-        public List<Training> TrainingsProgress { get; set; }
-
-
 
 
         public Registration()
         {
         }
 
-        public Registration(int id, int userId, int trainingId, Status status, User user )
+        public Registration(RegistrationDTO registration )
         {
-            Id = id;
-            UserId = userId;
-            TrainingId = trainingId;
-            Status = status;
-            User = user;
+            Id = registration.Id;
+            UserId = registration.UserId;
+            TrainingId = registration.TrainingId;
+            Status = registration.Status;
+            
            
         }
     }

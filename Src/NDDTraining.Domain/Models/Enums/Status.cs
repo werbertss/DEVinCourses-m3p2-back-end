@@ -8,9 +8,10 @@ namespace NDDTraining.Domain.Models.Enums
 {
     public enum Status
     {
-        Andamento = 0,
-        Disponivel = 1,
-        Finalizado = 2,
-        Suspenso = 3
+        Progress = 0,
+        Available = 1,
+        Finished = 2,
+        Suspended = 3
+
     }
 }

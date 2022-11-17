@@ -13,8 +13,13 @@ namespace NDDTraining.Infra.Data.Repository
 
   {
         private readonly NDDTrainingDbContext _context;
-        public RegistrationRepository(NDDTrainingDbContext context) : base(context) { }
+        public RegistrationRepository(NDDTrainingDbContext context) : base(context) { 
+        _context = context;
+        }
 
+
+
+        
         public IList<Registration> GetAll()
         {
             return _context.Registrations.ToList();
@@ -48,9 +53,10 @@ namespace NDDTraining.Infra.Data.Repository
         
         public bool RegistrationDuplicate(int id)
         {
-            _context.Registrations.Any(x => x.Id == id);
 
-            return true;
+            return _context.Registrations.Any(x => x.Id == id);
+
+             
         }
     }
 }

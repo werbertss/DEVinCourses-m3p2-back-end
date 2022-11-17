@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NDDTraining.Domain.Models;
-
+using NDDTraining.Infra.Data.Mappings;
 
 namespace NDDTraining.Infra.Data.Context;
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NDDTraining.Domain.Interfaces.Services;
 
 namespace NDDTraining.API.Controllers
 {
@@ -7,10 +8,20 @@ namespace NDDTraining.API.Controllers
 
     public class RegistrationsController : Controller
     {
+        private readonly IRegistrationService _registrationService;
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            return View();
+            try
+            {
+                return Ok(_registrationService.GetAll());
+            }
+            catch
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

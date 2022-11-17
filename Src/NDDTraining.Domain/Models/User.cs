@@ -1,3 +1,4 @@
+using NDDTraining.Domain.DTOS;
 
 namespace NDDTraining.Domain.Models
 {
@@ -14,6 +15,16 @@ namespace NDDTraining.Domain.Models
         public User()
         {
 
+        }
+
+        public User (UserDTO userDTO)
+        {
+            Name = userDTO.Name;
+            Email = userDTO.Email;
+            Password = userDTO.Password;
+            Age = userDTO.Age;
+            CPF = userDTO.CPF;
+            Image = userDTO.Image;
         }
         
     }

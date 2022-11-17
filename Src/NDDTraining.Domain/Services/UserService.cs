@@ -18,14 +18,20 @@ namespace NDDTraining.Domain.Services
 
         public void InsertUser(User newUser)
         {
-            var checkedUser = _userRepositorie.CheckUserByEmail(newUser.Email);
-
-            if (checkedUser != null)
+            var checkedEmail = _userRepositorie.CheckUserByEmail(newUser.Email);
+            var checkedCPF = _userRepositorie.CheckUserByCPF(newUser.CPF);
+            
+            if (checkedEmail != null)
             {
                 throw new Exception("This user already exists !");
             }
 
-            _userRepositorie.Post(newUser);
+            if (checkedCPF != null)
+            {
+                throw new Exception("This user already exists !");
+            }
+
+            _userRepositorie.Insert(newUser);
         }
 
     }

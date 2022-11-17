@@ -40,11 +40,5 @@ namespace NDDTraining.Infra.Data.Repository
       _context.Set<TEntity>().Remove(entity);
     }
 
-    public virtual void Post(TEntity entity)
-    {
-        _context.Set<TEntity>().Add(entity);
-        _context.SaveChanges();
-
-    }
   }
 }

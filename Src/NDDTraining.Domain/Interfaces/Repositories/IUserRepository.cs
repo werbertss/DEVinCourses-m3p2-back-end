@@ -11,6 +11,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
     {
         User GetByToken(string id);
         public User CheckUserByEmail(string email);
-        void Post(User user);
+        public User CheckUserByCPF(string cpf);
+        void Insert (User user);
     }
 }

@@ -12,5 +12,11 @@ namespace NDDTraining.Infra.Data.Repository
             var checkedUser = _context.Users.FirstOrDefault(u => u.Email == email);
             return(checkedUser);
         }
+
+        public User CheckUserByCPF (string cpf)
+        {
+            var checkedUser = _context.Users.FirstOrDefault(c => c.CPF == cpf);
+            return(checkedUser);
+        }
     }
 }

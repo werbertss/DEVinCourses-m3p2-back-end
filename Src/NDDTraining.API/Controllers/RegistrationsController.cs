@@ -15,7 +15,7 @@ namespace NDDTraining.API.Controllers
 
         [HttpGet]
         public IActionResult GetAll()
-        {
+        {//buscar
             try
             {
                 return Ok(_registrationService.GetAll());

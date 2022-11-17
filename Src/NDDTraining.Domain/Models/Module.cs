@@ -22,5 +22,16 @@ namespace NDDTraining.Domain.Models
         public Module()
         {
         }
+
+        public Module(int id, int trainingId, string? titleModule, string? link, string? image, string? descriptionModule, string? statusModule)
+        {
+            Id = id;
+            TrainingId = trainingId;
+            TitleModule = titleModule;
+            Link = link;
+            Image = image;
+            DescriptionModule = descriptionModule;
+            StatusModule = statusModule;
+        }
     }
 }

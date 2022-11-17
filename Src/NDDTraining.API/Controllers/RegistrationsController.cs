@@ -39,7 +39,7 @@ namespace NDDTraining.API.Controllers
                 }
                 if (registration.Status.ToUpper() == "AVAILABLE")
                 {
-                    _registrationService.InsertProgress(registration);
+                    _registrationService.InsertAvailable(registration);
                 } 
                 
                 if (registration.Status.ToUpper() == "SUSPENDED")

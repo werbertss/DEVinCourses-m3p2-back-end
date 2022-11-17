@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.Interfaces.Services;
+using NDDTraining.Domain.Models;
 
 namespace NDDTraining.API.Controllers;
 
@@ -18,10 +19,13 @@ public class TrainingsController : ControllerBase
 
     [HttpGet] 
     public IActionResult GetAll(
-        [FromQuery] string category
+        [FromQuery] string? category,
+        int skip = 0,
+        int take = 20
     )
     {
-        return Ok(_trainingService.GetAll(category));
+        var paging = new Paging(take, skip);
+        return Ok(_trainingService.GetAll(category, paging));
     } 
 
     [HttpGet("{id}")]

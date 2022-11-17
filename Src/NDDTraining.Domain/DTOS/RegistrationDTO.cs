@@ -1,6 +1,7 @@
 ﻿using System;
 using NDDTraining.Domain.Models;
 
+
 namespace NDDTraining.Domain.DTOS
 {
     public class RegistrationDTO
@@ -9,15 +10,24 @@ namespace NDDTraining.Domain.DTOS
         public int UserId { get; set; }
         public int TrainingId { get; set; }
         public string Status { get; set; }
+       
+
 
         public RegistrationDTO()
         {
         }
 
-        public RegistrationDTO (Registration registration)
+        public RegistrationDTO(Registration registration)
         {
+            Id = registration.Id;
+            UserId = registration.UserId;
+            TrainingId = registration.TrainingId;
             Status = registration.Status;
+
+           
         }
+
+       
     }
 }
 

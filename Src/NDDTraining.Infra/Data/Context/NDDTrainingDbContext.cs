@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NDDTraining.Domain.Models;
-using NDDTraining.Infra.Data.Mappings;
+
 
 namespace NDDTraining.Infra.Data.Context;
 
@@ -31,6 +31,7 @@ public class NDDTrainingDbContext : DbContext
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
+
 
     modelBuilder.ApplyConfiguration(new TrainingMap());
     modelBuilder.ApplyConfiguration(new RegistrationMap());

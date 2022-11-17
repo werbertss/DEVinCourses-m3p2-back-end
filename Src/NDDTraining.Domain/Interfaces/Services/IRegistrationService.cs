@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,15 @@ namespace NDDTraining.Domain.Interfaces.Services
 {
     public interface IRegistrationService
     {
+        public IList<RegistrationDTO> GetAll();
         public void SendEMail();
         public void ValidateRegistration();
+        public void Insert(RegistrationDTO registration);
+        public void InsertProgress(RegistrationDTO registration);
+        public void InsertAvailable(RegistrationDTO registration);
+        public void InsertSuspended(RegistrationDTO registration); 
+        public void InsertFinished(RegistrationDTO registration);
+        
 
     }
 }

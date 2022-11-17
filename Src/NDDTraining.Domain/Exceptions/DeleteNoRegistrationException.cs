@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace NDDTraining.Domain.Exceptions
 {
-  public class DuplicateException : Exception
+  public class DeleteNoRegistrationException : Exception
   {
-    public DuplicateException(string nome) : base(nome)
+    public DeleteNoRegistrationException(string message) : base(message)
     {
 
     }

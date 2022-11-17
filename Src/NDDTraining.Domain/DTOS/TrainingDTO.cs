@@ -5,7 +5,7 @@ namespace NDDTraining.Domain.DTOS
 {
 	public class TrainingDTO
 	{
-        public int Id { get; internal set; }
+        public int Id { get; set; }
         public string Url { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -20,6 +20,7 @@ namespace NDDTraining.Domain.DTOS
 		}
         public TrainingDTO(Training training)
         {
+            Id = training.Id;
             Url = training.Url;
             Title = training.Title;
             Description = training.Description;

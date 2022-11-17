@@ -48,7 +48,9 @@ namespace NDDTraining.Infra.Database.Repositories
         
         public bool RegistrationDuplicate(int id)
         {
-            throw new NotImplementedException();
+            _context.Registrations.Any(x => x.Id == id);
+
+            return true;
         }
     }
 }

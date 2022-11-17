@@ -20,8 +20,4 @@
     <ProjectReference Include="..\NDDTraining.Di\NDDTraining.Di.csproj" />
   </ItemGroup>
 
-   <ItemGroup>
-     <Folder Include="Configs\" />
-   </ItemGroup>
-
 </Project>

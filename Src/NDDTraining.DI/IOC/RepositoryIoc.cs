@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NDDTraining.Domain.Interfaces.Repositories;
+using NDDTraining.Infra.Data.Context;
 using NDDTraining.Infra.Data.Repository;
 
 namespace NDDTraining.DI.IOC
@@ -13,9 +14,10 @@ namespace NDDTraining.DI.IOC
         public static IServiceCollection RegisterRepositories(this IServiceCollection builder)
         {
            return builder
-                .AddScoped<IModuleRepository, ModuleRepository>();
-
-            
+                .AddDbContext<NDDTrainingDbContext>()
+                .AddScoped<IModuleRepository, ModuleRepository>()
+                .AddScoped<ITrainingRepository, TrainingRepository>()
+                .AddScoped<IRegistrationRepository, RegistrationRepository>(); 
         }
     }
 }

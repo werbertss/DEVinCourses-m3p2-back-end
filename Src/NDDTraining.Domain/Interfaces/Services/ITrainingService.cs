@@ -10,7 +10,7 @@ namespace NDDTraining.Domain.Interfaces.Services
 {
     public interface ITrainingService
     {
-        public IList<TrainingDTO> GetAll(string category);
+        public IList<TrainingDTO> GetAll(string category, Paging paging);
         public TrainingDTO GetById(int id);
         public TrainingDTO GetTrainingFinish();
         public TrainingDTO GetTrainingProgress();

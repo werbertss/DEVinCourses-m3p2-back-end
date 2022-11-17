@@ -12,5 +12,6 @@ namespace NDDTraining.Domain.Models.Enums
         Available = 1,
         Finished = 2,
         Suspended = 3
+
     }
 }

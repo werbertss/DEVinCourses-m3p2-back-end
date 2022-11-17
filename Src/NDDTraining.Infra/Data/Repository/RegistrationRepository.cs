@@ -19,5 +19,36 @@ namespace NDDTraining.Infra.Database.Repositories
         {
             return _context.Registrations.ToList();
         }
+
+        public void InsertProgress(RegistrationDTO registration)
+        {
+            Registration addRegistration = new Registration();
+              addRegistration.TrainingsProgress.Add(registration);
+        }
+        public void InsertAvailable(RegistrationDTO registration)
+        {
+            Registration addRegistration = new Registration();
+            addRegistration.TrainingsAvailable.Add(registration);
+        }
+        public void InsertFinished(RegistrationDTO registration)
+        {
+            Registration addRegistration = new Registration();
+            addRegistration.TrainingsFinished.Add(registration);
+        } 
+        public void InsertSuspended(RegistrationDTO registration)
+        {
+            Registration addRegistration = new Registration();
+            addRegistration.TrainingsSuspended.Add(registration);
+        }  
+        public void Insert(Registration registration)
+        {
+            _context.Registrations.Add(registration);
+            _context.SaveChanges();
+        }
+        
+        public bool RegistrationDuplicate(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

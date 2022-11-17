@@ -12,7 +12,10 @@ namespace NDDTraining.API.Controllers
     public class RegistrationsController : Controller
     {
         private readonly IRegistrationService _registrationService;
-
+        public RegistrationsController(IRegistrationService registrationService)
+        {
+            _registrationService = registrationService;
+        }
         [HttpGet]
         public IActionResult GetAll()
         {//buscar
@@ -31,36 +34,12 @@ namespace NDDTraining.API.Controllers
 
         public IActionResult Insert(RegistrationDTO registration)
         {
-            try
-            {
-                if(registration.Status.ToUpper()== "PROGRESS")
-                {
-                    _registrationService.InsertProgress(registration);
-                }
-                if (registration.Status.ToUpper() == "AVAILABLE")
-                {
-                    _registrationService.InsertAvailable(registration);
-                } 
-                
-                if (registration.Status.ToUpper() == "SUSPENDED")
-                {
-                    _registrationService.InsertSuspended(registration);
-                }
-                if (registration.Status.ToUpper() == "FINISHED")
-                {
-                    _registrationService.InsertFinished(registration);
-                }
-
+            
                 _registrationService.Insert(registration);
                 return StatusCode(StatusCodes.Status201Created);
 
-            }
-            catch (Exception)
-            {
-
-                throw new Exception(StatusCodes.Status500InternalServerError.ToString()) ;
-            }
             
+          
 
         }
     }

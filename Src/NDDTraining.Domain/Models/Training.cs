@@ -5,7 +5,7 @@ namespace NDDTraining.Domain.Models
 {
 	public class Training
 	{
-        public int Id { get; internal set; }
+        public int Id { get; set; }
         public string Url { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -13,11 +13,24 @@ namespace NDDTraining.Domain.Models
         public TimeSpan Duration { get; set; }
         public bool Active { get; set; }
         public string Category { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public virtual List<Module> Modules { get; set; }
         public Training()
 		{
 
 		}
-	}
+
+        public Training(int id, string url, string title, string description, string teacher, TimeSpan duration, bool active, string category, DateTime realeseDete)
+        {
+            Id = id;
+            Url = url;
+            Title = title;
+            Description = description;
+            Teacher = teacher;
+            Duration = duration;
+            Active = active;
+            Category = category;
+        }
+    }
 }
 

@@ -10,5 +10,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
     public interface IUserRepository
     {
         User GetByToken(string id);
+        public User CheckUserByEmail(string email);
+        void Post(User user);
     }
 }

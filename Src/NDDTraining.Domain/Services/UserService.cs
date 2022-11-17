@@ -15,5 +15,18 @@ namespace NDDTraining.Domain.Services
         {
             return _userRepositorie.GetByToken(id);
         }
+
+        public void InsertUser(User newUser)
+        {
+            var checkedUser = _userRepositorie.CheckUserByEmail(newUser.Email);
+
+            if (checkedUser != null)
+            {
+                throw new Exception("This user already exists !");
+            }
+
+            _userRepositorie.Post(newUser);
+        }
+
     }
 }

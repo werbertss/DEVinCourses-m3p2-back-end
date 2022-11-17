@@ -10,10 +10,10 @@ namespace NDDTraining.Domain.Models
         public string Status { get; set; }
         public virtual User User { get; set; }
         public virtual Training Training { get; set; }
-        public List<RegistrationDTO> TrainingsSuspended { get; set; }
-        public List<RegistrationDTO> TrainingsAvailable { get; set; }
-        public List<RegistrationDTO> TrainingsFinished { get; set; }
-        public List<RegistrationDTO> TrainingsProgress { get; set; }
+        public virtual List<RegistrationDTO> TrainingsSuspended { get; set; }
+        public virtual List<RegistrationDTO> TrainingsAvailable { get; set; }
+        public virtual List<RegistrationDTO> TrainingsFinished { get; set; }
+        public virtual List<RegistrationDTO> TrainingsProgress { get; set; }
 
 
 

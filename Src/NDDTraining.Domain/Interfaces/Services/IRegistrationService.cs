@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace NDDTraining.Domain.Interfaces.Services
 {
-  public interface IRegistrationService
-  {
-    public IList<RegistrationDTO> GetAll();
-    public void SendEMail();
-    public void ValidateRegistration();
-    public void Insert(RegistrationDTO registration);
-    public void InsertProgress(RegistrationDTO registration);
-    public void InsertAvailable(RegistrationDTO registration);
-    public void InsertSuspended(RegistrationDTO registration);
-    public void InsertFinished(RegistrationDTO registration);
+    public interface IRegistrationService
+    {
+        public IList<RegistrationDTO> GetAll();
+        public void SendEMail();
+        public void ValidateRegistration();
+        public void Insert(RegistrationDTO registration);
+        public void InsertProgress(RegistrationDTO registration);
+        public void InsertAvailable(RegistrationDTO registration);
+        public void InsertSuspended(RegistrationDTO registration); 
+        public void InsertFinished(RegistrationDTO registration);
+        
 
-    public void Delete(int id);
-  }
+    }
 }

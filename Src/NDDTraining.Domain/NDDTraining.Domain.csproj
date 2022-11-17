@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Repositories\" />
-    <Folder Include="Exceptions\" />
+    <Folder Include="Models\Enums\" />
     <Folder Include="Validations\" />
     <Folder Include="Services\" />
   </ItemGroup>

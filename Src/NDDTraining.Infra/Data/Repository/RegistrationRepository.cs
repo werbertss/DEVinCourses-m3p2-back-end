@@ -7,7 +7,7 @@ using NDDTraining.Infra.Data.Context;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.DTOS;
 
-namespace NDDTraining.Infra.Database.Repositories
+namespace NDDTraining.Infra.Data.Repository
 {
   public class RegistrationRepository : BaseRepository<Registration, int>, IRegistrationRepository
 

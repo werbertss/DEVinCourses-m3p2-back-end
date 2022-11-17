@@ -6,7 +6,7 @@ using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Models;
 using NDDTraining.Infra.Data.Context;
 
-namespace NDDTraining.Infra.Database.Repositories
+namespace NDDTraining.Infra.Data.Repository
 {
     public class
     ModuleRepository

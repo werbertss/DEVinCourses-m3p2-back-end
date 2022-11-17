@@ -11,8 +11,4 @@
      <ProjectReference Include="..\NDDTraining.Domain\NDDTraining.Domain.csproj" /> 
 	</ItemGroup>
 
-   <ItemGroup>
-     <Folder Include="IOC\" />
-   </ItemGroup>
-
 </Project>

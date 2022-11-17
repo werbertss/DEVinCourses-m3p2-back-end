@@ -17,8 +17,9 @@ public class NDDTrainingDbContext : DbContext
   public DbSet<Module> Modules { get; set; }
   public DbSet<Registration> Registrations { get; set; }
   public DbSet<Training> Trainings { get; set; }
+  public DbSet<User> Users { get; set; }
 
-  protected override void OnConfiguring(DbContextOptionsBuilder options)
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
   {
     base.OnConfiguring(options);
 
@@ -31,9 +32,11 @@ public class NDDTrainingDbContext : DbContext
   {
     base.OnModelCreating(modelBuilder);
 
-    //modelBuilder.ApplyConfiguration(new TrainingMap());
-    //modelBuilder.ApplyConfiguration(new RegistrationMap());
-    //modelBuilder.ApplyConfiguration(new ModuleMap());
 
-  }
+    modelBuilder.ApplyConfiguration(new TrainingMap());
+    modelBuilder.ApplyConfiguration(new RegistrationMap());
+    modelBuilder.ApplyConfiguration(new ModuleMap());
+    modelBuilder.ApplyConfiguration(new UserMap());
+
+    }
 }

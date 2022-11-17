@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
+using NDDTraining.Domain.Models;
 using NDDTraining.Domain.Services;
 
 namespace NDDTraining.API.Controllers
@@ -14,9 +16,20 @@ namespace NDDTraining.API.Controllers
     {
         _userService = userService;
     }
-        
-            
+    
+    [HttpPost]
+    public IActionResult Post(
+        [FromBody] UserDTO userDTO
+    )
+    {
+        var newUser = new User(userDTO);     
+        _userService.InsertUser(newUser);
+
+        return Created("api/users", newUser.Id);
     }
 
+            
+    }
+    
 
 }

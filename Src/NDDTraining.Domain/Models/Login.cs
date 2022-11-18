@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NDDTraining.Domain.DTOS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,10 @@ namespace NDDTraining.Domain.Models
             Email = email;
             Password = password;
         }
-
+        public Login(LoginDTO loginDTO)
+        {
+            Email = loginDTO.Email;
+            Password = loginDTO.Password;
+        }
     }
 }

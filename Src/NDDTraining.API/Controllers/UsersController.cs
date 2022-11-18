@@ -25,10 +25,6 @@ namespace NDDTraining.API.Controllers
         _userService.InsertUser(newUser);
 
         return Created("api/users", newUser.Id);
+    }  
     }
-
-            
-    }
-    
-
 }

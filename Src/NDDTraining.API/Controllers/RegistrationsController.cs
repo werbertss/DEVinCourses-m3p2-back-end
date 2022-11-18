@@ -6,8 +6,9 @@ using NDDTraining.Domain.Models;
 
 namespace NDDTraining.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+  [ApiController]
+  [Route("api/[controller]")]
+
 
     public class RegistrationsController : Controller
     {
@@ -26,10 +27,11 @@ namespace NDDTraining.API.Controllers
             catch
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
 
+        return StatusCode(StatusCodes.Status500InternalServerError);
+      }
+    }
+      
         [HttpPost]
 
         public IActionResult Insert(RegistrationDTO registration)
@@ -39,5 +41,26 @@ namespace NDDTraining.API.Controllers
                 return StatusCode(StatusCodes.Status201Created);
 
         }
+  
+    
+
     }
+
+    [HttpDelete("{userId}")]
+    public ActionResult Delete(
+    [FromRoute] int userId)
+    {
+      try
+      {
+        _registrationService.Delete(userId);
+        return StatusCode(StatusCodes.Status204NoContent);
+      }
+
+      catch
+      {
+        throw new Exception(StatusCodes.Status500InternalServerError.ToString());
+      }
+
+    }
+  }
 }

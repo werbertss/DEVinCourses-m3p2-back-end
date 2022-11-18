@@ -17,6 +17,7 @@ namespace NDDTraining.Infra.Data.Repository
         public List<RegistrationDTO> ProgressList = new List<RegistrationDTO>();
         public List<RegistrationDTO> AvailableList = new List<RegistrationDTO>();
 
+
         private readonly NDDTrainingDbContext _context;
         public RegistrationRepository(NDDTrainingDbContext context) : base(context)
         {
@@ -60,5 +61,22 @@ namespace NDDTraining.Infra.Data.Repository
         {
             return _context.Registrations.Any(x => x.Id == id);
         }
+
+    public void Delete(int userId)
+    {
+
+      var user = _context.Registrations.Find(userId);
+
+      _context.Registrations.Remove(user);
+      _context.SaveChanges();
     }
+
+    public bool DeleteNoRegistration(int userId)
+    {
+      var user = _context.Registrations.Find(userId);
+      if (user == null) return true;
+      else return false;
+
+    }
+  }
 }

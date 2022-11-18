@@ -1,4 +1,5 @@
-﻿using NDDTraining.Domain.Models;
+﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         User GetByToken(string id);
         public User CheckUserByEmail(string email);
         public User CheckUserByCPF(string cpf);
-        void Insert (User user);
+        void Insert (User recordUser);
     }
 }

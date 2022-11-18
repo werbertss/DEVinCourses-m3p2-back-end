@@ -15,21 +15,27 @@ builder.Services.RegisterRepositories();
 builder.Services.AddControllers();
 
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
+EmailIOC.RegisterServices(builder.Services);
+
+
+
 //builder.Services.AddSwaggerGen();
-builder.Services.AddSwaggerGen(c => {
+builder.Services.AddSwaggerGen(c =>
+{
     c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
-                {
-                    Description = @"JWT Authorization header using the Bearer scheme. 
+    {
+        Description = @"JWT Authorization header using the Bearer scheme. 
                                               Escreva 'Bearer' [espaço] e o token gerado no login na caixa abaixo.
                                               Exemplo: 'Bearer 12345abcdef'",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
-     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                                           {
                                             {
                                               new OpenApiSecurityScheme
@@ -66,6 +72,14 @@ builder.Services.AddAuthentication(x =>
 
 var app = builder.Build();
 app.UseMiddleware<ErrorMiddleware>();
+
+app.UseCors(opcoes => opcoes.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+
+app.UseCors(opcoes => opcoes.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

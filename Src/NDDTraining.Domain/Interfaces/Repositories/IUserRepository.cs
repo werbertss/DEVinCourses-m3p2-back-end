@@ -10,5 +10,6 @@ namespace NDDTraining.Domain.Interfaces.Repositories
     public interface IUserRepository
     {
         User GetByToken(string id);
+        bool VerifyLogin(Login login);
     }
 }

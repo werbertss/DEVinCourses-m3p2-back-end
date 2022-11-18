@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace NDDTraining.Domain.Interfaces.Repositories
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
+        User GetByToken(string id);
+        public User CheckUserByEmail(string email);
+        public User CheckUserByCPF(string cpf);
+        void Insert (User recordUser);
+        bool VerifyLogin(Login login);
     }
 }

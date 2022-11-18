@@ -1,15 +1,20 @@
 using System.Text;
-using NDDTraining.API.Security;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using NDDTraining.Domain.Services.Security;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NDDTraining.DI.IOC;
+using NDDTraining.API.Configs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.Register();
+
+builder.Services.RegisterServices();
+builder.Services.RegisterRepositories();
 builder.Services.AddControllers();
+
+
 builder.Services.AddEndpointsApiExplorer();
 
 
@@ -66,6 +71,11 @@ builder.Services.AddAuthentication(x =>
 });
 
 var app = builder.Build();
+app.UseMiddleware<ErrorMiddleware>();
+
+app.UseCors(opcoes => opcoes.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
 app.UseCors(opcoes => opcoes.AllowAnyOrigin()
                         .AllowAnyMethod()

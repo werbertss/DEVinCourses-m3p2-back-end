@@ -19,10 +19,9 @@ namespace NDDTraining.API.Controllers
     
     [HttpPost]
     public IActionResult Post(
-        [FromBody] UserDTO userDTO
+        [FromBody] UserDTO newUser
     )
-    {
-        var newUser = new UserDTO(userDTO);     
+    {  
         _userService.InsertUser(newUser);
 
         return Created("api/users", newUser.Id);

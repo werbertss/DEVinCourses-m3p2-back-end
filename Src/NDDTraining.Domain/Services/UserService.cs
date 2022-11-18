@@ -30,8 +30,8 @@ namespace NDDTraining.Domain.Services
 
         public void InsertUser(UserDTO newUser)
         {
-            var checkedEmail = _userRepositorie.CheckUserByEmail(newUser.Email);
-            var checkedCPF = _userRepositorie.CheckUserByCPF(newUser.CPF);
+            var checkedEmail = _userRepository.CheckUserByEmail(newUser.Email);
+            var checkedCPF = _userRepository.CheckUserByCPF(newUser.CPF);
             
             if (checkedEmail != null)
             {
@@ -45,7 +45,7 @@ namespace NDDTraining.Domain.Services
 
             var recordUser = new User(newUser);     
            
-            _userRepositorie.Insert(recordUser);
+            _userRepository.Insert(recordUser);
         }       
     }
 }

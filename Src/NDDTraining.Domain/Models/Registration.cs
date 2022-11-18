@@ -11,7 +11,7 @@ namespace NDDTraining.Domain.Models
         public virtual User User { get; set; }
         public virtual Training Training { get; set; }
         
-
+        public virtual IList<CompletedModule> CompletedModules { get; set; }
 
 
         public Registration()

@@ -1,5 +1,5 @@
 
-using NDDTraining.Domain.Enuns;
+using NDDTraining.Domain.Enums;
 
 namespace NDDTraining.Domain.Models
 {

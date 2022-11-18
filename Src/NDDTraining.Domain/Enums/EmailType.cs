@@ -1,4 +1,4 @@
-namespace NDDTraining.Domain.Enuns
+namespace NDDTraining.Domain.Enums
 {
     public enum EmailType
     {

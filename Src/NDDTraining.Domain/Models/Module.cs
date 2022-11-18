@@ -10,11 +10,11 @@ namespace NDDTraining.Domain.Models
     {
         public int Id { get; set; }
         public int TrainingId { get; set; }
-        public string? TitleModule { get; set; }
-        public string? Link { get; set; }
-        public string? Image { get; set; }
-        public string? DescriptionModule { get; set; }
-        public string? StatusModule { get; set; }
+        public string TitleModule { get; set; }
+        public string Link { get; set; }
+        public string Image { get; set; }
+        public string DescriptionModule { get; set; }
+        public string StatusModule { get; set; }
 
         public virtual Training Training { get; set; }
 
@@ -23,7 +23,7 @@ namespace NDDTraining.Domain.Models
         {
         }
 
-        public Module(int id, int trainingId, string? titleModule, string? link, string? image, string? descriptionModule, string? statusModule)
+        public Module(int id, int trainingId, string titleModule, string link, string image, string descriptionModule, string statusModule)
         {
             Id = id;
             TrainingId = trainingId;

@@ -1,5 +1,5 @@
 using System.Text;
-using NDDTraining.API.Security;
+using NDDTraining.Domain.Services.Security;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NDDTraining.DI.IOC;

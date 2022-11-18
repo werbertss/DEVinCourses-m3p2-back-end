@@ -9,75 +9,58 @@ namespace NDDTraining.API.Controllers
   [ApiController]
   [Route("api/[controller]")]
 
-  public class RegistrationsController : Controller
-  {
-    private readonly IRegistrationService _registrationService;
 
-    [HttpGet]
-    public IActionResult GetAll()
-    {//buscar
-      try
-      {
-        return Ok(_registrationService.GetAll());
-      }
-      catch
-      {
+    public class RegistrationsController : Controller
+    {
+        private readonly IRegistrationService _registrationService;
+        public RegistrationsController(IRegistrationService registrationService)
+        {
+            _registrationService = registrationService;
+        }
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                return Ok(_registrationService.GetAll());
+            }
+            catch
+            {
+
 
         return StatusCode(StatusCodes.Status500InternalServerError);
       }
     }
+      
+        [HttpPost]
 
-    [HttpPost]
-
-    public IActionResult Insert(RegistrationDTO registration)
-    {
-      try
-      {
-        if (registration.Status.ToUpper() == "PROGRESS")
+        public IActionResult Insert(RegistrationDTO registration)
         {
-          _registrationService.InsertProgress(registration);
+            
+                _registrationService.Insert(registration);
+                return StatusCode(StatusCodes.Status201Created);
+
         }
-        if (registration.Status.ToUpper() == "AVAILABLE")
+        [HttpDelete("{userId}")]
+        public ActionResult Delete(
+         [FromRoute] int userId)
         {
-          _registrationService.InsertAvailable(registration);
+            try
+            {
+                _registrationService.Delete(userId);
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+
+            catch
+            {
+                throw new Exception(StatusCodes.Status500InternalServerError.ToString());
+            }
+
+
         }
 
-        if (registration.Status.ToUpper() == "SUSPENDED")
-        {
-          _registrationService.InsertSuspended(registration);
-        }
-        if (registration.Status.ToUpper() == "FINISHED")
-        {
-          _registrationService.InsertFinished(registration);
-        }
+   
 
-        _registrationService.Insert(registration);
-        return StatusCode(StatusCodes.Status201Created);
-
-      }
-      catch (Exception)
-      {
-
-        throw new Exception(StatusCodes.Status500InternalServerError.ToString());
-      }
-
-
-    }
-
-    [HttpDelete("{userId}")]
-    public ActionResult Delete(
-    [FromRoute] int userId)
-    {
-      try
-      {
-        _registrationService.Delete(userId);
-        return StatusCode(StatusCodes.Status204NoContent);
-      }
-
-      catch
-      {
-        throw new Exception(StatusCodes.Status500InternalServerError.ToString());
-      }
     }
   }
-}
+

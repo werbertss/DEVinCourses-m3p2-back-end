@@ -29,7 +29,7 @@ namespace NDDTraining.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IList<TrainingDTO> GetAll(string? category, Paging paging)
+        public IList<TrainingDTO> GetAll(string category, Paging paging)
         {
             var query = _trainingRepository.GetAll(paging).AsQueryable();
             

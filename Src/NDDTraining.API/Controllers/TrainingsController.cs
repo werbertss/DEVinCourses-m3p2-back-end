@@ -19,7 +19,7 @@ public class TrainingsController : ControllerBase
 
     [HttpGet] 
     public IActionResult GetAll(
-        [FromQuery] string? category,
+        [FromQuery] string category,
         int skip = 0,
         int take = 20
     )

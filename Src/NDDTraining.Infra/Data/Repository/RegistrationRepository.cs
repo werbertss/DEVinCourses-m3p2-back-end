@@ -9,49 +9,58 @@ using NDDTraining.Domain.DTOS;
 
 namespace NDDTraining.Infra.Data.Repository
 {
-  public class RegistrationRepository : BaseRepository<Registration, int>, IRegistrationRepository
+    public class RegistrationRepository : BaseRepository<Registration, int>, IRegistrationRepository
 
-  {
-    private readonly NDDTrainingDbContext _context;
-    public RegistrationRepository(NDDTrainingDbContext context) : base(context) { }
+    {
+        public List<RegistrationDTO> SuspendedList = new List<RegistrationDTO>();
+        public List<RegistrationDTO> FinishedList = new List<RegistrationDTO>();
+        public List<RegistrationDTO> ProgressList = new List<RegistrationDTO>();
+        public List<RegistrationDTO> AvailableList = new List<RegistrationDTO>();
 
-    public IList<Registration> GetAll()
-    {
-      return _context.Registrations.ToList();
-    }
 
-    public void InsertProgress(RegistrationDTO registration)
-    {
-      Registration addRegistration = new Registration();
-      addRegistration.TrainingsProgress.Add(registration);
-    }
-    public void InsertAvailable(RegistrationDTO registration)
-    {
-      Registration addRegistration = new Registration();
-      addRegistration.TrainingsAvailable.Add(registration);
-    }
-    public void InsertFinished(RegistrationDTO registration)
-    {
-      Registration addRegistration = new Registration();
-      addRegistration.TrainingsFinished.Add(registration);
-    }
-    public void InsertSuspended(RegistrationDTO registration)
-    {
-      Registration addRegistration = new Registration();
-      addRegistration.TrainingsSuspended.Add(registration);
-    }
-    public void Insert(Registration registration)
-    {
-      _context.Registrations.Add(registration);
-      _context.SaveChanges();
-    }
+        private readonly NDDTrainingDbContext _context;
+        public RegistrationRepository(NDDTrainingDbContext context) : base(context)
+        {
+            _context = context;
+        }
 
-    public bool RegistrationDuplicate(int id)
-    {
-      _context.Registrations.Any(x => x.Id == id);
+        public IList<Registration> GetAll()
+        {
+            return _context.Registrations.ToList();
+        }
 
-      return true;
-    }
+
+        public void Insert(Registration registration)
+        {
+            _context.Registrations.Add(registration);
+            _context.SaveChanges();
+        }
+
+
+
+        public void InsertListProgress(RegistrationDTO register)
+        {
+            ProgressList.Add(register);
+
+        }
+        public void InsertListSuspended(RegistrationDTO register)
+        {
+            SuspendedList.Add(register);
+
+        }
+        public void InsertListAvailable(RegistrationDTO register)
+        {
+            AvailableList.Add(register);
+        }
+        public void InsertListFinished(RegistrationDTO register)
+        {
+            FinishedList.Add(register);
+        }
+
+        public bool RegistrationDuplicate(int id)
+        {
+            return _context.Registrations.Any(x => x.Id == id);
+        }
 
     public void Delete(int userId)
     {
@@ -67,6 +76,7 @@ namespace NDDTraining.Infra.Data.Repository
       var user = _context.Registrations.Find(userId);
       if (user == null) return true;
       else return false;
+
     }
   }
 }

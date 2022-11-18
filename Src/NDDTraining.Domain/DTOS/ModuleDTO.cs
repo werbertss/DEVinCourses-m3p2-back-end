@@ -11,11 +11,11 @@ namespace NDDTraining.Domain.DTOS
     {
         public int Id { get; set; }
         public int TrainingId { get; set; }
-        public string? TitleModule { get; set; }
-        public string? Link { get; set; }
-        public string? Image { get; set; }
-        public string? DescriptionModule { get; set; }
-        public string? StatusModule { get; set; }
+        public string TitleModule { get; set; }
+        public string Link { get; set; }
+        public string Image { get; set; }
+        public string DescriptionModule { get; set; }
+        public string StatusModule { get; set; }
 
         public ModuleDTO()
         {

@@ -28,6 +28,7 @@ public class RegistrationMap : IEntityTypeConfiguration<Registration>
 
         entity.Property(m => m.Status)
             .HasColumnName("STATUS")
+            .HasMaxLength(50)
             .HasColumnType("VARCHAR")
             .IsRequired();
         

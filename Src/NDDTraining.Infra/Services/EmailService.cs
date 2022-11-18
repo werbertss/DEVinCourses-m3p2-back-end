@@ -2,48 +2,87 @@
 using System.Net;
 using System.Net.Mail;
 using NDDTraining.Domain.Interfaces.Services;
+using NDDTraining.Domain.Models;
+using MailKit.Security;
 
 namespace NDDTraining.Infra.Services
 {
     public class EmailService: IEmailService
     {
         
-        public void SendEmail(string from, string recepient, string subject, string body)
+        public void BuildAndSendMail(Email email)
+        {
+
+            var body = GetEmailTemplateByName("ResetPassword.html");           
+            body = ReplaceParameters(body, email.Parameters);
+            SendEmail(email.To, email.Subject, body);
+
+        }
+
+        private void SendEmail( string To, string subject, string body)
         {
            
 
-            MailMessage email = new MailMessage();
+            MailMessage email = new MailMessage();           
 
-            email.From = new MailAddress(from);
+            email.From = new MailAddress("moises12@ethereal.email");
 
-            email.To.Add(new MailAddress(recepient));          
+            email.To.Add(new MailAddress(To));
 
             email.Subject = subject;
 
-            email.Body = body;
+            email.Body = body;            
 
             email.IsBodyHtml = true;
 
             email.Priority = MailPriority.Normal;
 
-            SmtpClient smtp = new SmtpClient("smtp.sendgrid.net",587);
-            smtp.EnableSsl = false;
+            using var smtp = new MailKit.Net.Smtp.SmtpClient();
+            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("dewayne.kuphal@ethereal.email", "u3633MwcsFtfTvx5Xn");
+           
 
-            smtp.Credentials = new NetworkCredential("apikey", "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");
+            // SmtpClient smtp = new SmtpClient("in-v3.mailjet.com",587);
 
+            //smtp.EnableSsl = false;
 
+          //  smtp.Credentials = new NetworkCredential("1caa0c71f61d336725763c57b12cdcf9", "b61d9c5fa8357384ef44e76c19d32298");
 
+           // smtp.Credentials = new NetworkCredential();
 
             try
             {
-                smtp.Send(email);
+                smtp.Send((MimeKit.MimeMessage)email);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",  ex.ToString());
             }
+        }
 
-            
+
+
+
+        private string GetEmailTemplateByName(string templateName)
+        {
+            FileStream fileStream = new FileStream($"../NDDTraining.Infra/Templates/{templateName}", FileMode.Open);
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
+
+        
+        private string ReplaceParameters(string template, IDictionary<string, string> parameters)
+        {
+            foreach (var param in parameters)
+            {
+                if (!template.Contains("{{"))
+                    break;
+                template = template.Replace("{{" + param.Key + "}}", param.Value);
+            }
+            return template;
         }
     }
 }

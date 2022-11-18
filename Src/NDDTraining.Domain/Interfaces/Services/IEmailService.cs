@@ -1,10 +1,11 @@
-
-using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models;
 
 namespace NDDTraining.Domain.Interfaces.Services
 {
     public interface IEmailService
     {
-        void SendEmail(string from, string recepient, string subject, string body);
+       
+
+        void BuildAndSendMail(Email email);
     }
 }

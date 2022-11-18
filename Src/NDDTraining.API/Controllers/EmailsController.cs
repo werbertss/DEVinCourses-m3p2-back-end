@@ -5,7 +5,7 @@ namespace NDDTraining.API.Controllers
 {
     [ApiController]
     [Route("API/Email")]
-   
+
     public class EmailsController : ControllerBase
     {
         private readonly IEmailService _emailService;
@@ -18,13 +18,24 @@ namespace NDDTraining.API.Controllers
 
 
         [HttpPost]
-        public IActionResult SendMail([FromQuery]  string from,[FromQuery] string recepient,[FromQuery] string subject,[FromQuery] string body){
+        public IActionResult SendMail()
+        {
 
-            _emailService.SendEmail(from, recepient, subject, body);
+            _emailService.BuildAndSendMail(new Domain.Models.Email()
+            {
+                To = "raulzito737@gmail.com",
+                Subject = "Testando a API",
+                Parameters = new Dictionary<string, string>() { { "Name", "Raul" }, { "Sobrenome", "teste" } }
+
+
+
+
+
+            });
 
 
             return Ok();
         }
-        
+
     }
 }

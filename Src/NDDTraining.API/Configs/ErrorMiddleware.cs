@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Exceptions;
 
 namespace NDDTraining.API.Configs
 {
@@ -29,7 +30,12 @@ namespace NDDTraining.API.Configs
             string message;
 
             switch (exception)
-            {
+            {   
+                case(BadRequestException):
+                    status = HttpStatusCode.BadRequest;
+                    message = exception.Message;
+                    break;
+
                 default:
                     status = HttpStatusCode.InternalServerError;
                     message = "An internal error ocurred. Please contact IT";

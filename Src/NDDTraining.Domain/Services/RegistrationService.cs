@@ -10,9 +10,11 @@ using NDDTraining.Domain.Models;
 
 namespace NDDTraining.Domain.Services
 {
-  public class RegistrationService : IRegistrationService
-  {
-    private readonly IRegistrationRepository _registrationRepository;
+
+    public class RegistrationService : IRegistrationService
+    {
+        private readonly IRegistrationRepository _registrationRepository;
+
 
 
     public RegistrationService(IRegistrationRepository registrationRepository)
@@ -25,56 +27,60 @@ namespace NDDTraining.Domain.Services
       return _registrationRepository.GetAll()
             .Select(x => new RegistrationDTO(x)).ToList();
 
+     }
 
-    }
+        public void Insert(RegistrationDTO registration)
+        {
+            if (_registrationRepository.RegistrationDuplicate(registration.Id))
+            {
+                throw new DuplicateException("Registro j� existe na base de dados!");
+            }
 
-    public void Insert(RegistrationDTO registration)
-    {
-      if (_registrationRepository.RegistrationDuplicate(registration.Id))
-      {
-        throw new DuplicateException("Registro j� existe na base de dados!");
-      }
-      _registrationRepository.Insert(new Registration(registration));
+            if (registration.Status == "Progress")
+            {
+                _registrationRepository.InsertListProgress(registration);
 
-    }
+            }
+            
+            if (registration.Status == "Available")
+            {
+                _registrationRepository.InsertListAvailable(registration);
+            }
+            if (registration.Status == "Finished")
+            {
+                _registrationRepository.InsertListFinished(registration);
+            }
+            if (registration.Status == "Suspended")
+            {
+                _registrationRepository.InsertListSuspended(registration);
+            }
+            _registrationRepository.Insert(new Registration(registration));
 
-    public void InsertAvailable(RegistrationDTO registration)
-    {
-      _registrationRepository.InsertAvailable(registration);
-    }
+        }
 
-    public void InsertFinished(RegistrationDTO registration)
-    {
-      _registrationRepository.InsertFinished(registration);
-    }
 
-    public void InsertProgress(RegistrationDTO registration)
-    {
-      _registrationRepository.InsertProgress(registration);
-    }
 
-    public void InsertSuspended(RegistrationDTO registration)
-    {
-      _registrationRepository.InsertSuspended(registration);
-    }
+        public void SendEMail()
+        {
+            throw new NotImplementedException();
+        }
 
-    public void SendEMail()
-    {
-      throw new NotImplementedException();
-    }
+        public void ValidateRegistration()
+        {
 
-    public void ValidateRegistration()
-    {
-      throw new NotImplementedException();
-    }
 
-    public void Delete(int id)
+        }
+
+   public void Delete(int id)
     {
       if (_registrationRepository.DeleteNoRegistration(id))
-      {
+       {
         throw new DeleteNoRegistrationException("Não há arquivo para remoção.");
-      }
+       }
       _registrationRepository.Delete(id);
     }
-  }
+
+       
+    }
+
 }

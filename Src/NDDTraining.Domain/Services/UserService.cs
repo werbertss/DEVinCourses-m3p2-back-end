@@ -27,5 +27,25 @@ namespace NDDTraining.Domain.Services
 
             throw new InvalidLoginException("Email ou senha não encontrados");
         }
+
+        public void InsertUser(UserDTO newUser)
+        {
+            var checkedEmail = _userRepositorie.CheckUserByEmail(newUser.Email);
+            var checkedCPF = _userRepositorie.CheckUserByCPF(newUser.CPF);
+            
+            if (checkedEmail != null)
+            {
+                throw new Exception("This user already exists !");
+            }
+
+            if (checkedCPF != null)
+            {
+                throw new Exception("This user already exists !");
+            }
+
+            var recordUser = new User(newUser);     
+           
+            _userRepositorie.Insert(recordUser);
+        }       
     }
 }

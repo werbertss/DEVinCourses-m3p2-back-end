@@ -39,5 +39,6 @@ namespace NDDTraining.Infra.Data.Repository
     {
       _context.Set<TEntity>().Remove(entity);
     }
+
   }
 }

@@ -8,6 +8,18 @@ namespace NDDTraining.Infra.Data.Repository
     {
         public UserRepository(NDDTrainingDbContext context) : base(context) { }
 
+        public User CheckUserByEmail (string email)
+        {
+            var checkedUser = _context.Users.FirstOrDefault(u => u.Email == email);
+            return(checkedUser);
+        }
+
+        public User CheckUserByCPF (string cpf)
+        {
+            var checkedUser = _context.Users.FirstOrDefault(c => c.CPF == cpf);
+            return(checkedUser);
+        }
+
         public bool VerifyLogin(Login login)
         {
             return _context.Users.Any(u => u.Email == login.Email && u.Password == login.Password);

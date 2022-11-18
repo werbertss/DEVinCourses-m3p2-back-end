@@ -49,8 +49,9 @@ namespace NDDTraining.Infra.Data.Mappings
 
             entity.Property(u => u.Image)
             .HasColumnName("IMAGE")
-            .HasColumnType("VARCHAR");
-            
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(255);
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NDDTraining.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using NDDTraining.Infra.Data.Context;
 namespace NDDTraining.Infra.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
-    partial class NDDTrainingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221118235547_ImgUpdate")]
+    partial class ImgUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

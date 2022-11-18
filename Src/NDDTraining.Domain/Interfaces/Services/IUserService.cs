@@ -7,5 +7,6 @@ namespace NDDTraining.Domain.Interfaces.Services
     {
         User GetByToken(string id);
         void InsertUser(UserDTO newUser);
+        String VerifyLogin (LoginDTO loginDTO);
     }
 }

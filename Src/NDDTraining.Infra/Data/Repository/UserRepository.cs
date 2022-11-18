@@ -1,9 +1,10 @@
-﻿using NDDTraining.Domain.Models;
+﻿using NDDTraining.Domain.Interfaces.Repositories;
+using NDDTraining.Domain.Models;
 using NDDTraining.Infra.Data.Context;
 
 namespace NDDTraining.Infra.Data.Repository
 {
-    public class UserRepository : BaseRepository<User, int>
+    public class UserRepository : BaseRepository<User, int>, IUserRepository
     {
         public UserRepository(NDDTrainingDbContext context) : base(context) { }
 
@@ -17,6 +18,11 @@ namespace NDDTraining.Infra.Data.Repository
         {
             var checkedUser = _context.Users.FirstOrDefault(c => c.CPF == cpf);
             return(checkedUser);
+        }
+
+        public bool VerifyLogin(Login login)
+        {
+            return _context.Users.Any(u => u.Email == login.Email && u.Password == login.Password);
         }
     }
 }

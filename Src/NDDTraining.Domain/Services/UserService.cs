@@ -20,12 +20,12 @@ namespace NDDTraining.Domain.Services
         public string VerifyLogin(LoginDTO loginDTO)
         {
             if (loginDTO.Email == null || loginDTO.Password == null)
-                throw new Exception("Email ou senha não preenchidos");
+                throw new NoDataException("Email ou senha não preenchidos");
 
             bool isAllowed = _userRepository.VerifyLogin(new Login(loginDTO));
 
             if (isAllowed == false)
-                throw new InvalidLoginException("Email ou senha não encontrados");
+                throw new NotFoundException("Email ou senha não encontrados");
 
             // TODO Call TokenService
             return "JWT TOKEN";
@@ -38,12 +38,12 @@ namespace NDDTraining.Domain.Services
             
             if (checkedEmail != null)
             {
-                throw new Exception("This user already exists !");
+                throw new DuplicateException("This user already exists !");
             }
 
             if (checkedCPF != null)
             {
-                throw new Exception("This user already exists !");
+                throw new DuplicateException("This user already exists !");
             }
 
             var recordUser = new User(newUser);     

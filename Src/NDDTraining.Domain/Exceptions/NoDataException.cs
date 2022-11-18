@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NDDTraining.Domain.Exceptions
 {
-    public class InvalidLoginException : Exception
+    public class NoDataException : Exception
     {
-        public InvalidLoginException(string message) : base(message)
+        public NoDataException(string message) : base(message)
         {
         }
     }

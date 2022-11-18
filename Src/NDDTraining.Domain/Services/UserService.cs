@@ -3,6 +3,7 @@ using NDDTraining.Domain.Exceptions;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
+using System.Security.Claims;
 
 namespace NDDTraining.Domain.Services
 {
@@ -13,9 +14,9 @@ namespace NDDTraining.Domain.Services
         {
             _userRepository = userRepository;
         }
-        public User GetByToken(string id)
-        {
-            return _userRepository.GetByToken(id);
+        public IList<User> GetByToken(string token)
+        {   
+            return _userRepository.GetByToken(ClaimValueTypes.Email);
         }
         public string VerifyLogin(LoginDTO loginDTO)
         {

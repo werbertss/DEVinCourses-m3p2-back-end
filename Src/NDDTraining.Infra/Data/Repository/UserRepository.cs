@@ -25,9 +25,10 @@ namespace NDDTraining.Infra.Data.Repository
             return _context.Users.Any(u => u.Email == login.Email && u.Password == login.Password);
         }
 
-        public User GetByToken(string id)
+        public User GetByToken(string email)
         {
-            throw new NotImplementedException();
+            var checkedUser = _context.Users.FirstOrDefault(u => u.Email == email);
+            return (checkedUser); ;
         }
     }
 }

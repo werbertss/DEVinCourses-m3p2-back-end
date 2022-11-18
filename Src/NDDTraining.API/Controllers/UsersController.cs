@@ -1,8 +1,9 @@
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
-using NDDTraining.Domain.Models;
-using NDDTraining.Domain.Services;
+
 
 namespace NDDTraining.API.Controllers
 {
@@ -15,12 +16,12 @@ namespace NDDTraining.API.Controllers
         {
             _userService = userService;
         }
-    
+
         [HttpPost]
         public IActionResult Post(
             [FromBody] UserDTO newUser
         )
-        {  
+        {
             _userService.InsertUser(newUser);
 
             return Created("api/users", newUser.Id);
@@ -35,5 +36,17 @@ namespace NDDTraining.API.Controllers
 
             return Ok(token);
         }
+
+        [HttpGet]
+        [Route("authenticated")]
+        [Authorize]
+        public IActionResult Authenticated([FromRoute] string token)
+
+        {
+            UserDTO user;            
+            user = (UserDTO)_userService.GetByToken(token);
+            return Ok(user);
+        }
+
     }
 }

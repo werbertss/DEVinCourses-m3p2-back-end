@@ -3,11 +3,16 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using NDDTraining.Domain.Models;
-using NDDTraining.API.Security;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Extensions;
+using NDDTraining.Domain.Services.Security;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public static class TokenService
+namespace NDDTraining.Domain.Services.Security
+{
+    public static class TokenService
     {
         public static string GenerateToken(User user)
         {
@@ -101,3 +106,4 @@ public static class TokenService
         }
 
     }
+}

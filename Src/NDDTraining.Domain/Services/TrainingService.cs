@@ -43,7 +43,11 @@ namespace NDDTraining.Domain.Services
 
         public TrainingDTO GetById(int id)
         {
-            throw new NotImplementedException();
+            var training = _trainingRepository.GetById(id);
+            if(training == null)
+                throw new Exception("Training not found");
+            return new TrainingDTO(training);
+
         }
 
         public TrainingDTO GetTrainingFinish()

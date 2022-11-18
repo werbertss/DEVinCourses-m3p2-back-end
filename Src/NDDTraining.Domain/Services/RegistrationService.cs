@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Escola.Domain.Exceptions;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Exceptions;
 using NDDTraining.Domain.Interfaces.Repositories;

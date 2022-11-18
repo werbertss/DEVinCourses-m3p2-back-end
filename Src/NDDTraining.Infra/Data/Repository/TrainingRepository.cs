@@ -8,6 +8,10 @@ namespace NDDTraining.Infra.Data.Repository
   {
     public TrainingRepository(NDDTrainingDbContext context) : base(context) { }
 
-
+    // Obtem o primeiro treinamento com o nome inserido
+    public Training GetByName(string name)
+    {
+      return _context.Trainings.FirstOrDefault(t => t.Title == name);
+    }
   }
 }

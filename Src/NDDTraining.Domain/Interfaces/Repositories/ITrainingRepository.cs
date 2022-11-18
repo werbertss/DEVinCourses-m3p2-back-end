@@ -9,6 +9,6 @@ namespace NDDTraining.Domain.Interfaces.Repositories
     // void Insert (Training training);
     // void Change (Training training);
     // void Delete (Training training);
-
+    Training GetByName(string name);
   }
 }

@@ -6,6 +6,7 @@ using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
+using NDDTraining.Domain.Exceptions;
 
 namespace NDDTraining.Domain.Services
 {
@@ -54,6 +55,44 @@ namespace NDDTraining.Domain.Services
         public TrainingDTO GetTrainingProgress()
         {
             throw new NotImplementedException();
+        }
+
+        // Função de suspensão de treinamento
+        public void Suspend(string nameOrId)
+        {
+            
+            // Obtem o primeiro treinamento com o nome entregue na rota
+            Training training = _trainingRepository.GetByName(nameOrId);
+
+            // Verifica se o treinamento foi encontrado com o nome
+            if (training == null)
+            {       
+
+                // Tenta converter a variavel que contia o nome para um inteiro
+                int id;
+                if (Int32.TryParse(nameOrId, out id))
+                {   
+
+                    // Se a conversão for possivel, obtem o primeiro treinamento com o id inserido na rota
+                    training = _trainingRepository.GetById(id);
+
+                    // Verifica se o treinamento foi encontrado com o id
+                    if (training == null)
+                    {   
+                        // Envia uma exceção pois o treinamento não foi encontrado
+                        throw new BadRequestException("Treinamento não encontrado.");
+                    }
+                }
+                else
+                {
+                    // Se a conversão para id não foi possível, retorna uma exceção que o treinamento não foi encontrado.
+                    throw new BadRequestException("Treinamento não encontrado.");
+                }
+            }
+
+            // Realizando a suspensão do treinamento que é equivalente a mudança de status do mesmo para false
+            training.Active = false;
+            _trainingRepository.Update(training);
         }
     }
 }

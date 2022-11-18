@@ -17,11 +17,8 @@ namespace NDDTraining.Infra.Data.Repository
         public List<RegistrationDTO> ProgressList = new List<RegistrationDTO>();
         public List<RegistrationDTO> AvailableList = new List<RegistrationDTO>();
 
-
-        private readonly NDDTrainingDbContext _context;
         public RegistrationRepository(NDDTrainingDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public IList<Registration> GetAll()
@@ -30,7 +27,7 @@ namespace NDDTraining.Infra.Data.Repository
         }
 
 
-        public void Insert(Registration registration)
+        public override void Insert(Registration registration)
         {
             _context.Registrations.Add(registration);
             _context.SaveChanges();

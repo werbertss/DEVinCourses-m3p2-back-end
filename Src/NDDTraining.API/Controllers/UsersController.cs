@@ -22,7 +22,7 @@ namespace NDDTraining.API.Controllers
         [FromBody] UserDTO userDTO
     )
     {
-        var newUser = new User(userDTO);     
+        var newUser = new UserDTO(userDTO);     
         _userService.InsertUser(newUser);
 
         return Created("api/users", newUser.Id);

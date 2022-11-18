@@ -14,10 +14,7 @@ namespace NDDTraining.Domain.Interfaces.Services
         public void SendEMail();
         public void ValidateRegistration();
         public void Insert(RegistrationDTO registration);
-        public void InsertProgress(RegistrationDTO registration);
-        public void InsertAvailable(RegistrationDTO registration);
-        public void InsertSuspended(RegistrationDTO registration); 
-        public void InsertFinished(RegistrationDTO registration);
+      
         
 
     }

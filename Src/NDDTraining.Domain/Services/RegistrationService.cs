@@ -10,8 +10,8 @@ using NDDTraining.Domain.Models;
 
 namespace NDDTraining.Domain.Services
 {
-  public class RegistrationService : IRegistrationService
-  {
+    public class RegistrationService : IRegistrationService
+    {
         private readonly IRegistrationRepository _registrationRepository;
 
 
@@ -25,7 +25,7 @@ namespace NDDTraining.Domain.Services
             return _registrationRepository.GetAll()
                   .Select(x => new RegistrationDTO(x)).ToList();
 
-          
+
         }
 
         public void Insert(RegistrationDTO registration)
@@ -34,38 +34,39 @@ namespace NDDTraining.Domain.Services
             {
                 throw new DuplicateException("Registro já existe na base de dados!");
             }
-            _registrationRepository.Insert(new Registration(registration));
+
+            if (registration.Status == "Progress")
+            {
+                _registrationRepository.InsertListProgress(registration);
+
+            }
             
+            if (registration.Status == "Available")
+            {
+                _registrationRepository.InsertListAvailable(registration);
+            }
+            if (registration.Status == "Finished")
+            {
+                _registrationRepository.InsertListFinished(registration);
+            }
+            if (registration.Status == "Suspended")
+            {
+                _registrationRepository.InsertListSuspended(registration);
+            }
+            _registrationRepository.Insert(new Registration(registration));
+
         }
 
-        public void InsertAvailable(RegistrationDTO registration)
-        {
-            _registrationRepository.InsertAvailable(registration);
-        }
 
-        public void InsertFinished(RegistrationDTO registration)
-        {
-            _registrationRepository.InsertFinished(registration);
-        }
-
-        public void InsertProgress(RegistrationDTO registration)
-        {
-            _registrationRepository.InsertProgress(registration);
-        }
-
-        public void InsertSuspended(RegistrationDTO registration)
-        {
-            _registrationRepository.InsertSuspended(registration);
-        }
 
         public void SendEMail()
-    {
-      throw new NotImplementedException();
-    }
+        {
+            throw new NotImplementedException();
+        }
 
-    public void ValidateRegistration()
-    {
-      throw new NotImplementedException();
+        public void ValidateRegistration()
+        {
+
+        }
     }
-  }
 }

@@ -18,7 +18,7 @@ namespace NDDTraining.API.Controllers
         }
         [HttpGet]
         public IActionResult GetAll()
-        {//buscar
+        {
             try
             {
                 return Ok(_registrationService.GetAll());
@@ -37,9 +37,6 @@ namespace NDDTraining.API.Controllers
             
                 _registrationService.Insert(registration);
                 return StatusCode(StatusCodes.Status201Created);
-
-            
-          
 
         }
     }

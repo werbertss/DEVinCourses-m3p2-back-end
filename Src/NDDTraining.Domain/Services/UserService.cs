@@ -1,4 +1,5 @@
-﻿using NDDTraining.Domain.Interfaces.Repositories;
+﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
 
@@ -6,14 +7,14 @@ namespace NDDTraining.Domain.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepositorie;
-        public UserService(IUserRepository userRepositorie)
+        private readonly IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository)
         {
-            _userRepositorie = userRepositorie;
+            _userRepository = userRepository;
         }
         public User GetByToken(string id)
         {
-            return _userRepositorie.GetByToken(id);
+            return _userRepository.GetByToken(id);
         }
     }
 }

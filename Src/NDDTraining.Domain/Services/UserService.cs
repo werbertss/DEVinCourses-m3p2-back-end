@@ -1,4 +1,5 @@
-﻿using NDDTraining.Domain.Interfaces.Repositories;
+﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
 
@@ -16,7 +17,7 @@ namespace NDDTraining.Domain.Services
             return _userRepositorie.GetByToken(id);
         }
 
-        public void InsertUser(User newUser)
+        public void InsertUser(UserDTO newUser)
         {
             var checkedEmail = _userRepositorie.CheckUserByEmail(newUser.Email);
             var checkedCPF = _userRepositorie.CheckUserByCPF(newUser.CPF);
@@ -31,8 +32,11 @@ namespace NDDTraining.Domain.Services
                 throw new Exception("This user already exists !");
             }
 
-            _userRepositorie.Insert(newUser);
+            var recordUser = new User(newUser);     
+           
+            _userRepositorie.Insert(recordUser);
         }
 
+        
     }
 }

@@ -122,6 +122,11 @@ namespace NDDTraining.Domain.Services
             }
             _registrationRepository.DeleteRegistration(registration);
         }
+
+        public IList<RegistrationDTO> GetTrainingsByUser(int userId, string status)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -80,7 +80,16 @@ namespace NDDTraining.Domain.Services
             _registrationRepository.Delete(id);
         }
 
+        public void DeleteRegistration(int id)
+        {
+            var registration = _registrationRepository.GetById(id);
 
+            if(registration == null)
+            {
+                throw new Exception("Modulo não encontrado");
+            }
+            _registrationRepository.DeleteRegistration(registration);
+        }
     }
 
 }

@@ -60,26 +60,34 @@ namespace NDDTraining.Infra.Data.Repository
             return _context.Registrations.Any(x => x.Id == id);
         }
 
-    public void Delete(int userId)
-    {
+        public void Delete(int userId)
+        {
 
-      var user = _context.Registrations.Find(userId);
+            var user = _context.Registrations.Find(userId);
 
-      _context.Registrations.Remove(user);
-      _context.SaveChanges();
-    }
+            _context.Registrations.Remove(user);
+            _context.SaveChanges();
+        }
 
-    public bool DeleteNoRegistration(int userId)
-    {
-      var user = _context.Registrations.Find(userId);
-      if (user == null) return true;
-      else return false;
+        public bool DeleteNoRegistration(int userId)
+        {
+            var user = _context.Registrations.Find(userId);
+            if (user == null) return true;
+            else return false;
 
-    }
+        }
+
+        public void DeleteRegistration(Registration registration)
+        {
+            _context.Registrations.Remove(registration);
+            _context.SaveChanges();
+        }
+   
 
         public IQueryable<Registration> GetRegistrationsByUser(int id)
         {
             return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training);
         }
     }
+
 }

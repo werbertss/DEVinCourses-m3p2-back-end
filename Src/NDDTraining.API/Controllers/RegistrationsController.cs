@@ -59,7 +59,14 @@ namespace NDDTraining.API.Controllers
 
         }
 
-   
+        [HttpDelete("{id}")]
+        public ActionResult DeleteRegistration(
+            [FromRoute] int Id
+        )
+        {
+            _registrationService.DeleteRegistration(Id);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }  
 
     }
   }

@@ -39,7 +39,7 @@ namespace NDDTraining.API.Controllers
                     [FromQuery] string status
                 )
         {
-            return Ok(_registrationService.GetTrainingsByUser(userId, status));
+            return Ok(_registrationService.GetRegistrationsByUser(userId, status));
         }
 
         [HttpPost]
@@ -80,4 +80,3 @@ namespace NDDTraining.API.Controllers
 
     }
 }
-

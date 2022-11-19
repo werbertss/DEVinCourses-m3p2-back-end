@@ -3,6 +3,8 @@ using NDDTraining.Domain.Exceptions;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace NDDTraining.Domain.Services
 {
@@ -13,9 +15,10 @@ namespace NDDTraining.Domain.Services
         {
             _userRepository = userRepository;
         }
-        public User GetByToken(string id)
+        public User GetByEmail(string token)
         {
-            return _userRepository.GetByToken(id);
+            var email = new JwtSecurityToken(jwtEncodedString: token);
+            return _userRepository.GetByEmail(email.Claims.First(c => c.Type == "Email").Value);
         }
         public string VerifyLogin(LoginDTO loginDTO)
         {

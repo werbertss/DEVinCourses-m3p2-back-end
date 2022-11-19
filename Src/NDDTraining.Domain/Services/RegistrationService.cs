@@ -39,6 +39,14 @@ namespace NDDTraining.Domain.Services
         public void Insert(RegistrationDTO registration)
         {
 
+          
+            _registrationRepository.Insert(new Registration(registration));
+
+        }
+
+        public void ValidateRegistration()
+
+
             ValidateRegistration(registration);
             _registrationRepository.Insert(new Registration(registration));
 
@@ -88,6 +96,7 @@ namespace NDDTraining.Domain.Services
         }
 
         public void ValidateRegistration(RegistrationDTO registration)
+
         {
             if (_registrationRepository.RegistrationDuplicate(registration.Id))
             {

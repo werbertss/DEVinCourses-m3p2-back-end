@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace NDDTraining.Infra.Migrations
+namespace NDDTraining.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class ResetToken : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,12 @@ namespace NDDTraining.Infra.Migrations
                     PASSWORD = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     AGE = table.Column<int>(type: "INT", nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(11)", maxLength: 11, nullable: false),
+<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.cs
                     IMAGE = table.Column<string>(type: "VARCHAR", nullable: true)
+========
+                    IMAGE = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true),
+                    TOKEN = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true)
+>>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.cs
                 },
                 constraints: table =>
                 {
@@ -92,22 +97,25 @@ namespace NDDTraining.Infra.Migrations
                         name: "FK_REGISTRATION_TRAININGS_TRAINING_ID",
                         column: x => x.TRAININGID,
                         principalTable: "TRAININGS",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_REGISTRATION_USER_USER_ID",
                         column: x => x.USERID,
                         principalTable: "USER",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
+<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.cs
                 name: "COMPLETED_MODULE",
+========
+                name: "CompletedModule",
+>>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.cs
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.cs
                     MODULEID = table.Column<int>(name: "MODULE_ID", type: "INT", nullable: false),
                     REGISTRATIONID = table.Column<int>(name: "REGISTRATION_ID", type: "INT", nullable: false)
                 },
@@ -126,6 +134,26 @@ namespace NDDTraining.Infra.Migrations
                         principalTable: "REGISTRATION",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
+========
+                    ModuleId = table.Column<int>(type: "int", nullable: false),
+                    RegistrationId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompletedModule", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CompletedModule_MODULES_ModuleId",
+                        column: x => x.ModuleId,
+                        principalTable: "MODULES",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompletedModule_REGISTRATION_RegistrationId",
+                        column: x => x.RegistrationId,
+                        principalTable: "REGISTRATION",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+>>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.cs
                 });
 
             migrationBuilder.InsertData(
@@ -155,6 +183,7 @@ namespace NDDTraining.Infra.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.cs
                 name: "IX_COMPLETED_MODULE_MODULE_ID",
                 table: "COMPLETED_MODULE",
                 column: "MODULE_ID");
@@ -163,6 +192,16 @@ namespace NDDTraining.Infra.Migrations
                 name: "IX_COMPLETED_MODULE_REGISTRATION_ID",
                 table: "COMPLETED_MODULE",
                 column: "REGISTRATION_ID");
+========
+                name: "IX_CompletedModule_ModuleId",
+                table: "CompletedModule",
+                column: "ModuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompletedModule_RegistrationId",
+                table: "CompletedModule",
+                column: "RegistrationId");
+>>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.cs
 
             migrationBuilder.CreateIndex(
                 name: "IX_MODULES_TrainingId",
@@ -184,7 +223,11 @@ namespace NDDTraining.Infra.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.cs
                 name: "COMPLETED_MODULE");
+========
+                name: "CompletedModule");
+>>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.cs
 
             migrationBuilder.DropTable(
                 name: "MODULES");

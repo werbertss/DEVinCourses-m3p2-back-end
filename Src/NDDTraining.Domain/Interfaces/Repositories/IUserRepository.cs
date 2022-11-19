@@ -14,6 +14,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         public User CheckUserByEmail(string email);
         public User CheckUserByCPF(string cpf);
         void Insert (User recordUser);
-        bool VerifyLogin(Login login);
+        User VerifyLogin(Login login);
+        User CheckResetEmail(string email);
     }
 }

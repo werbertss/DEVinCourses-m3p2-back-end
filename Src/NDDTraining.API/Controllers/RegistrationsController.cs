@@ -39,7 +39,8 @@ namespace NDDTraining.API.Controllers
                     [FromQuery] string status
                 )
         {
-            return Ok(_registrationService.GetRegistrationsByUser(userId, status));
+            throw new NotImplementedException();
+            // return Ok(_registrationService.GetTrainingsByUser(userId, status));
         }
 
         [HttpPost]

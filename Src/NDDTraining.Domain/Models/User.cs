@@ -12,6 +12,7 @@ namespace NDDTraining.Domain.Models
         public string CPF { get; set; }
         public string Image { get; set; }
         public virtual List<Registration> Registrations { get; set; }
+        public string ResetToken { get; set; }
 
         public User()
         {

@@ -15,6 +15,17 @@ namespace NDDTraining.API.Controllers
         {
             _userService = userService;
         }
+
+        [HttpPut("update/{id}")]
+        public IActionResult Put(
+            [FromBody] UserDTO changedUser,
+            [FromRoute] int id
+        )
+        {
+            _userService.Update(changedUser, id);
+
+            return NoContent();
+        }
     
         [HttpPost]
         public IActionResult Post(

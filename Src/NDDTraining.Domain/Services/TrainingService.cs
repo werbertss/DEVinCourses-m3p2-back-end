@@ -98,6 +98,13 @@ namespace NDDTraining.Domain.Services
                 }
             }
 
+            // Verifica se algum aluno está matriculado no treinamento
+            if (_registrationRepository.GetAll().AsQueryable().Any(t => t.TrainingId == training.Id))
+            {
+                // O treinamento não pode ser suspenso se um aluno estiver matriculado nele, então é enviado um erro de bad request para o tratamento
+                throw new BadRequestException("O treinamento não pode ser suspenso pois possui ao menos um aluno matriculado");
+            }
+
             // Realizando a suspensão do treinamento que é equivalente a mudança de status do mesmo para false
             training.Active = false;
             _trainingRepository.Update(training);

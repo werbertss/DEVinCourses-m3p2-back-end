@@ -80,10 +80,6 @@ app.UseCors(opcoes => opcoes.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 
-app.UseCors(opcoes => opcoes.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -92,7 +88,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()) ;
 
 app.UseAuthentication();
 

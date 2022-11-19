@@ -14,10 +14,11 @@ namespace NDDTraining.DI.IOC
         public static IServiceCollection RegisterRepositories(this IServiceCollection builder)
         {
            return builder
-                .AddDbContext<NDDTrainingDbContext>()
-                .AddScoped<IModuleRepository, ModuleRepository>()
-                .AddScoped<ITrainingRepository, TrainingRepository>()
-                .AddScoped<IRegistrationRepository, RegistrationRepository>(); 
+                 .AddDbContext<NDDTrainingDbContext>()
+                 .AddScoped<IModuleRepository, ModuleRepository>()
+                 .AddScoped<ITrainingRepository, TrainingRepository>()
+                 .AddScoped<IRegistrationRepository, RegistrationRepository>()
+                 .AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

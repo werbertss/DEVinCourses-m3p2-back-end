@@ -43,6 +43,5 @@ public class TrainingsController : ControllerBase
 
         return Ok(_moduleService.GetByTraining(id));
 
-
     }
 }

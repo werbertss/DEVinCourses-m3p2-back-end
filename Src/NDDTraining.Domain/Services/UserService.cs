@@ -11,9 +11,11 @@ namespace NDDTraining.Domain.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        private readonly IEmailService _emailService;
+        public UserService(IUserRepository userRepository,  IEmailService emailService )
         {
             _userRepository = userRepository;
+            _emailService = emailService;
         }
         public User GetByEmail(string token)
         {
@@ -52,6 +54,33 @@ namespace NDDTraining.Domain.Services
             var recordUser = new User(newUser);     
            
             _userRepository.Insert(recordUser);
-        }       
+        } 
+        
+        public string Reset(string emailReset)
+        {
+            var user = _userRepository.CheckResetEmail(emailReset);
+            var resetToken = GeneratedToken(user.Id);
+
+            user.ResetToken = resetToken;
+
+           // _userRepository.Update(user);
+
+            var email = new Email() { 
+                To = emailReset,
+                Subject = "Reset de Email",
+                type = Domain.Enums.EmailType.ResetPassword,
+                Parameters = new Dictionary<string, string> { { "Link", $"emailReset/{resetToken} " } }
+            };
+
+             _emailService.BuildAndSendMail(email);
+            
+            return checkedEmail;
+        }
+        public string GeneratedToken( int userId)
+        {
+            var data = $"{DateTime.Now.AddHours(1)}+{userId}+{Guid.NewGuid()}";
+            return Convert.ToBase64String(data);
+            
+        }
     }
 }

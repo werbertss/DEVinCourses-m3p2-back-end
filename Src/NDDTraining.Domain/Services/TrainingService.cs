@@ -68,35 +68,9 @@ namespace NDDTraining.Domain.Services
         // Função de suspensão de treinamento
         public void Suspend(string nameOrId)
         {
-
-            // Obtem o primeiro treinamento com o nome entregue na rota
-            Training training = _trainingRepository.GetByName(nameOrId);
-
-            // Verifica se o treinamento foi encontrado com o nome
-            if (training == null)
-            {
-
-                // Tenta converter a variavel que contia o nome para um inteiro
-                int id;
-                if (Int32.TryParse(nameOrId, out id))
-                {
-
-                    // Se a conversão for possivel, obtem o primeiro treinamento com o id inserido na rota
-                    training = _trainingRepository.GetById(id);
-
-                    // Verifica se o treinamento foi encontrado com o id
-                    if (training == null)
-                    {
-                        // Envia uma exceção pois o treinamento não foi encontrado
-                        throw new BadRequestException("Treinamento não encontrado.");
-                    }
-                }
-                else
-                {
-                    // Se a conversão para id não foi possível, retorna uma exceção que o treinamento não foi encontrado.
-                    throw new BadRequestException("Treinamento não encontrado.");
-                }
-            }
+            
+            // Obtem o treinamento pelo nome ou id
+            Training training = GetByNameOrId(nameOrId);
 
             // Verifica se algum aluno está matriculado no treinamento
             if (_registrationRepository.GetAll().AsQueryable().Any(t => t.TrainingId == training.Id))
@@ -127,6 +101,42 @@ namespace NDDTraining.Domain.Services
             var trainingsByUser = trainingWithRegisters.Select(r => new TrainingDTO(r.Training)).ToList();
 
             return trainingsByUser;
+        }
+
+        // Função que procura treinamento pelo nome ou id inserido
+        public Training GetByNameOrId(string nameOrId)
+        {
+
+            // Obtem o primeiro treinamento com o nome entregue na rota
+            Training training = _trainingRepository.GetByName(nameOrId);
+
+            // Verifica se o treinamento foi encontrado com o nome
+            if (training == null)
+            {
+
+                // Tenta converter a variavel que contia o nome para um inteiro
+                int id;
+                if (Int32.TryParse(nameOrId, out id))
+                {
+
+                    // Se a conversão for possivel, obtem o primeiro treinamento com o id inserido na rota
+                    training = _trainingRepository.GetById(id);
+
+                    // Verifica se o treinamento foi encontrado com o id
+                    if (training == null)
+                    {
+                        // Envia uma exceção pois o treinamento não foi encontrado
+                        throw new BadRequestException("Treinamento não encontrado.");
+                    }
+                }
+                else
+                {
+                    // Se a conversão para id não foi possível, retorna uma exceção que o treinamento não foi encontrado.
+                    throw new BadRequestException("Treinamento não encontrado.");
+                }
+            }
+
+            return training;
         }
     }
 }

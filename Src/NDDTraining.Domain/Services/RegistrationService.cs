@@ -42,14 +42,6 @@ namespace NDDTraining.Domain.Services
           
             _registrationRepository.Insert(new Registration(registration));
 
-        }
-
-        public void ValidateRegistration()
-
-
-            ValidateRegistration(registration);
-            _registrationRepository.Insert(new Registration(registration));
-
             var training = _trainingService.GetById(registration.TrainingId);
             var user = new User()
             {
@@ -62,6 +54,12 @@ namespace NDDTraining.Domain.Services
 
             SendEMail(training.Title, user, training.Description, user.Name, training.Duration, training.Teacher, training.Url);
 
+
+        }
+
+        public void ValidateRegistration() { 
+
+           
         }
 
 

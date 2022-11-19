@@ -13,6 +13,8 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         User GetByToken(string id);
         public User CheckUserByEmail(string email);
         public User CheckUserByCPF(string cpf);
+        public User GetById(int id);
+        void Update(User user);
         void Insert (User recordUser);
         bool VerifyLogin(Login login);
     }

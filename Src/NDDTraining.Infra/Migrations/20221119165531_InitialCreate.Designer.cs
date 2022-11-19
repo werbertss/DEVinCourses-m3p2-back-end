@@ -9,10 +9,10 @@ using NDDTraining.Infra.Data.Context;
 
 #nullable disable
 
-namespace NDDTraining.Infra.Migrations
+namespace NDDTraining.Infra.Data.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
-    [Migration("20221117221755_InitialCreate")]
+    [Migration("20221119165531_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,47 +25,30 @@ namespace NDDTraining.Infra.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NDDTraining.Domain.DTOS.RegistrationDTO", b =>
+            modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("RegistrationId")
-                        .HasColumnType("int");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("INT")
+                        .HasColumnName("MODULE_ID");
 
-                    b.Property<int?>("RegistrationId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RegistrationId2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RegistrationId3")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TrainingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<int>("RegistrationId")
+                        .HasColumnType("INT")
+                        .HasColumnName("REGISTRATION_ID");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ModuleId");
+
                     b.HasIndex("RegistrationId");
 
-                    b.HasIndex("RegistrationId1");
-
-                    b.HasIndex("RegistrationId2");
-
-                    b.HasIndex("RegistrationId3");
-
-                    b.ToTable("RegistrationDTO");
+                    b.ToTable("COMPLETED_MODULE", (string)null);
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
@@ -107,7 +90,7 @@ namespace NDDTraining.Infra.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("TITLE_MODULE");
 
-                    b.Property<int>("TrainingId")
+                    b.Property<int?>("TrainingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -381,34 +364,30 @@ namespace NDDTraining.Infra.Migrations
                     b.ToTable("USER", (string)null);
                 });
 
-            modelBuilder.Entity("NDDTraining.Domain.DTOS.RegistrationDTO", b =>
+            modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>
                 {
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsAvailable")
-                        .HasForeignKey("RegistrationId");
+                    b.HasOne("NDDTraining.Domain.Models.Module", "Module")
+                        .WithMany()
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsFinished")
-                        .HasForeignKey("RegistrationId1");
+                    b.HasOne("NDDTraining.Domain.Models.Registration", "Registration")
+                        .WithMany("CompletedModules")
+                        .HasForeignKey("RegistrationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsProgress")
-                        .HasForeignKey("RegistrationId2");
+                    b.Navigation("Module");
 
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsSuspended")
-                        .HasForeignKey("RegistrationId3");
+                    b.Navigation("Registration");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
                 {
-                    b.HasOne("NDDTraining.Domain.Models.Training", "Training")
+                    b.HasOne("NDDTraining.Domain.Models.Training", null)
                         .WithMany("Modules")
-                        .HasForeignKey("TrainingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Training");
+                        .HasForeignKey("TrainingId");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
@@ -420,7 +399,7 @@ namespace NDDTraining.Infra.Migrations
                         .IsRequired();
 
                     b.HasOne("NDDTraining.Domain.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Registrations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -432,13 +411,7 @@ namespace NDDTraining.Infra.Migrations
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
                 {
-                    b.Navigation("TrainingsAvailable");
-
-                    b.Navigation("TrainingsFinished");
-
-                    b.Navigation("TrainingsProgress");
-
-                    b.Navigation("TrainingsSuspended");
+                    b.Navigation("CompletedModules");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Training", b =>

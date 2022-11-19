@@ -71,6 +71,15 @@ public class TrainingsController : ControllerBase
 
     }
 
+    [HttpGet]
+    [Route("~/api/Users/{userId}/Trainings")]
+    public IActionResult GetByUser(
+    [FromRoute] int userId
+    )
+    {
+        return Ok(_trainingService.GetTrainingsByUser(userId));
+    }
+
     // Rota que informa a quantidade de alunos cadastrados, concluintes e em curso do treinamento
     [HttpGet("{nameOrId}/usersDetails")]
     public ActionResult<TrainingUsersDetails> GetUsersDetails(

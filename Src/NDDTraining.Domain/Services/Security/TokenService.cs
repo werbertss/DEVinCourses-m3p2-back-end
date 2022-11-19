@@ -34,36 +34,6 @@ namespace NDDTraining.Domain.Services.Security
             return tokenHandler.WriteToken(token);
         }
 
-        public static string GenerateTokenFromUser(User user)
-        {
-               var claims = new Claim[]
-                {
-                    new Claim(ClaimTypes.Email, user.Email.ToString()),
-                    //new Claim(ClaimTypes.Role, user.Permissao.ToString())
-                };
-
-            return GenerateNewToken(claims);
-        }
-
-        public static string GenerateNewToken(IEnumerable<Claim> claims)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(Settings.Secret);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                
-                    Subject = new ClaimsIdentity(claims),
-                    Expires = DateTime.UtcNow.AddHours(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
-
-
          public static string GenerateRefreshToken() //Método para gerar o RT
         {
             var randomNumber = new byte[32];

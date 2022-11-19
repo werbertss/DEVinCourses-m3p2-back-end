@@ -20,9 +20,9 @@ namespace NDDTraining.Infra.Data.Repository
             return(checkedUser);
         }
 
-        public bool VerifyLogin(Login login)
+        public User VerifyLogin(Login login)
         {
-            return _context.Users.Any(u => u.Email == login.Email && u.Password == login.Password);
+            return _context.Users.Where(u => u.Email == login.Email && u.Password == login.Password).FirstOrDefault();
         }
 
         public User GetByEmail(string email)

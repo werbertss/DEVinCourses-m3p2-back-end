@@ -3,6 +3,7 @@ using NDDTraining.Domain.Exceptions;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
+using NDDTraining.Domain.Services.Security;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -27,13 +28,18 @@ namespace NDDTraining.Domain.Services
             if (loginDTO.Email == null || loginDTO.Password == null)
                 throw new NoDataException("Email ou senha não preenchidos");
 
-            bool isAllowed = _userRepository.VerifyLogin(new Login(loginDTO));
+            User user = _userRepository.VerifyLogin(new Login(loginDTO));
 
-            if (isAllowed == false)
+            if (user == null)
                 throw new NotFoundException("Email ou senha não encontrados");
 
             // TODO Call TokenService
-            return "JWT TOKEN";
+
+            var token = TokenService.GenerateToken(user);
+            //var refreshToken = TokenService.GenerateRefreshToken();
+            //TokenService.SaveRefreshToken(loginDTO.Email, refreshToken);
+
+            return token;
         }
 
         public void InsertUser(UserDTO newUser)

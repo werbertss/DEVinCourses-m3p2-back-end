@@ -30,17 +30,8 @@ namespace NDDTraining.API.Controllers
 
             return Created("registration", newUser.Id);
         }
-        [HttpPost]
-        [Route("login")]
-        public IActionResult VerifyLogin(
-            [FromBody] LoginDTO loginDTO
-        )
-        {
-            string token = _userService.VerifyLogin(loginDTO);
 
-            return Ok(token);
-        }
-
+   
         [HttpGet]
         [Route("authenticated")]
         [Authorize]

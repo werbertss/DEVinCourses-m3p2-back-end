@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
 
@@ -17,7 +18,7 @@ public class TrainingsController : ControllerBase
         _moduleService = moduleService;
     }
 
-    [HttpGet] 
+    [HttpGet]
     public IActionResult GetAll(
         [FromQuery] string category,
         int skip = 0,
@@ -26,7 +27,7 @@ public class TrainingsController : ControllerBase
     {
         var paging = new Paging(take, skip);
         return Ok(_trainingService.GetAll(category, paging));
-    } 
+    }
 
     [HttpGet("{id}")]
     public IActionResult GetById(
@@ -35,7 +36,7 @@ public class TrainingsController : ControllerBase
     {
         return Ok(_trainingService.GetById(id));
     }
-    
+
     // Rota de suspensão de treinamento, espera o nome ou o id de um treinamento
     [HttpPut("suspend/{nameOrId}")]
     public IActionResult Suspend(
@@ -48,4 +49,28 @@ public class TrainingsController : ControllerBase
         // Retorna um código 204(No Content), para o usuario reconhecer o sucesso da requisição
         return NoContent();
     }
+    //autorização -> todos os alunos podem acessar
+    [HttpPost]
+    public ActionResult Insert(Training training)
+    {
+        var DTO = new TrainingDTO(training);
+        var idTraining = _trainingService.Insert(DTO);
+        _moduleService.Insert(idTraining, training);
+        return StatusCode(StatusCodes.Status201Created);
+    }
+
+    /* [HttpGet("reports/active-trainings")]
+        public ActionResult GetActiveTrainings()
+        {
+            try
+            {
+                var reports = _trainingService.GetActiveTrainings();
+                return Ok(reports);
+            }
+            catch (System.Exception)
+            {
+
+                throw new Exception(StatusCodes.Status500InternalServerError.ToString());
+            }
+        } */
 }

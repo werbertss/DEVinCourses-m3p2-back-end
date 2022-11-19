@@ -13,10 +13,12 @@ namespace NDDTraining.Domain.Services
     public class TrainingService : ITrainingService
     {
         private readonly ITrainingRepository _trainingRepository;
+        private readonly IModuleRepository _moduleRepository;
 
-        public TrainingService(ITrainingRepository trainingRepository)
+        public TrainingService(ITrainingRepository trainingRepository, IModuleRepository moduleRepository)
         {
             _trainingRepository = trainingRepository;
+            _moduleRepository = moduleRepository;
         }
 
         public void DeleteTraining()
@@ -32,11 +34,11 @@ namespace NDDTraining.Domain.Services
         public IList<TrainingDTO> GetAll(string category, Paging paging)
         {
             var query = _trainingRepository.GetAll(paging).AsQueryable();
-            
-            if(!String.IsNullOrEmpty(category))
+
+            if (!String.IsNullOrEmpty(category))
                 query = query.Where(t => t.Category.ToUpper() == category.ToUpper());
 
-            if(!query.ToList().Any())
+            if (!query.ToList().Any())
                 throw new Exception("Register not found!");
 
             return query.Select(t => new TrainingDTO(t)).ToList();
@@ -60,25 +62,25 @@ namespace NDDTraining.Domain.Services
         // Função de suspensão de treinamento
         public void Suspend(string nameOrId)
         {
-            
+
             // Obtem o primeiro treinamento com o nome entregue na rota
             Training training = _trainingRepository.GetByName(nameOrId);
 
             // Verifica se o treinamento foi encontrado com o nome
             if (training == null)
-            {       
+            {
 
                 // Tenta converter a variavel que contia o nome para um inteiro
                 int id;
                 if (Int32.TryParse(nameOrId, out id))
-                {   
+                {
 
                     // Se a conversão for possivel, obtem o primeiro treinamento com o id inserido na rota
                     training = _trainingRepository.GetById(id);
 
                     // Verifica se o treinamento foi encontrado com o id
                     if (training == null)
-                    {   
+                    {
                         // Envia uma exceção pois o treinamento não foi encontrado
                         throw new BadRequestException("Treinamento não encontrado.");
                     }
@@ -93,6 +95,17 @@ namespace NDDTraining.Domain.Services
             // Realizando a suspensão do treinamento que é equivalente a mudança de status do mesmo para false
             training.Active = false;
             _trainingRepository.Update(training);
+        }
+        public int Insert(TrainingDTO training)
+        {
+            if (_trainingRepository.VerifyExistingName(training.Title))
+            {
+                throw new AlreadyExistsException($"Já existe um treinamento com o nome: {training.Title}");
+            }
+            
+            _trainingRepository.Insert(new Training(training));
+            var newTraining = _trainingRepository.GetByName(training.Title);
+            return newTraining.Id;
         }
     }
 }

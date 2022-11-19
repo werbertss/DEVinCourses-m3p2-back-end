@@ -8,7 +8,7 @@ using NDDTraining.Infra.Data.Context;
 
 #nullable disable
 
-namespace NDDTraining.Infra.Data.Migrations
+namespace NDDTraining.Infra.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
     partial class NDDTrainingDbContextModelSnapshot : ModelSnapshot
@@ -61,7 +61,7 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("TITLE_MODULE");
 
-                    b.Property<int>("TrainingId")
+                    b.Property<int?>("TrainingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -69,6 +69,98 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.HasIndex("TrainingId");
 
                     b.ToTable("MODULES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "vbs7jKRMuiA",
+                            StatusModule = "finalizado",
+                            TitleModule = "Módulo 1",
+                            TrainingId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "3CC_YtyD7Po",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 2",
+                            TrainingId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "TxxkFWty09g",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 3",
+                            TrainingId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "vbs7jKRMuiA",
+                            StatusModule = "finalizado",
+                            TitleModule = "Módulo 1",
+                            TrainingId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "3CC_YtyD7Po",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 2",
+                            TrainingId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "TxxkFWty09g",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 3",
+                            TrainingId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "vbs7jKRMuiA",
+                            StatusModule = "finalizado",
+                            TitleModule = "Módulo 1",
+                            TrainingId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "3CC_YtyD7Po",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 2",
+                            TrainingId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "TxxkFWty09g",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 3",
+                            TrainingId = 3
+                        });
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
@@ -82,6 +174,7 @@ namespace NDDTraining.Infra.Data.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("STATUS");
 
@@ -221,7 +314,6 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnName("EMAIL");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("VARCHAR")
                         .HasColumnName("IMAGE");
 
@@ -242,32 +334,11 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.ToTable("USER", (string)null);
                 });
 
-            modelBuilder.Entity("NDDTraining.Domain.DTOS.RegistrationDTO", b =>
-                {
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsAvailable")
-                        .HasForeignKey("RegistrationId");
-
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsFinished")
-                        .HasForeignKey("RegistrationId1");
-
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsProgress")
-                        .HasForeignKey("RegistrationId2");
-
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsSuspended")
-                        .HasForeignKey("RegistrationId3");
-                });
-
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
                 {
                     b.HasOne("NDDTraining.Domain.Models.Training", "Training")
                         .WithMany("Modules")
-                        .HasForeignKey("TrainingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TrainingId");
 
                     b.Navigation("Training");
                 });
@@ -289,17 +360,6 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.Navigation("Training");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
-                {
-                    b.Navigation("TrainingsAvailable");
-
-                    b.Navigation("TrainingsFinished");
-
-                    b.Navigation("TrainingsProgress");
-
-                    b.Navigation("TrainingsSuspended");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Training", b =>

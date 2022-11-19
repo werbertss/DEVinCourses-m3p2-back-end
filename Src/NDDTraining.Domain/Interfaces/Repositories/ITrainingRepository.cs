@@ -10,5 +10,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
     // void Change (Training training);
     // void Delete (Training training);
     Training GetByName(string name);
+    bool VerifyExistingName(string title);
+   
   }
 }

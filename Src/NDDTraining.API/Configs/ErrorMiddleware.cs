@@ -30,9 +30,13 @@ namespace NDDTraining.API.Configs
             string message;
 
             switch (exception)
-            {   
-                case(BadRequestException):
+            {
+                case (BadRequestException):
                     status = HttpStatusCode.BadRequest;
+                    message = exception.Message;
+                    break;
+                case (AlreadyExistsException):
+                    status = HttpStatusCode.Conflict;
                     message = exception.Message;
                     break;
 

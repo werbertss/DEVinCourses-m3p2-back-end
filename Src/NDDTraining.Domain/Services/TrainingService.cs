@@ -12,10 +12,15 @@ namespace NDDTraining.Domain.Services
     public class TrainingService : ITrainingService
     {
         private readonly ITrainingRepository _trainingRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IRegistrationRepository _registrationRepository;
 
-        public TrainingService(ITrainingRepository trainingRepository)
+        public TrainingService(ITrainingRepository trainingRepository, IUserRepository userRepository,
+            IRegistrationRepository registrationRepository)
         {
             _trainingRepository = trainingRepository;
+            _userRepository = userRepository;
+            _registrationRepository = registrationRepository;
         }
 
         public void DeleteTraining()
@@ -44,8 +49,7 @@ namespace NDDTraining.Domain.Services
         public TrainingDTO GetById(int id)
         {
             var training = _trainingRepository.GetById(id);
-            if(training == null)
-                throw new Exception("Training not found");
+        
             return new TrainingDTO(training);
 
         }
@@ -58,6 +62,14 @@ namespace NDDTraining.Domain.Services
         public TrainingDTO GetTrainingProgress()
         {
             throw new NotImplementedException();
+        }
+
+        public IList<TrainingDTO> GetTrainingsByUser(int userId)
+        {
+            var trainingWithRegisters = _registrationRepository.GetRegistrationsByUser(userId);
+            var trainingsByUser = trainingWithRegisters.Select(r => new TrainingDTO(r.Training)).ToList();
+
+            return trainingsByUser;
         }
     }
 }

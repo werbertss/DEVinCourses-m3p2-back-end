@@ -35,4 +35,13 @@ public class TrainingsController : ControllerBase
     {
         return Ok(_trainingService.GetById(id));
     }
+
+    [HttpGet("{id}/modules")]
+    public IActionResult GetByTrainin(
+             [FromRoute] int id)
+    {
+
+        return Ok(_moduleService.GetByTraining(id));
+
+    }
 }

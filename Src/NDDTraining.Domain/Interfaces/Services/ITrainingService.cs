@@ -16,5 +16,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         public TrainingDTO GetTrainingProgress();
         public void DeleteTraining();
         public void FinishTrainig();
+        public IList<TrainingDTO> GetTrainingsByUser(int userId);
     }
 }

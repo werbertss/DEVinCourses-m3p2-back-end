@@ -3,12 +3,16 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Enums\**" />
+    <EmbeddedResource Remove="Models\Enums\**" />
+    <None Remove="Models\Enums\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Interfaces\Repositories\" />
-    <Folder Include="Models\Enums\" />
     <Folder Include="Validations\" />
   </ItemGroup>
 

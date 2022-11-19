@@ -22,6 +22,8 @@ namespace NDDTraining.Domain.DTOS
         }
         public ModuleDTO(Module module)
         {
+            Id = module.Id;
+            TrainingId = module.TrainingId;
             TitleModule = module.TitleModule;
             Link = module.Link;
             Image = module.Image;

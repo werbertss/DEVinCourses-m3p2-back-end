@@ -38,7 +38,7 @@ public class RegistrationMap : IEntityTypeConfiguration<Registration>
             .OnDelete(DeleteBehavior.Cascade);
 
         entity.HasOne<User>(r => r.User)
-            .WithMany()
+            .WithMany(u => u.Registrations)
             .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Cascade);
     }

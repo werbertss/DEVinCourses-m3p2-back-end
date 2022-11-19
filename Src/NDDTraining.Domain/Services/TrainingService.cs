@@ -176,7 +176,7 @@ namespace NDDTraining.Domain.Services
                 registred.Add(item.UserId);
 
                 // Verifica se o status do treinamento para o aluno é 'em andamento'(Progress)
-                if (item.Status == "Progress")
+                if (item.Status == Enums.Status.Andamento)
                 {
 
                     // Adiciona o id do aluno em questão na lista dos que estão em andamento do treinamento e na contagem do mesmo
@@ -185,7 +185,7 @@ namespace NDDTraining.Domain.Services
                 }
 
                 // Verifica se o status do treinamento para o aluno é 'concluido'(Finished)
-                if (item.Status == "Finished")
+                if (item.Status == Enums.Status.Finalizado)
                 {
 
                     // Adiciona o id do aluno em questão na lista de concluidos e na contagem do mesmo
@@ -212,7 +212,7 @@ namespace NDDTraining.Domain.Services
         {
             //busca as matrículas e filtra pelas que estão com status de terminada
             var registrations = _registrationRepository.GetAll();
-            var finishedRegistrations = registrations.Where(x => x.Status == "Finished").ToList();
+            var finishedRegistrations = registrations.Where(x => x.Status == Enums.Status.Finalizado).ToList();
 
             //busca a lista de cursos ativos ou suspensos
             IList<Training> trainings = new List<Training>();

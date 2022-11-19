@@ -11,10 +11,12 @@ namespace NDDTraining.Domain.Services
     public class ModuleService : IModuleService
     {
         private readonly IModuleRepository _moduleRepository;
+        private readonly ITrainingRepository _trainingRepository;
 
-        public ModuleService(IModuleRepository moduleRepository)
+        public ModuleService(IModuleRepository moduleRepository, ITrainingRepository trainingRepository)
         {
             _moduleRepository = moduleRepository;
+            _trainingRepository = trainingRepository;
         }
 
         public void FinishClassrom()
@@ -29,10 +31,15 @@ namespace NDDTraining.Domain.Services
 
         public List<ModuleDTO> GetByTraining(int trainingId)
         {
+
+            var training = _trainingRepository.GetById(trainingId);
+            if (training == null)
+                throw new Exception("Register not found!");
+
             return _moduleRepository
-                .GetByTraining(trainingId)
-                .Select(x => new ModuleDTO(x))
-                .ToList();
+            .GetByTraining(trainingId)
+            .Select(x => new ModuleDTO(x))
+            .ToList();
         }
 
         List<ModuleDTO> IModuleService.GetModule()

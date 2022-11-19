@@ -36,12 +36,12 @@ public class TrainingsController : ControllerBase
         return Ok(_trainingService.GetById(id));
     }
 
-    [HttpGet]
-    [Route("~/api/Users/{userId}/Trainings")]
-    public IActionResult GetByUser(
-    [FromRoute] int userId
-    )
+    [HttpGet("{id}/modules")]
+    public IActionResult GetByTrainin(
+             [FromRoute] int id)
     {
-        return Ok(_trainingService.GetTrainingsByUser(userId));
+
+        return Ok(_moduleService.GetByTraining(id));
+
     }
 }

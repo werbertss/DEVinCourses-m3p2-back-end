@@ -11,9 +11,12 @@ namespace NDDTraining.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly IEmailService _emailService;
+        public UsersController(IUserService userService, IEmailService emailService)
         {
             _userService = userService;
+            _emailService = emailService;
+                
         }
     
         [HttpPost]
@@ -34,6 +37,14 @@ namespace NDDTraining.API.Controllers
             string token = _userService.VerifyLogin(loginDTO);
 
             return Ok(token);
+        }
+        [HttpPost]
+        [Route("reset")]
+        public IActionResult Reset([FromBody] string emailReset)
+        {
+            var reset = _userService.Reset(emailReset);
+
+            return Ok();
         }
     }
 }

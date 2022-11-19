@@ -29,5 +29,9 @@ namespace NDDTraining.Infra.Data.Repository
         {
             throw new NotImplementedException();
         }
+        public User CheckResetEmail(string email)
+        {
+           return _context.Users.Where(u => u.Email == email);  
+        }
     }
 }

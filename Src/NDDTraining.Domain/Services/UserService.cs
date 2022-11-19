@@ -58,29 +58,30 @@ namespace NDDTraining.Domain.Services
         
         public string Reset(string emailReset)
         {
-            var user = _userRepository.CheckResetEmail(emailReset);
-            var resetToken = GeneratedToken(user.Id);
+            throw new NotImplementedException();
+        //    var user = _userRepository.CheckResetEmail(emailReset);
+        //    var resetToken = GeneratedToken(user.Id);
 
-            user.ResetToken = resetToken;
+        //    user.ResetToken = resetToken;
 
-           // _userRepository.Update(user);
+        //   // _userRepository.Update(user);
 
-            var email = new Email() { 
-                To = emailReset,
-                Subject = "Reset de Email",
-                type = Domain.Enums.EmailType.ResetPassword,
-                Parameters = new Dictionary<string, string> { { "Link", $"emailReset/{resetToken} " } }
-            };
+        //    var email = new Email() { 
+        //        To = emailReset,
+        //        Subject = "Reset de Email",
+        //        type = Domain.Enums.EmailType.ResetPassword,
+        //        Parameters = new Dictionary<string, string> { { "Link", $"emailReset/{resetToken} " } }
+        //    };
 
-             _emailService.BuildAndSendMail(email);
+        //     _emailService.BuildAndSendMail(email);
             
-            return checkedEmail;
+        //    return checkedEmail;
         }
-        public string GeneratedToken( int userId)
-        {
-            var data = $"{DateTime.Now.AddHours(1)}+{userId}+{Guid.NewGuid()}";
-            return Convert.ToBase64String(data);
+        //public string GeneratedToken( int userId)
+        //{
+        //    var data = $"{DateTime.Now.AddHours(1)}+{userId}+{Guid.NewGuid()}";
+        //    return Convert.ToBase64String(data);
             
-        }
+        //}
     }
 }

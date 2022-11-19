@@ -31,7 +31,7 @@ namespace NDDTraining.Infra.Data.Repository
         }
         public User CheckResetEmail(string email)
         {
-           return _context.Users.Where(u => u.Email == email);  
+           return _context.Users.Where(u => u.Email == email).FirstOrDefault();  
         }
     }
 }

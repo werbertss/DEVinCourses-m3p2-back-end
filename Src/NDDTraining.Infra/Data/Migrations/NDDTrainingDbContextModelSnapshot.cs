@@ -26,15 +26,18 @@ namespace NDDTraining.Infra.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ModuleId")
-                        .HasColumnType("int");
+                        .HasColumnType("INT")
+                        .HasColumnName("MODULE_ID");
 
                     b.Property<int>("RegistrationId")
-                        .HasColumnType("int");
+                        .HasColumnType("INT")
+                        .HasColumnName("REGISTRATION_ID");
 
                     b.HasKey("Id");
 
@@ -42,7 +45,7 @@ namespace NDDTraining.Infra.Data.Migrations
 
                     b.HasIndex("RegistrationId");
 
-                    b.ToTable("CompletedModule");
+                    b.ToTable("COMPLETED_MODULE", (string)null);
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
@@ -368,13 +371,13 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.HasOne("NDDTraining.Domain.Models.Module", "Module")
                         .WithMany()
                         .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("NDDTraining.Domain.Models.Registration", "Registration")
                         .WithMany("CompletedModules")
                         .HasForeignKey("RegistrationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Module");

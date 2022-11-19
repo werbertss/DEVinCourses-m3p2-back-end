@@ -7,6 +7,7 @@ using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
 using NDDTraining.Domain.Exceptions;
+using NDDTraining.Domain.ViewModels;
 
 namespace NDDTraining.Domain.Services
 {
@@ -137,6 +138,68 @@ namespace NDDTraining.Domain.Services
             }
 
             return training;
+        }
+
+        // Função que informa a quantidade de alunos cadastrados, concluintes e em curso do treinamento
+        public TrainingUsersDetails GetUsersDetails(string nameOrId)
+        {
+
+            // Obtem o treinamento pelo nome ou id
+            Training training = GetByNameOrId(nameOrId);
+
+            // Obtem todas as matriculas feitas no treinamento
+            IQueryable<Registration> registrations = _registrationRepository.GetAll()
+                                                                            .AsQueryable()
+                                                                            .Where(r => r.TrainingId == training.Id);
+            
+            // Cria algumas listas e variaveis que vão conter a quantidade de alunos registrados, em andamento e concluidos no treinamento
+            IList<int> registred = new List<int>();
+            int nRegistred = 0;
+            IList<int> progress = new List<int>();
+            int nProgress = 0;
+            IList<int> finished = new List<int>();
+            int nFinished = 0;
+
+            // Passa pela lista de matriculas realizando algumas operações
+            foreach (var item in registrations)
+            {   
+
+                // Adiciona o id do aluno em questão na lista de matriculados e na contagem do mesmo
+                nRegistred = nRegistred + 1;
+                registred.Add(item.UserId);
+
+                // Verifica se o status do treinamento para o aluno é 'em andamento'(Progress)
+                if (item.Status == "Progress")
+                {
+
+                    // Adiciona o id do aluno em questão na lista dos que estão em andamento do treinamento e na contagem do mesmo
+                    nProgress = nProgress + 1;
+                    progress.Add(item.UserId);
+                }
+
+                // Verifica se o status do treinamento para o aluno é 'concluido'(Finished)
+                if (item.Status == "Finished")
+                {
+
+                    // Adiciona o id do aluno em questão na lista de concluidos e na contagem do mesmo
+                    nFinished = nFinished + 1;
+                    finished.Add(item.UserId);
+                }
+            }
+
+            // Organiza os dados em uma view model para a entrega
+            TrainingUsersDetails trainingUsersDetails = new TrainingUsersDetails
+                (
+                    training.Id,
+                    registred,
+                    nRegistred,
+                    progress,
+                    nProgress,
+                    finished,
+                    nFinished
+                );
+
+            return trainingUsersDetails;
         }
     }
 }

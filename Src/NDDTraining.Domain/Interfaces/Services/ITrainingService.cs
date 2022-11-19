@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Models;
+using NDDTraining.Domain.ViewModels;
 
 namespace NDDTraining.Domain.Interfaces.Services
 {
@@ -20,5 +21,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         int Insert(TrainingDTO training);
         public IList<TrainingDTO> GetTrainingsByUser(int userId);
         public Training GetByNameOrId(string nameOrId);
+        public TrainingUsersDetails GetUsersDetails(string nameOrId);
     }
 }

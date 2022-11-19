@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
+using NDDTraining.Domain.ViewModels;
 
 namespace NDDTraining.API.Controllers;
 
@@ -66,5 +67,14 @@ public class TrainingsController : ControllerBase
 
         return Ok(_moduleService.GetByTraining(id));
 
+    }
+
+    // Rota que informa a quantidade de alunos cadastrados, concluintes e em curso do treinamento
+    [HttpGet("{nameOrId}/usersDetails")]
+    public ActionResult<TrainingUsersDetails> GetUsersDetails(
+            [FromRoute] string nameOrId
+    )
+    {
+        return Ok(_trainingService.GetUsersDetails(nameOrId));
     }
 }

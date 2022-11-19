@@ -25,7 +25,7 @@ namespace NDDTraining.Infra.Data.Repository
             return _context.Users.Any(u => u.Email == login.Email && u.Password == login.Password);
         }
 
-        public User GetByToken(string email)
+        public User GetByEmail(string email)
         {
             return (_context.Users.FirstOrDefault(u => u.Email == email)); ;
         }

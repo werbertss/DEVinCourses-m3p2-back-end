@@ -18,16 +18,17 @@ namespace NDDTraining.API.Controllers
         }
 
         [HttpPost]
+        [Route("registration")]
         public IActionResult Post(
             [FromBody] UserDTO newUser
         )
         {
             _userService.InsertUser(newUser);
 
-            return Created("api/users", newUser.Id);
+            return Created("registration", newUser.Id);
         }
         [HttpPost]
-        [Route("api/users/login")]
+        [Route("login")]
         public IActionResult VerifyLogin(
             [FromBody] LoginDTO loginDTO
         )
@@ -43,7 +44,7 @@ namespace NDDTraining.API.Controllers
         public IActionResult Authenticated([FromRoute] string token)
 
         { 
-            return Ok(_userService.GetByToken(token));
+            return Ok(_userService.GetByEmail(token));
         }
 
     }

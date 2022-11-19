@@ -5,7 +5,7 @@ namespace NDDTraining.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-        User GetByToken(string token);
+        User GetByEmail(string token);
         void InsertUser(UserDTO newUser);
         String VerifyLogin (LoginDTO loginDTO);
     }

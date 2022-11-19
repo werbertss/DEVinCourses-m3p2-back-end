@@ -42,15 +42,15 @@ namespace NDDTraining.Infra.Data.Mappings
                 .HasColumnType("INT");          
 
             entity.Property(u => u.CPF)
-            .HasColumnName("CPF")
-            .HasColumnType("VARCHAR")
-            .HasMaxLength(11)
-            .IsRequired();
+                .HasColumnName("CPF")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(11)
+                .IsRequired();
 
             entity.Property(u => u.Image)
-            .HasColumnName("IMAGE")
-            .HasColumnType("VARCHAR")
-            .HasMaxLength(255);
+                .HasColumnName("IMAGE")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(255);
 
         }
     }

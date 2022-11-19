@@ -22,6 +22,29 @@ namespace NDDTraining.Infra.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RegistrationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModuleId");
+
+                    b.HasIndex("RegistrationId");
+
+                    b.ToTable("CompletedModule");
+                });
+
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
                 {
                     b.Property<int>("Id")
@@ -69,6 +92,98 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.HasIndex("TrainingId");
 
                     b.ToTable("MODULES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "vbs7jKRMuiA",
+                            StatusModule = "finalizado",
+                            TitleModule = "Módulo 1",
+                            TrainingId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "3CC_YtyD7Po",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 2",
+                            TrainingId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "TxxkFWty09g",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 3",
+                            TrainingId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "vbs7jKRMuiA",
+                            StatusModule = "finalizado",
+                            TitleModule = "Módulo 1",
+                            TrainingId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "3CC_YtyD7Po",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 2",
+                            TrainingId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "TxxkFWty09g",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 3",
+                            TrainingId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "vbs7jKRMuiA",
+                            StatusModule = "finalizado",
+                            TitleModule = "Módulo 1",
+                            TrainingId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "3CC_YtyD7Po",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 2",
+                            TrainingId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DescriptionModule = "Lorem ipsum dolor sit amet consectetur.",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU",
+                            Link = "TxxkFWty09g",
+                            StatusModule = "disponivel",
+                            TitleModule = "Módulo 3",
+                            TrainingId = 3
+                        });
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
@@ -82,6 +197,7 @@ namespace NDDTraining.Infra.Data.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("STATUS");
 
@@ -221,7 +337,7 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnName("EMAIL");
 
                     b.Property<string>("Image")
-                        .IsRequired()
+                        .HasMaxLength(255)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("IMAGE");
 
@@ -237,28 +353,33 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("PASSWORD");
 
+                    b.Property<string>("ResetToken")
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("TOKEN");
+
                     b.HasKey("Id");
 
                     b.ToTable("USER", (string)null);
                 });
 
-            modelBuilder.Entity("NDDTraining.Domain.DTOS.RegistrationDTO", b =>
+            modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>
                 {
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsAvailable")
-                        .HasForeignKey("RegistrationId");
+                    b.HasOne("NDDTraining.Domain.Models.Module", "Module")
+                        .WithMany()
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsFinished")
-                        .HasForeignKey("RegistrationId1");
+                    b.HasOne("NDDTraining.Domain.Models.Registration", "Registration")
+                        .WithMany("CompletedModules")
+                        .HasForeignKey("RegistrationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsProgress")
-                        .HasForeignKey("RegistrationId2");
+                    b.Navigation("Module");
 
-                    b.HasOne("NDDTraining.Domain.Models.Registration", null)
-                        .WithMany("TrainingsSuspended")
-                        .HasForeignKey("RegistrationId3");
+                    b.Navigation("Registration");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
@@ -277,13 +398,13 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.HasOne("NDDTraining.Domain.Models.Training", "Training")
                         .WithMany()
                         .HasForeignKey("TrainingId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("NDDTraining.Domain.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Registrations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Training");
@@ -293,18 +414,17 @@ namespace NDDTraining.Infra.Data.Migrations
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
                 {
-                    b.Navigation("TrainingsAvailable");
-
-                    b.Navigation("TrainingsFinished");
-
-                    b.Navigation("TrainingsProgress");
-
-                    b.Navigation("TrainingsSuspended");
+                    b.Navigation("CompletedModules");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Training", b =>
                 {
                     b.Navigation("Modules");
+                });
+
+            modelBuilder.Entity("NDDTraining.Domain.Models.User", b =>
+                {
+                    b.Navigation("Registrations");
                 });
 #pragma warning restore 612, 618
         }

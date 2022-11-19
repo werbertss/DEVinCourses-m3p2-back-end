@@ -6,6 +6,7 @@ using NDDTraining.Domain.Models;
 using NDDTraining.Infra.Data.Context;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.DTOS;
+using Microsoft.EntityFrameworkCore;
 
 namespace NDDTraining.Infra.Data.Repository
 {
@@ -81,5 +82,12 @@ namespace NDDTraining.Infra.Data.Repository
             _context.Registrations.Remove(registration);
             _context.SaveChanges();
         }
+   
+
+        public IQueryable<Registration> GetRegistrationsByUser(int id)
+        {
+            return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training);
+        }
     }
+
 }

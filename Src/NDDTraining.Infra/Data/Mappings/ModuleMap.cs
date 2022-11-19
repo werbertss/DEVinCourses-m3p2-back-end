@@ -47,7 +47,8 @@ public class ModuleMap : IEntityTypeConfiguration<Module>
         
         entity.HasOne<Training>(m => m.Training)
             .WithMany(t => t.Modules)
-            .HasForeignKey(m => m.TrainingId);
+            .HasForeignKey(m => m.TrainingId)
+            .OnDelete(DeleteBehavior.Cascade);
         
         entity.HasData(new[]{
             new Module(1, 1, "Módulo 1", "vbs7jKRMuiA", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjOUpolyASUyrLMSV2vqIvQQZ8_--ddMSsJF_xvxZ3tEwPPtZrc57tShVksL8y8JZ8QIk&usqp=CAU", "Lorem ipsum dolor sit amet consectetur.", "finalizado"),

@@ -15,8 +15,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         bool RegistrationDuplicate(int id);
         public bool DeleteNoRegistration(int id);
         void DeleteRegistration(Registration registration);
-    
+        IQueryable<Registration> GetRegistrationsByUser(int id);
 
     }
-
 }

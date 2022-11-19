@@ -19,7 +19,7 @@ namespace NDDTraining.Infra.Data.Repository
 
         public IList<Module> GetByTraining(int trainingId)
         {
-            return _context.Modules.Where(x => x.Id == trainingId).ToList();
+            return _context.Modules.Where(x => x.TrainingId == trainingId).ToList();
         }
     }
 }

@@ -35,4 +35,13 @@ public class TrainingsController : ControllerBase
     {
         return Ok(_trainingService.GetById(id));
     }
+
+    [HttpGet]
+    [Route("~/api/Users/{userId}/Trainings")]
+    public IActionResult GetByUser(
+    [FromRoute] int userId
+    )
+    {
+        return Ok(_trainingService.GetTrainingsByUser(userId));
+    }
 }

@@ -9,6 +9,7 @@ namespace NDDTraining.Domain.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -49,6 +50,31 @@ namespace NDDTraining.Domain.Services
             var recordUser = new User(newUser);     
            
             _userRepository.Insert(recordUser);
-        }       
+        }
+
+        public void Update(UserDTO changedUser, int id)
+        {
+            var user = _userRepository.GetById(id);
+
+            if(user != null)
+            {
+                if(changedUser.Password != null)
+                {
+                    user.Password = changedUser.Password;
+                }
+                if(changedUser.Image != null)
+                {
+                    user.Image = changedUser.Image;
+                }
+                user.Name = changedUser.Name;
+                user.Age = changedUser.Age;
+                _userRepository.Update(user);
+            }
+            else
+            {
+                throw new Exception("Usuario nao localizado.");
+            }
+        }
+
     }
 }

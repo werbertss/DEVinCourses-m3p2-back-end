@@ -31,38 +31,9 @@ namespace NDDTraining.Domain.Services
 
         public void Insert(RegistrationDTO registration)
         {
-            if (_registrationRepository.RegistrationDuplicate(registration.Id))
-            {
-                throw new DuplicateException("Registro ja existe na base de dados!");
-            }
-
-            if (registration.Status == "Progress")
-            {
-                _registrationRepository.InsertListProgress(registration);
-
-            }
-
-            if (registration.Status == "Available")
-            {
-                _registrationRepository.InsertListAvailable(registration);
-            }
-            if (registration.Status == "Finished")
-            {
-                _registrationRepository.InsertListFinished(registration);
-            }
-            if (registration.Status == "Suspended")
-            {
-                _registrationRepository.InsertListSuspended(registration);
-            }
+          
             _registrationRepository.Insert(new Registration(registration));
 
-        }
-
-
-
-        public void SendEMail()
-        {
-            throw new NotImplementedException();
         }
 
         public void ValidateRegistration()

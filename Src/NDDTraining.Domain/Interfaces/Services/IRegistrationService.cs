@@ -13,7 +13,6 @@ namespace NDDTraining.Domain.Interfaces.Services
     public interface IRegistrationService
     {
         public IList<RegistrationDTO> GetAll();
-        public void SendEMail();
         public void ValidateRegistration();
         public void Insert(RegistrationDTO registration);
         public void Delete(int id);

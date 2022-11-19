@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Enums;
 using NDDTraining.Domain.Exceptions;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
@@ -121,6 +122,24 @@ namespace NDDTraining.Domain.Services
                 throw new Exception("Modulo não encontrado");
             }
             _registrationRepository.DeleteRegistration(registration);
+        }
+
+       public IList<RegistrationDTO> GetRegistrationsByUser(int userId, string status)
+        {
+            IEnumerable<Registration> trainingWithRegisters = _registrationRepository
+                    .GetRegistrationsByUser(userId);
+
+            if(!String.IsNullOrEmpty(status))
+            {
+                var statusEnum = status.ConvertEnum<Status>();
+
+                trainingWithRegisters = trainingWithRegisters
+                    .Where(r => r.Status == statusEnum);
+                
+            }
+
+            return trainingWithRegisters
+                .Select(r => new RegistrationDTO(r)).ToList();
         }
     }
 

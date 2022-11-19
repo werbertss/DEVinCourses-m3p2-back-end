@@ -12,13 +12,8 @@ using NDDTraining.Infra.Data.Context;
 namespace NDDTraining.Infra.Data.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
-<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.Designer.cs
-    [Migration("20221119165531_InitialCreate")]
-    partial class InitialCreate
-========
-    [Migration("20221119185323_ResetToken")]
+    [Migration("20221119215433_ResetToken")]
     partial class ResetToken
->>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,19 +35,12 @@ namespace NDDTraining.Infra.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ModuleId")
-<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.Designer.cs
                         .HasColumnType("INT")
                         .HasColumnName("MODULE_ID");
 
                     b.Property<int>("RegistrationId")
                         .HasColumnType("INT")
                         .HasColumnName("REGISTRATION_ID");
-========
-                        .HasColumnType("int");
-
-                    b.Property<int>("RegistrationId")
-                        .HasColumnType("int");
->>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.Designer.cs
 
                     b.HasKey("Id");
 
@@ -60,11 +48,7 @@ namespace NDDTraining.Infra.Data.Migrations
 
                     b.HasIndex("RegistrationId");
 
-<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.Designer.cs
                     b.ToTable("COMPLETED_MODULE", (string)null);
-========
-                    b.ToTable("CompletedModule");
->>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.Designer.cs
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
@@ -359,10 +343,7 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnName("EMAIL");
 
                     b.Property<string>("Image")
-<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.Designer.cs
-========
                         .HasMaxLength(255)
->>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.Designer.cs
                         .HasColumnType("VARCHAR")
                         .HasColumnName("IMAGE");
 
@@ -393,21 +374,13 @@ namespace NDDTraining.Infra.Data.Migrations
                     b.HasOne("NDDTraining.Domain.Models.Module", "Module")
                         .WithMany()
                         .HasForeignKey("ModuleId")
-<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.Designer.cs
                         .OnDelete(DeleteBehavior.Restrict)
-========
-                        .OnDelete(DeleteBehavior.Cascade)
->>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.Designer.cs
                         .IsRequired();
 
                     b.HasOne("NDDTraining.Domain.Models.Registration", "Registration")
                         .WithMany("CompletedModules")
                         .HasForeignKey("RegistrationId")
-<<<<<<<< HEAD:Src/NDDTraining.Infra/Data/Migrations/20221119165531_InitialCreate.Designer.cs
                         .OnDelete(DeleteBehavior.Restrict)
-========
-                        .OnDelete(DeleteBehavior.Cascade)
->>>>>>>> 80c228889d6ba80e01880b930299b28e4fc67be2:Src/NDDTraining.Infra/Data/Migrations/20221119185323_ResetToken.Designer.cs
                         .IsRequired();
 
                     b.Navigation("Module");

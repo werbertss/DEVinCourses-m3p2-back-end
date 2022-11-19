@@ -12,8 +12,21 @@ namespace NDDTraining.Infra.Services
         
         public void BuildAndSendMail(Email email)
         {
+            string templateName = "";
 
-            var body = GetEmailTemplateByName("ResetPassword.html");           
+            switch (email.type)
+            {
+                case Domain.Enums.EmailType.Registration:
+                    templateName = "Registration.html";
+                    break;
+                case Domain.Enums.EmailType.ResetPassword:
+                    templateName = "ResetPassword.html";
+                    break;
+                default:
+                    break;
+            }
+
+            var body = GetEmailTemplateByName(templateName);           
             body = ReplaceParameters(body, email.Parameters);
             SendEmail(email.To, email.Subject, body);
 
@@ -25,7 +38,7 @@ namespace NDDTraining.Infra.Services
 
             MailMessage email = new MailMessage();           
 
-            email.From = new MailAddress("moises12@ethereal.email");
+            email.From = new MailAddress("karina0@ethereal.email");
 
             email.To.Add(new MailAddress(To));
 
@@ -38,8 +51,8 @@ namespace NDDTraining.Infra.Services
             email.Priority = MailPriority.Normal;
 
             using var smtp = new MailKit.Net.Smtp.SmtpClient();
-            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("dewayne.kuphal@ethereal.email", "u3633MwcsFtfTvx5Xn");
+            smtp.Connect("smtp.ethereal.email", 587);
+            smtp.Authenticate("karina0@ethereal.email", "HvDxM347QqG8BfzBqV");
            
 
             // SmtpClient smtp = new SmtpClient("in-v3.mailjet.com",587);

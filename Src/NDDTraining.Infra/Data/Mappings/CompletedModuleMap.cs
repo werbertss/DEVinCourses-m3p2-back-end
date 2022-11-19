@@ -28,12 +28,12 @@ public class CompletedModuleMap : IEntityTypeConfiguration<CompletedModule>
         entity.HasOne<Registration>(rm => rm.Registration)
             .WithMany(r => r.CompletedModules)
             .HasForeignKey(rm => rm.RegistrationId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
         entity.HasOne<Module>(rm => rm.Module)
             .WithMany()
             .HasForeignKey(rm => rm.ModuleId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
             
     }
 }

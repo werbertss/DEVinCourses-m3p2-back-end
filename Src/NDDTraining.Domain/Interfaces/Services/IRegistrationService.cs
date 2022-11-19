@@ -17,5 +17,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         public void ValidateRegistration();
         public void Insert(RegistrationDTO registration);
         public void Delete(int id);
+        public void DeleteRegistration(int id);
   }
 }

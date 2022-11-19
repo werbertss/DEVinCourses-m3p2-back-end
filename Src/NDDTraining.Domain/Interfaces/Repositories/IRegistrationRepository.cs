@@ -14,6 +14,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         void InsertListSuspended(RegistrationDTO register );
         bool RegistrationDuplicate(int id);
         public bool DeleteNoRegistration(int id);
+        void DeleteRegistration(Registration registration);
     
 
     }

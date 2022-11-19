@@ -50,6 +50,7 @@ namespace NDDTraining.Domain.Services
 
         public void Insert(int idTraining, Training training)
         {
+            //insere em cada módulo do curso o id e adciona ao banco de dados
             foreach (var module in training.Modules)
             {
                 module.TrainingId = idTraining;

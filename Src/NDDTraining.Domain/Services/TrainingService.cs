@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Data;
+using System.Reflection.PortableExecutable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +54,7 @@ namespace NDDTraining.Domain.Services
         public TrainingDTO GetById(int id)
         {
             var training = _trainingRepository.GetById(id);
-        
+
             return new TrainingDTO(training);
 
         }
@@ -69,7 +72,7 @@ namespace NDDTraining.Domain.Services
         // Função de suspensão de treinamento
         public void Suspend(string nameOrId)
         {
-            
+
             // Obtem o treinamento pelo nome ou id
             Training training = GetByNameOrId(nameOrId);
 
@@ -86,12 +89,16 @@ namespace NDDTraining.Domain.Services
         }
         public int Insert(TrainingDTO training)
         {
+            //verifica se existe o nome que está sendo inserido no curso
             if (_trainingRepository.VerifyExistingName(training.Title))
             {
                 throw new AlreadyExistsException($"Já existe um treinamento com o nome: {training.Title}");
             }
-            
+
+            //insere o curso no banco de dados
             _trainingRepository.Insert(new Training(training));
+
+            //retorna o id do curso 
             var newTraining = _trainingRepository.GetByName(training.Title);
             return newTraining.Id;
         }
@@ -151,7 +158,7 @@ namespace NDDTraining.Domain.Services
             IQueryable<Registration> registrations = _registrationRepository.GetAll()
                                                                             .AsQueryable()
                                                                             .Where(r => r.TrainingId == training.Id);
-            
+
             // Cria algumas listas e variaveis que vão conter a quantidade de alunos registrados, em andamento e concluidos no treinamento
             IList<int> registred = new List<int>();
             int nRegistred = 0;
@@ -162,7 +169,7 @@ namespace NDDTraining.Domain.Services
 
             // Passa pela lista de matriculas realizando algumas operações
             foreach (var item in registrations)
-            {   
+            {
 
                 // Adiciona o id do aluno em questão na lista de matriculados e na contagem do mesmo
                 nRegistred = nRegistred + 1;
@@ -200,6 +207,47 @@ namespace NDDTraining.Domain.Services
                 );
 
             return trainingUsersDetails;
+        }
+        public IList<TrainingReportsDTO> GetTrainingsReport(bool isActive)
+        {
+            //busca as matrículas e filtra pelas que estão com status de terminada
+            var registrations = _registrationRepository.GetAll();
+            var finishedRegistrations = registrations.Where(x => x.Status == "Finished").ToList();
+
+            //busca a lista de cursos ativos ou suspensos
+            IList<Training> trainings = new List<Training>();
+            if (isActive)
+            { trainings = _trainingRepository.GetActiveTraining(); }
+            else { trainings = _trainingRepository.GetSuspendedTraining(); }
+
+            //cria um dicionário de cursos moldado para o dto de relatório
+            Dictionary<int, TrainingReportsDTO> dict = new();
+            foreach (var item in trainings)
+            {
+                dict.Add(item.Id, new TrainingReportsDTO
+                {
+                    Id = item.Id,
+                    Active = isActive,
+                    Title = item.Title,
+                    Duration = item.Duration,
+                    TotalUsersFinished = 0
+                });
+            }
+
+            //implementa o dicionário de relatórios com a quantidade de alunos que terminaram o curso
+            foreach (var item in finishedRegistrations)
+            {
+                var report = dict.GetValueOrDefault(item.TrainingId);
+                if (report != null)
+                {
+                    report.TotalUsersFinished++;
+                }
+            }
+            var trainingsReports = dict.Select(x => x.Value).ToList();
+
+            //coloca a lista de cursos em ordem decrescente 
+            var descending = (IList<TrainingReportsDTO>)trainingsReports.OrderByDescending(x => x.TotalUsersFinished).ToList();
+            return descending;
         }
     }
 }

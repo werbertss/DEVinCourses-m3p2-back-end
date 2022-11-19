@@ -50,10 +50,12 @@ public class TrainingsController : ControllerBase
         // Retorna um código 204(No Content), para o usuario reconhecer o sucesso da requisição
         return NoContent();
     }
+    
     //autorização -> todos os alunos podem acessar
     [HttpPost]
     public ActionResult Insert(Training training)
     {
+        //insere o treinamento e os módulos do treinamento no banco de dados
         var DTO = new TrainingDTO(training);
         var idTraining = _trainingService.Insert(DTO);
         _moduleService.Insert(idTraining, training);
@@ -76,5 +78,19 @@ public class TrainingsController : ControllerBase
     )
     {
         return Ok(_trainingService.GetUsersDetails(nameOrId));
+    }
+
+    [HttpGet("activeReport")]
+    public ActionResult GetActiveReport()
+    {
+        var reports = _trainingService.GetTrainingsReport(true);
+        return Ok(reports);
+    }
+
+    [HttpGet("suspendedReport")]
+    public ActionResult GetSuspendedReport()
+    {
+        var reports = _trainingService.GetTrainingsReport(false);
+        return Ok(reports);
     }
 }

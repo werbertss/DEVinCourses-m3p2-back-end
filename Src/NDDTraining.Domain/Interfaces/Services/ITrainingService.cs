@@ -22,5 +22,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         public IList<TrainingDTO> GetTrainingsByUser(int userId);
         public Training GetByNameOrId(string nameOrId);
         public TrainingUsersDetails GetUsersDetails(string nameOrId);
+        IList<TrainingReportsDTO> GetTrainingsReport(bool isActive);
     }
 }

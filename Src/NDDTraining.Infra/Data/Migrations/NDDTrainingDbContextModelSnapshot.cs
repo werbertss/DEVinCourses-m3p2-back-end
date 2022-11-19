@@ -22,6 +22,29 @@ namespace NDDTraining.Infra.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RegistrationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModuleId");
+
+                    b.HasIndex("RegistrationId");
+
+                    b.ToTable("CompletedModule");
+                });
+
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
                 {
                     b.Property<int>("Id")
@@ -334,13 +357,30 @@ namespace NDDTraining.Infra.Migrations
                     b.ToTable("USER", (string)null);
                 });
 
+            modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>
+                {
+                    b.HasOne("NDDTraining.Domain.Models.Module", "Module")
+                        .WithMany()
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NDDTraining.Domain.Models.Registration", "Registration")
+                        .WithMany("CompletedModules")
+                        .HasForeignKey("RegistrationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Module");
+
+                    b.Navigation("Registration");
+                });
+
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
                 {
-                    b.HasOne("NDDTraining.Domain.Models.Training", "Training")
+                    b.HasOne("NDDTraining.Domain.Models.Training", null)
                         .WithMany("Modules")
                         .HasForeignKey("TrainingId");
-
-                    b.Navigation("Training");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
@@ -352,7 +392,7 @@ namespace NDDTraining.Infra.Migrations
                         .IsRequired();
 
                     b.HasOne("NDDTraining.Domain.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Registrations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -362,9 +402,19 @@ namespace NDDTraining.Infra.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
+                {
+                    b.Navigation("CompletedModules");
+                });
+
             modelBuilder.Entity("NDDTraining.Domain.Models.Training", b =>
                 {
                     b.Navigation("Modules");
+                });
+
+            modelBuilder.Entity("NDDTraining.Domain.Models.User", b =>
+                {
+                    b.Navigation("Registrations");
                 });
 #pragma warning restore 612, 618
         }

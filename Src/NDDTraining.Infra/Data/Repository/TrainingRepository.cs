@@ -15,11 +15,19 @@ namespace NDDTraining.Infra.Data.Repository
         }
         public bool VerifyExistingName(string title)
         {
-            if (_context.Trainings.Any(u => u.Title == title))
+            if (_context.Trainings.Any(x => x.Title == title))
             {
                 return true;
             }
             return false;
+        }
+        public IList<Training> GetActiveTraining()
+        {
+            return _context.Trainings.Where(x => x.Active == true).ToList();
+        }
+        public IList<Training> GetSuspendedTraining()
+        {
+            return _context.Trainings.Where(x => x.Active == false).ToList();
         }
     }
 

@@ -42,10 +42,8 @@ namespace NDDTraining.API.Controllers
         [Authorize]
         public IActionResult Authenticated([FromRoute] string token)
 
-        {
-            UserDTO user;            
-            user = (UserDTO)_userService.GetByToken(token);
-            return Ok(user);
+        { 
+            return Ok(_userService.GetByToken(token));
         }
 
     }

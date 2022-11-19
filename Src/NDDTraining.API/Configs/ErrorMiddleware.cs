@@ -2,6 +2,7 @@
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Exceptions;
 
+
 namespace NDDTraining.API.Configs
 {
     public class ErrorMiddleware
@@ -31,6 +32,15 @@ namespace NDDTraining.API.Configs
 
             switch (exception)
             {
+                case NoDataException:
+                case DuplicateException:
+                    status = HttpStatusCode.BadRequest;
+                    message = exception.Message;
+                    break;
+                case NotFoundException:
+                    status = HttpStatusCode.NotFound;
+                    message = exception.Message;
+                    break;
                 case (BadRequestException):
                     status = HttpStatusCode.BadRequest;
                     message = exception.Message;

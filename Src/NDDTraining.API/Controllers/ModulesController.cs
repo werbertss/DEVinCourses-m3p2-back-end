@@ -19,18 +19,6 @@ namespace NDDTraining.API.Controllers
             _moduleService = moduleService;
         }
 
-        [HttpGet("~trainings/{id}/modules")]
-        public IActionResult GetByTrainin(
-            [FromRoute] int id)
-        {
-            try
-            {
-                return Ok(_moduleService.GetByTraining(id));
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
+       
     }
 }

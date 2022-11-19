@@ -6,6 +6,7 @@ using NDDTraining.Domain.Models;
 using NDDTraining.Infra.Data.Context;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.DTOS;
+using Microsoft.EntityFrameworkCore;
 
 namespace NDDTraining.Infra.Data.Repository
 {
@@ -17,11 +18,8 @@ namespace NDDTraining.Infra.Data.Repository
         public List<RegistrationDTO> ProgressList = new List<RegistrationDTO>();
         public List<RegistrationDTO> AvailableList = new List<RegistrationDTO>();
 
-
-        private readonly NDDTrainingDbContext _context;
         public RegistrationRepository(NDDTrainingDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public IList<Registration> GetAll()
@@ -30,7 +28,7 @@ namespace NDDTraining.Infra.Data.Repository
         }
 
 
-        public void Insert(Registration registration)
+        public override void Insert(Registration registration)
         {
             _context.Registrations.Add(registration);
             _context.SaveChanges();
@@ -78,5 +76,18 @@ namespace NDDTraining.Infra.Data.Repository
             else return false;
 
         }
+
+        public void DeleteRegistration(Registration registration)
+        {
+            _context.Registrations.Remove(registration);
+            _context.SaveChanges();
+        }
+   
+
+        public IQueryable<Registration> GetRegistrationsByUser(int id)
+        {
+            return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training);
+        }
     }
+
 }

@@ -18,5 +18,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         public void FinishTrainig();
         void Suspend(string nameOrId);
         int Insert(TrainingDTO training);
+        public IList<TrainingDTO> GetTrainingsByUser(int userId);
     }
 }

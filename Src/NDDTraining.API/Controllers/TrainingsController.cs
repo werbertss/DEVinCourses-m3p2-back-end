@@ -59,18 +59,12 @@ public class TrainingsController : ControllerBase
         return StatusCode(StatusCodes.Status201Created);
     }
 
-    /* [HttpGet("reports/active-trainings")]
-        public ActionResult GetActiveTrainings()
-        {
-            try
-            {
-                var reports = _trainingService.GetActiveTrainings();
-                return Ok(reports);
-            }
-            catch (System.Exception)
-            {
+    [HttpGet("{id}/modules")]
+    public IActionResult GetByTrainin(
+             [FromRoute] int id)
+    {
 
-                throw new Exception(StatusCodes.Status500InternalServerError.ToString());
-            }
-        } */
+        return Ok(_moduleService.GetByTraining(id));
+
+    }
 }

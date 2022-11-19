@@ -11,7 +11,8 @@ namespace NDDTraining.DI.IOC
             return services
                 .AddScoped<IModuleService, ModuleService>()
                 .AddScoped<ITrainingService, TrainingService>()
-                .AddScoped<IRegistrationService, RegistrationService>();
+                .AddScoped<IRegistrationService, RegistrationService>()
+                .AddScoped<IUserService, UserService>();
         }
     }
 }

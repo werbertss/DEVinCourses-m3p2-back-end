@@ -1,4 +1,5 @@
 ﻿using System;
+using NDDTraining.Domain.Enums;
 using NDDTraining.Domain.Models;
 
 
@@ -9,7 +10,7 @@ namespace NDDTraining.Domain.DTOS
         public int Id { get; set; }
         public int UserId { get; set; }
         public int TrainingId { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
        
 
 

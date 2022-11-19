@@ -35,11 +35,11 @@ public class RegistrationMap : IEntityTypeConfiguration<Registration>
         entity.HasOne<Training>(r => r.Training)
             .WithMany()
             .HasForeignKey(r => r.TrainingId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
 
         entity.HasOne<User>(r => r.User)
             .WithMany(u => u.Registrations)
             .HasForeignKey(r => r.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

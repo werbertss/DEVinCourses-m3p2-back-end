@@ -52,6 +52,11 @@ namespace NDDTraining.Infra.Data.Mappings
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
 
+            entity.Property(u => u.ResetToken)
+                .HasColumnName("TOKEN")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(255);
+
         }
     }
 }

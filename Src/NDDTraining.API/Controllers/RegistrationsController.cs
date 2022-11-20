@@ -46,10 +46,13 @@ namespace NDDTraining.API.Controllers
         [HttpGet]
         [Route("~/api/Users/{userId}/Registrations/Recents")]
         public IActionResult GetRecentByUser(
-                    [FromRoute] int userId
+                    [FromRoute] int userId,
+                    int skip = 0,
+                    int take = 20
                 )
         {
-            return Ok(_registrationService.GetRegistrationsByUserMostRecent(userId));
+            var paging = new Paging(skip, take);
+            return Ok(_registrationService.GetRegistrationsByUserMostRecent(userId, paging));
         }
 
         [HttpPost]
@@ -70,7 +73,7 @@ namespace NDDTraining.API.Controllers
         }  
 
         [HttpPatch]
-        [Route("~/api/Users/{id}/Registrations")]
+        [Route("~/api/Users/Registrations/{id}")]
         public IActionResult PatchRecentByUser(
                     [FromRoute] int id,
                     [FromQuery] long refreshDate

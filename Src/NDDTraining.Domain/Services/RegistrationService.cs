@@ -131,10 +131,10 @@ namespace NDDTraining.Domain.Services
                 .Select(r => new RegistrationDTO(r)).ToList();
         }
 
-        public IList<RegistrationDTO> GetRegistrationsByUserMostRecent(int userId)
+        public IList<RegistrationDTO> GetRegistrationsByUserMostRecent(int userId, Paging paging)
         {
             IEnumerable<Registration> trainingWithRegisters = _registrationRepository
-                    .GetRegistrationsByUser(userId);
+                    .GetRegistrationsByUser(userId, paging);
 
             return trainingWithRegisters
                 .Select(r => new RegistrationDTO(r)).OrderByDescending(d => d.RefreshDate).ToList();

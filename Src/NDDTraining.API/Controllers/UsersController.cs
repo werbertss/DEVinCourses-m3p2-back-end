@@ -32,7 +32,6 @@ namespace NDDTraining.API.Controllers
         }
     
         [HttpPost]
-        [Route("registration")]
         public IActionResult Post(
             [FromBody] UserDTO newUser
         )
@@ -44,7 +43,6 @@ namespace NDDTraining.API.Controllers
 
    
         [HttpGet]
-        [Route("authenticated")]
         [Authorize]
         public IActionResult Authenticated([FromRoute] string token)
 

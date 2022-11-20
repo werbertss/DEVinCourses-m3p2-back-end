@@ -107,7 +107,7 @@ namespace NDDTraining.Domain.Services
                 To = emailReset,
                 Subject = "Reset de Email",
                 type = Domain.Enums.EmailType.ResetPassword,
-                Parameters = new Dictionary<string, string> { { "Link", $"http://localhost:65447/reset;token={user.ResetToken}" }, { "Name", $"{user.Name} " }, { "token", $"{user.ResetToken} " } }
+                Parameters = new Dictionary<string, string> { { "Link", $"http://localhost:4200/reset;token={user.ResetToken}" }, { "Name", $"{user.Name} " }, { "token", $"{user.ResetToken} " } }
             };
 
             _emailService.BuildAndSendMail(email);

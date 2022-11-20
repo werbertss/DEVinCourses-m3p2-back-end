@@ -20,10 +20,9 @@ namespace NDDTraining.Domain.Services
             _emailService = emailService;
         }
         
-        public User GetUser(string token)
+        public User GetUser(string email)
         {
-            var email = new JwtSecurityToken(jwtEncodedString: token);
-            return _userRepository.GetByEmail(email.Claims.First(c => c.Type == "email").Value);
+            return _userRepository.GetByEmail(email);
         }
         
         public string VerifyLogin(LoginDTO loginDTO)
@@ -107,7 +106,7 @@ namespace NDDTraining.Domain.Services
                 To = emailReset,
                 Subject = "Reset de Email",
                 type = Domain.Enums.EmailType.ResetPassword,
-                Parameters = new Dictionary<string, string> { { "Link", $"http://localhost:65447/reset;token={user.ResetToken}" }, { "Name", $"{user.Name} " }, { "token", $"{user.ResetToken} " } }
+                Parameters = new Dictionary<string, string> { { "Link", $"http://localhost:4200/reset;token={user.ResetToken}" }, { "Name", $"{user.Name} " }, { "token", $"{user.ResetToken} " } }
             };
 
             _emailService.BuildAndSendMail(email);

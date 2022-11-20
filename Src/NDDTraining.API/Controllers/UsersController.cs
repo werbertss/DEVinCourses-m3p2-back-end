@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
-
+using System.Security.Claims;
 
 namespace NDDTraining.API.Controllers
 {
@@ -43,11 +43,14 @@ namespace NDDTraining.API.Controllers
 
    
         [HttpGet]
-        [Route("{token}")]
-        public IActionResult GetUser([FromRoute] string token)
+        [Authorize]
+        
+        public IActionResult GetUser()
 
-        { 
-            return Ok(_userService.GetUser(token));
+        {
+            var email = HttpContext.User.Claims.First(X => X.Type == ClaimTypes.Email).Value;
+
+            return Ok(_userService.GetUser(email));
         }
 
 

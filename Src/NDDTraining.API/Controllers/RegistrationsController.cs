@@ -52,32 +52,12 @@ namespace NDDTraining.API.Controllers
             return StatusCode(StatusCodes.Status201Created);
 
         }
-        [HttpDelete("{userId}")]
+        [HttpDelete("{Id}")]
         public ActionResult Delete(
-         [FromRoute] int userId)
-        {
-            try
-            {
-                _registrationService.Delete(userId);
-                return StatusCode(StatusCodes.Status204NoContent);
-            }
-
-            catch
-            {
-                throw new Exception(StatusCodes.Status500InternalServerError.ToString());
-            }
-
-
-        }
-
-        [HttpDelete("{id}")]
-        public ActionResult DeleteRegistration(
-            [FromRoute] int Id
-        )
-        {
-            _registrationService.DeleteRegistration(Id);
+         [FromRoute] int Id)
+        {          
+            _registrationService.Delete(Id);
             return StatusCode(StatusCodes.Status204NoContent);
-        }
-
+        }      
     }
 }

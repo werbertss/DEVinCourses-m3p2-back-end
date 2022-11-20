@@ -64,10 +64,9 @@ namespace NDDTraining.Infra.Data.Repository
                 .Skip(paging.Skip);
         }
 
-        public IQueryable<Registration> GetRegistrationsByUserMostRecent(int id, Paging paging)
+        public IQueryable<Registration> GetRegistrationsByUserMostRecent(int id /*Paging paging*/)
         {
-            return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training).OrderByDescending(d => d.RefreshDate).Take(paging.Take)
-                .Skip(paging.Skip);;
+            return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training).OrderByDescending(d => d.RefreshDate);
         }
 
         public void Patch(int id, long refreshDate)

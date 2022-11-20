@@ -12,7 +12,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         public bool DeleteNoRegistration(int id);        
         IQueryable<Registration> GetRegistrationsByUser(int id, Paging paging);
 
-        IQueryable<Registration> GetRegistrationsByUserMostRecent(int id);
+        IQueryable<Registration> GetRegistrationsByUserMostRecent(int id, Paging paging);
 
         public void Patch(int id, long refreshDate);
 

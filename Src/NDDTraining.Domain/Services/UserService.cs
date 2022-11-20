@@ -20,10 +20,9 @@ namespace NDDTraining.Domain.Services
             _emailService = emailService;
         }
         
-        public User GetUser(string token)
+        public User GetUser(string email)
         {
-            var email = new JwtSecurityToken(jwtEncodedString: token);
-            return _userRepository.GetByEmail(email.Claims.First(c => c.Type == "email").Value);
+            return _userRepository.GetByEmail(email);
         }
         
         public string VerifyLogin(LoginDTO loginDTO)

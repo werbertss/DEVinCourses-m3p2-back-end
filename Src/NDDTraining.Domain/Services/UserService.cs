@@ -90,18 +90,20 @@ namespace NDDTraining.Domain.Services
 
             user.ResetToken = resetToken;
 
-           // _userRepository.Update(user);
+            _userRepository.Update(user);
 
             var email = new Email() { 
                 To = emailReset,
                 Subject = "Reset de Email",
                 type = Domain.Enums.EmailType.ResetPassword,
-                Parameters = new Dictionary<string, string> { { "Link", $"emailReset/{resetToken} " } }
+                Parameters = new Dictionary<string, string> { { "Link", "http://localhost:4200/cadastro" }, { "Name", $"{user.Name} " } }
             };
 
              _emailService.BuildAndSendMail(email);
-            
-            return resetToken;
+
+            var tokem = DecifraToken(resetToken);
+
+            return tokem;
         }
         
         public string GeneratedToken( int userId)
@@ -111,5 +113,21 @@ namespace NDDTraining.Domain.Services
             string resultado = System.Convert.ToBase64String(textoAsBytes);
             return resultado;
         }
+
+        public string DecifraToken(string token)
+        {
+            byte[] res = System.Convert.FromBase64String(token);
+            string resultado = Encoding.ASCII.GetString(res);
+            string[] splittedValues = resultado.Split('+');
+            string[] splittedLast = splittedValues[1].Split('+');
+            string result = splittedLast[0];
+
+            var id = Convert.ToInt32(result);
+
+            var usuario = _userRepository.GetById(id);
+
+            return usuario.ResetToken;
+        }
+
     }
 }

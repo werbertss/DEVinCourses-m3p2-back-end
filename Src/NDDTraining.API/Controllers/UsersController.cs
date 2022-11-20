@@ -57,7 +57,7 @@ namespace NDDTraining.API.Controllers
         {
             var reset = _userService.Reset(emailReset);
 
-            return Ok();
+            return Ok(reset);
         }
     }
 }

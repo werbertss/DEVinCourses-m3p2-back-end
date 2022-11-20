@@ -56,24 +56,22 @@ namespace NDDTraining.Domain.Services
         {
             var user = _userRepository.GetById(id);
 
-            if(user != null)
+            if(user == null)
+                throw new NotFoundException("Usuario não localizado.");
+
+            if(changedUser.Password != null)
             {
-                if(changedUser.Password != null)
-                {
-                    user.Password = changedUser.Password;
-                }
-                if(changedUser.Image != null)
-                {
-                    user.Image = changedUser.Image;
-                }
-                user.Name = changedUser.Name;
-                user.Age = changedUser.Age;
-                _userRepository.Update(user);
+                user.Password = changedUser.Password;
             }
-            else
+            if(changedUser.Image != null)
             {
-                throw new Exception("Usuario nao localizado.");
+                user.Image = changedUser.Image;
             }
+
+            user.Name = changedUser.Name;
+            user.Age = changedUser.Age;
+            _userRepository.Update(user);
+ 
         }
 
     }

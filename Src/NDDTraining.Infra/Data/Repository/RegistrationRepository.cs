@@ -38,12 +38,12 @@ namespace NDDTraining.Infra.Data.Repository
             return _context.Registrations.Any(x => x.Id == id);
         }
 
-        public void Delete(int userId)
+        public void Delete(int id)
         {
 
-            var user = _context.Registrations.Find(userId);
+            var registration = _context.Registrations.Find(id);
 
-            _context.Registrations.Remove(user);
+            _context.Registrations.Remove(registration);
             _context.SaveChanges();
         }
 
@@ -53,14 +53,7 @@ namespace NDDTraining.Infra.Data.Repository
             if (user == null) return true;
             else return false;
 
-        }
-
-        public void DeleteRegistration(Registration registration)
-        {
-            _context.Registrations.Remove(registration);
-            _context.SaveChanges();
-        }
-   
+        }        
 
         public IQueryable<Registration> GetRegistrationsByUser(int id)
         {

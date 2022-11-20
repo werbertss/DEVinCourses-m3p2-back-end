@@ -26,8 +26,6 @@ namespace NDDTraining.API.Controllers
             }
             catch
             {
-
-
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
@@ -39,8 +37,7 @@ namespace NDDTraining.API.Controllers
                     [FromQuery] string status
                 )
         {
-            throw new NotImplementedException();
-            // return Ok(_registrationService.GetTrainingsByUser(userId, status));
+            return Ok(_registrationService.GetRegistrationsByUser(userId, status));
         }
 
         [HttpPost]

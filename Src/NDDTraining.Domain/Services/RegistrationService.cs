@@ -130,6 +130,20 @@ namespace NDDTraining.Domain.Services
             return trainingWithRegisters
                 .Select(r => new RegistrationDTO(r)).ToList();
         }
-    }
+
+        public IList<RegistrationDTO> GetRegistrationsByUserMostRecent(int userId)
+        {
+            IEnumerable<Registration> trainingWithRegisters = _registrationRepository
+                    .GetRegistrationsByUser(userId);
+
+            return trainingWithRegisters
+                .Select(r => new RegistrationDTO(r)).OrderByDescending(d => d.RefreshDate).ToList();
+        }
+
+        public void Patch(int id, long refreshDate)
+        {
+            _registrationRepository.Patch(id, refreshDate);
+        }
+  }
 
 }

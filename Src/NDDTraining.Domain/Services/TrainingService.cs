@@ -54,6 +54,7 @@ namespace NDDTraining.Domain.Services
 
         }
 
+
         public TrainingDTO GetTrainingFinish()
         {
             throw new NotImplementedException();
@@ -71,5 +72,6 @@ namespace NDDTraining.Domain.Services
 
             return trainingsByUser;
         }
+
     }
 }

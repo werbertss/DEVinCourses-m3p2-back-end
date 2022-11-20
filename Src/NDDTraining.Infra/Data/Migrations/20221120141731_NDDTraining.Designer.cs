@@ -9,11 +9,11 @@ using NDDTraining.Infra.Data.Context;
 
 #nullable disable
 
-namespace NDDTraining.Infra.Data.Migrations
+namespace NDDTraining.Infra.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
-    [Migration("20221119215433_ResetToken")]
-    partial class ResetToken
+    [Migration("20221120141731_NDDTraining")]
+    partial class NDDTraining
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -201,6 +201,9 @@ namespace NDDTraining.Infra.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<long>("RefreshDate")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -253,9 +256,6 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnType("TIME")
                         .HasColumnName("DURATION");
 
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Teacher")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -286,7 +286,6 @@ namespace NDDTraining.Infra.Data.Migrations
                             Category = "tecnologia",
                             Description = "Architecto eaque consectetur nostrum impedit earum at harum. Reiciendis suscipit soluta, ab, repellat ad, Architecto eaque consectetur nostrum impedit earum at harum. Architecto eaque consectetur nostrum impedit earum at harum., Architecto eaque consectetur nostrum impedit earum at harum.",
                             Duration = new TimeSpan(0, 20, 0, 0, 0),
-                            ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Teacher = "Carlos Silva",
                             Title = "Manutenção de Computadores",
                             Url = "https://certificadocursosonline.com/wp-content/uploads/2018/07/Curso-de-Manutenc%CC%A7a%CC%83o-de-Computadores.jpg"
@@ -298,7 +297,6 @@ namespace NDDTraining.Infra.Data.Migrations
                             Category = "idioma",
                             Description = "Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis sobre Inlges o basico.",
                             Duration = new TimeSpan(2, 22, 0, 0, 0),
-                            ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Teacher = "Rodrigo Rosa",
                             Title = "Ingles Basico",
                             Url = "https://setcesp.org.br/wp-content/uploads/2019/08/treinamento.jpg"
@@ -310,7 +308,6 @@ namespace NDDTraining.Infra.Data.Migrations
                             Category = "educacao",
                             Description = "Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis.",
                             Duration = new TimeSpan(0, 18, 0, 0, 0),
-                            ReleaseDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Teacher = "Maria Eduarda",
                             Title = "Redacao",
                             Url = "https://setcesp.org.br/wp-content/uploads/2019/08/treinamento.jpg"

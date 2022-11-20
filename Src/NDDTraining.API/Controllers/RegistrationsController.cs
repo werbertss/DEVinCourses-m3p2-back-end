@@ -43,6 +43,15 @@ namespace NDDTraining.API.Controllers
             return Ok(_registrationService.GetRegistrationsByUser(userId, status, paging));
         }
 
+        [HttpGet]
+        [Route("~/api/Users/{userId}/Registrations/Recents")]
+        public IActionResult GetRecentByUser(
+                    [FromRoute] int userId
+                )
+        {
+            return Ok(_registrationService.GetRegistrationsByUserMostRecent(userId));
+        }
+
         [HttpPost]
 
         public IActionResult Insert(RegistrationDTO registration)
@@ -58,6 +67,17 @@ namespace NDDTraining.API.Controllers
         {          
             _registrationService.Delete(Id);
             return StatusCode(StatusCodes.Status204NoContent);
-        }      
+        }  
+
+        [HttpPatch]
+        [Route("~/api/Users/{id}/Registrations")]
+        public IActionResult PatchRecentByUser(
+                    [FromRoute] int id,
+                    [FromQuery] long refreshDate
+                )
+        {   
+            _registrationService.Patch(id, refreshDate);
+            return Ok();
+        }    
     }
 }

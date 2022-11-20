@@ -43,7 +43,20 @@ criamos uma propriedade de nosso CarDTOValidators como mostra a linha 13 chamada
 depois passamos ela via construtor que no caso é o nosso Setup que quem faz o papel de construtor <br>
 para podermos usar em nossos testes de forma que seja que instanciada <br>
 então criamos um testCase e passamos como parametro para dentro do metodo testador validar nossa validação<br>
-enjoy
+
+*****************************************************************************************************************************
+
+O uso do Etheral.email para testar os serviços de SMTP <br>
+
+1º entre no site do Etheral https://ethereal.email/  <br>
+2º Clique em criar nova conta (Create Ethereal Account)<br>
+3º Copie o nome de usuario gerado <br>
+4º cole este nome em email from no serviceMail que esta em infra  email.From = new MailAddress("cole aqui o email");<br>
+5º cole tambem no smtp.autenticate("cole aqui o email ", "cole aqui o password" )<br>
+feito isso esta pronto seu smtp <br>
+agora voçe pode verificar seus e-mails na proppria caixa do ethereal no botão (open mailbox)<br>
+para saber mais fiz um video curto no link do you tube -> https://youtu.be/1SG6tyDQ9IM?t=8  <br>
+
 
 
 

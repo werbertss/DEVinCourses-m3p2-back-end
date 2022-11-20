@@ -32,6 +32,10 @@ namespace NDDTraining.API.Configs
             switch (exception)
             {
                 case NoDataException:
+                case EmailErrorException:
+                    status = HttpStatusCode.NotFound;
+                    message = exception.Message;
+                    break;
                 case DuplicateException:
                     status = HttpStatusCode.BadRequest;
                     message = exception.Message;
@@ -39,7 +43,7 @@ namespace NDDTraining.API.Configs
                 case NotFoundException:
                     status = HttpStatusCode.NotFound;
                     message = exception.Message;
-                    break;
+                    break;               
                 default:
                     status = HttpStatusCode.InternalServerError;
                     message = "An internal error ocurred. Please contact IT";

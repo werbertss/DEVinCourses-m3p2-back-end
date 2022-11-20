@@ -84,8 +84,19 @@ namespace NDDTraining.Domain.Services
         
         public string Reset(string emailReset)
         {
-          //  throw new NotImplementedException();
+            if (emailReset == "")
+            {
+                throw new EmailErrorException("Prencha o Email !");
+            }
+           
             var user = _userRepository.CheckResetEmail(emailReset);
+
+            // if (user == null || user.Email != emailReset)
+            // {
+            //     throw new EmailErrorException("Email não Encontrado!");
+            // }
+
+           
             var resetToken = GeneratedToken(user.Id);
 
             user.ResetToken = resetToken;

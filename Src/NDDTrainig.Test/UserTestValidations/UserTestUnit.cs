@@ -3,11 +3,8 @@ using FluentValidation.TestHelper;
 using NDDTraining.Domain.Validations;
 using NDDTraining.Domain.DTOS;
 
-[TestFixture]
-public class UserTest
-{
     [TestFixture]
-    public class UserTestNunit
+    public class UserTestUnit
     {
 
         private UserValidation validator;
@@ -69,4 +66,3 @@ public class UserTest
 
         }
     }
-}

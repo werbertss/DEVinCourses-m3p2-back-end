@@ -23,6 +23,12 @@ namespace NDDTraining.API.Controllers
             _completedmoduleService.CompletarModulo(completedModuleDTO);
             return Created("completedModule", completedModuleDTO);
         }
+
+        [HttpGet]
+        public IActionResult GetCompletedModules(int id)
+        {
+            return Ok(_completedmoduleService.GetCompletedModules(id));
+        }
     }
 }
 

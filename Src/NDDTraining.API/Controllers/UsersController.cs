@@ -43,11 +43,11 @@ namespace NDDTraining.API.Controllers
 
    
         [HttpGet]
-        [Authorize]
-        public IActionResult Authenticated([FromRoute] string token)
+        [Route("{token}")]
+        public IActionResult GetUser([FromRoute] string token)
 
         { 
-            return Ok(_userService.GetByEmail(token));
+            return Ok(_userService.GetUser(token));
         }
 
 

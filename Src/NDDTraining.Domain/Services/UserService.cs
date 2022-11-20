@@ -19,11 +19,13 @@ namespace NDDTraining.Domain.Services
             _userRepository = userRepository;
             _emailService = emailService;
         }
+        
         public User GetByEmail(string token)
         {
             var email = new JwtSecurityToken(jwtEncodedString: token);
             return _userRepository.GetByEmail(email.Claims.First(c => c.Type == "Email").Value);
         }
+        
         public string VerifyLogin(LoginDTO loginDTO)
         {
             if (loginDTO.Email == null || loginDTO.Password == null)
@@ -61,7 +63,28 @@ namespace NDDTraining.Domain.Services
             var recordUser = new User(newUser);     
            
             _userRepository.Insert(recordUser);
-        } 
+        }
+
+        public void Update(UserDTO changedUser, int id)
+        {
+            var user = _userRepository.GetById(id);
+
+            if(user == null)
+                throw new NotFoundException("Usuario não localizado.");
+
+            if(changedUser.Password != null)
+            {
+                user.Password = changedUser.Password;
+            }
+            if(changedUser.Image != null)
+            {
+                user.Image = changedUser.Image;
+            }
+
+            user.Name = changedUser.Name;
+            user.Age = changedUser.Age;
+            _userRepository.Update(user);
+        }
         
         public string Reset(string emailReset)
         {
@@ -84,14 +107,13 @@ namespace NDDTraining.Domain.Services
             
             return resetToken;
         }
+        
         public string GeneratedToken( int userId)
         {
             var data = $"{DateTime.Now.AddHours(1)}+{userId}+{Guid.NewGuid()}";
             byte[] textoAsBytes = Encoding.ASCII.GetBytes(data);
             string resultado = System.Convert.ToBase64String(textoAsBytes);
             return resultado;
-           
-            
         }
     }
 }

@@ -13,6 +13,8 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         User GetByEmail(string email);
         public User CheckUserByEmail(string email);
         public User CheckUserByCPF(string cpf);
+        public User GetById(int id);
+        void Update(User user);
         void Insert (User recordUser);
         User VerifyLogin(Login login);
         User CheckResetEmail(string email);

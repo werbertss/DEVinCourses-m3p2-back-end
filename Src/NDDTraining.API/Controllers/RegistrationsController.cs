@@ -43,11 +43,10 @@ namespace NDDTraining.API.Controllers
         [HttpGet]
         [Route("~/api/Users/{userId}/Registrations/Recents")]
         public IActionResult GetRecentByUser(
-                    [FromRoute] int userId,
-                    [FromQuery] DateTime registryDate
+                    [FromRoute] int userId
                 )
         {
-            return Ok(_registrationService.GetRegistrationsByUserMostRecent(userId, registryDate));
+            return Ok(_registrationService.GetRegistrationsByUserMostRecent(userId));
         }
 
         [HttpPost]
@@ -65,6 +64,17 @@ namespace NDDTraining.API.Controllers
         {          
             _registrationService.Delete(Id);
             return StatusCode(StatusCodes.Status204NoContent);
-        }      
+        }  
+
+        [HttpPatch]
+        [Route("~/api/Users/{id}/Registrations")]
+        public IActionResult PatchRecentByUser(
+                    [FromRoute] int id,
+                    [FromQuery] long refreshDate
+                )
+        {   
+            _registrationService.Patch(id, refreshDate);
+            return Ok();
+        }    
     }
 }

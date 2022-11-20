@@ -59,6 +59,20 @@ namespace NDDTraining.Infra.Data.Repository
         {
             return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training);
         }
-    }
+
+        public IQueryable<Registration> GetRegistrationsByUserMostRecent(int id)
+        {
+            return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training).OrderByDescending(d => d.RefreshDate);
+        }
+
+        public void Patch(int id, long refreshDate)
+        {
+            var registration = _context.Registrations.Find(id);
+
+            registration.RefreshDate = refreshDate;
+            _context.Registrations.Update(registration);
+            _context.SaveChanges();
+        }
+  }
 
 }

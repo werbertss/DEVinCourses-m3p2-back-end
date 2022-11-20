@@ -14,9 +14,10 @@ namespace NDDTraining.Domain.Interfaces.Services
     {
         public IList<RegistrationDTO> GetAll();
         public IList<RegistrationDTO> GetRegistrationsByUser(int userId, string status);
-        public IList<RegistrationDTO> GetRegistrationsByUserMostRecent(int userId, DateTime registryDate);
+        public IList<RegistrationDTO> GetRegistrationsByUserMostRecent(int userId);
         public void ValidateRegistration(RegistrationDTO registration);
         public void Insert(RegistrationDTO registration);
+        public void Patch(int id, long refreshDate);
         public void Delete(int id);
        
   }

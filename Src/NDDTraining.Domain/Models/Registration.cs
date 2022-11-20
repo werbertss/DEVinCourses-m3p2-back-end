@@ -9,7 +9,7 @@ namespace NDDTraining.Domain.Models
         public int UserId { get; set; }
         public int TrainingId { get; set; }
         public Status Status { get; set; }
-        public DateTime RefreshDate { get; set; }
+        public long RefreshDate { get; set; }
         public virtual User User { get; set; }
         public virtual Training Training { get; set; }
         

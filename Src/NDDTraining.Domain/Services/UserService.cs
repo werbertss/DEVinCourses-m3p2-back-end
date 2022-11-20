@@ -103,14 +103,19 @@ namespace NDDTraining.Domain.Services
 
             var tokem = GetByToken(resetToken);
 
-            return tokem;
+            return resetToken;
         }
-        public string VerifyToken(string token)
+        public string VerifyToken(string token, string password)
         {
-            var tokem = GetByToken(token);
+            
+            var id = GetByToken(token);
+            var user = _userRepository.GetById(id);
+            var usuario = _userRepository.GetById(id);
 
-            if (tokem == token)
+            if (usuario.ResetToken == token)
             {
+                usuario.Password = password;
+                _userRepository.Update(user);
                 return "true";
             }
 
@@ -125,7 +130,7 @@ namespace NDDTraining.Domain.Services
             return resultado;
         }
 
-        public string GetByToken(string token)
+        public int GetByToken(string token)
         {
             byte[] res = System.Convert.FromBase64String(token);
             string resultado = Encoding.ASCII.GetString(res);
@@ -135,9 +140,9 @@ namespace NDDTraining.Domain.Services
 
             var id = Convert.ToInt32(result);
 
-            var usuario = _userRepository.GetById(id);
+            
 
-            return usuario.ResetToken;
+            return id;
         }
 
     }

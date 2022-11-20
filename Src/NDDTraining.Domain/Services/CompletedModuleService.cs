@@ -14,6 +14,12 @@ namespace NDDTraining.Domain.Services
     {
 
         private readonly ICompletedModuleRepository _completedModuleRepository;
+
+        public CompletedModuleService(ICompletedModuleRepository completedModuleRepository)
+        {
+            _completedModuleRepository = completedModuleRepository;
+        }
+
         public List<CompletedModuleDTO> GetCompletedModules(int traning)
         {
             return _completedModuleRepository.GetCompletModuleRegistrationsId(traning).Select(x => new CompletedModuleDTO(x)).ToList();

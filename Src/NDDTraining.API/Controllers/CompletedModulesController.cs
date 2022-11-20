@@ -17,7 +17,8 @@ namespace NDDTraining.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult InserirCompletedModule(CompletedModuleDTO completedModuleDTO)
+        public IActionResult InserirCompletedModule(
+         [FromBody] CompletedModuleDTO completedModuleDTO)
         {
             _completedmoduleService.CompletarModulo(completedModuleDTO);
             return Created("completedModule", completedModuleDTO);

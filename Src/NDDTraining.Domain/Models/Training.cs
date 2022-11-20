@@ -13,14 +13,13 @@ namespace NDDTraining.Domain.Models
         public TimeSpan Duration { get; set; }
         public bool Active { get; set; }
         public string Category { get; set; }
-        public DateTime ReleaseDate { get; set; }
         public virtual List<Module> Modules { get; set; }
         public Training()
 		{
 
 		}
 
-        public Training(int id, string url, string title, string description, string teacher, TimeSpan duration, bool active, string category, DateTime realeseDete)
+        public Training(int id, string url, string title, string description, string teacher, TimeSpan duration, bool active, string category)
         {
             Id = id;
             Url = url;

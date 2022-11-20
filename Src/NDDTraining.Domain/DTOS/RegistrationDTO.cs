@@ -11,6 +11,7 @@ namespace NDDTraining.Domain.DTOS
         public int UserId { get; set; }
         public int TrainingId { get; set; }
         public Status Status { get; set; }
+        public DateTime RefreshDate { get; set; }
        
 
 
@@ -24,7 +25,7 @@ namespace NDDTraining.Domain.DTOS
             UserId = registration.UserId;
             TrainingId = registration.TrainingId;
             Status = registration.Status;
-
+            RefreshDate = registration.RefreshDate;
            
         }
 

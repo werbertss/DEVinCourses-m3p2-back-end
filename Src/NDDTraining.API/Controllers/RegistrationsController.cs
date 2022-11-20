@@ -40,6 +40,16 @@ namespace NDDTraining.API.Controllers
             return Ok(_registrationService.GetRegistrationsByUser(userId, status));
         }
 
+        [HttpGet]
+        [Route("~/api/Users/{userId}/Registrations/Recents")]
+        public IActionResult GetRecentByUser(
+                    [FromRoute] int userId,
+                    [FromQuery] DateTime registryDate
+                )
+        {
+            return Ok(_registrationService.GetRegistrationsByUserMostRecent(userId, registryDate));
+        }
+
         [HttpPost]
 
         public IActionResult Insert(RegistrationDTO registration)

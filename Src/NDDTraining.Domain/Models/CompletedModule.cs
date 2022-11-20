@@ -1,3 +1,5 @@
+using NDDTraining.Domain.DTOS;
+
 namespace NDDTraining.Domain.Models;
 
 public class CompletedModule
@@ -19,5 +21,11 @@ public class CompletedModule
         ModuleId = moduleId;
         RegistrationId = registrationId;
 
+    }
+    public CompletedModule(CompletedModuleDTO completedModule)
+    {
+        Id = completedModule.Id;
+        ModuleId = completedModule.ModuleId;
+        RegistrationId = completedModule.RegistrationId;
     }
 }

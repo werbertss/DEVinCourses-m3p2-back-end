@@ -1,6 +1,7 @@
 ﻿//using NDDTraining.Domain.Interfaces.Repositories;
 //using NDDTraining.Domain.Models;
 //using NDDTraining.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Models;
 using NDDTraining.Infra.Data.Context;
@@ -23,7 +24,6 @@ namespace NDDTraining.Infra.Data.Repository
 
             public List<CompletedModule> GetCompletModuleRegistrationsId(int registrationId)
             {
-
                 return _context.CompletedModule.Where(m => m.RegistrationId == registrationId).ToList();
             }
         }

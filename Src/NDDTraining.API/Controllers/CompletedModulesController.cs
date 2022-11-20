@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NDDTraining.API.Controllers;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
 
@@ -15,6 +16,12 @@ namespace NDDTraining.API.Controllers
             _completedmoduleService = completedmoduleService;
         }
 
-       
+        [HttpPost]
+        public IActionResult InserirCompletedModule(CompletedModuleDTO completedModuleDTO)
+        {
+            _completedmoduleService.CompletarModulo(completedModuleDTO);
+            return Created("completedModule", completedModuleDTO);
+        }
     }
 }
+

@@ -3,33 +3,46 @@ using NDDTraining.Domain.Exceptions;
 using NDDTraining.Domain.Interfaces.Repositories;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
+using NDDTraining.Domain.Services.Security;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace NDDTraining.Domain.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-
-        public UserService(IUserRepository userRepository)
+        private readonly IEmailService _emailService;
+        public UserService(IUserRepository userRepository,  IEmailService emailService )
         {
             _userRepository = userRepository;
+            _emailService = emailService;
         }
-        public User GetByToken(string id)
+        
+        public User GetByEmail(string token)
         {
-            return _userRepository.GetByToken(id);
+            var email = new JwtSecurityToken(jwtEncodedString: token);
+            return _userRepository.GetByEmail(email.Claims.First(c => c.Type == "Email").Value);
         }
+        
         public string VerifyLogin(LoginDTO loginDTO)
         {
             if (loginDTO.Email == null || loginDTO.Password == null)
                 throw new NoDataException("Email ou senha não preenchidos");
 
-            bool isAllowed = _userRepository.VerifyLogin(new Login(loginDTO));
+            User user = _userRepository.VerifyLogin(new Login(loginDTO));
 
-            if (isAllowed == false)
+            if (user == null)
                 throw new NotFoundException("Email ou senha não encontrados");
 
             // TODO Call TokenService
-            return "JWT TOKEN";
+
+            var token = TokenService.GenerateToken(user);
+            //var refreshToken = TokenService.GenerateRefreshToken();
+            //TokenService.SaveRefreshToken(loginDTO.Email, refreshToken);
+
+            return token;
         }
 
         public void InsertUser(UserDTO newUser)
@@ -71,8 +84,36 @@ namespace NDDTraining.Domain.Services
             user.Name = changedUser.Name;
             user.Age = changedUser.Age;
             _userRepository.Update(user);
- 
         }
+        
+        public string Reset(string emailReset)
+        {
+          //  throw new NotImplementedException();
+            var user = _userRepository.CheckResetEmail(emailReset);
+            var resetToken = GeneratedToken(user.Id);
 
+            user.ResetToken = resetToken;
+
+           // _userRepository.Update(user);
+
+            var email = new Email() { 
+                To = emailReset,
+                Subject = "Reset de Email",
+                type = Domain.Enums.EmailType.ResetPassword,
+                Parameters = new Dictionary<string, string> { { "Link", $"emailReset/{resetToken} " } }
+            };
+
+             _emailService.BuildAndSendMail(email);
+            
+            return resetToken;
+        }
+        
+        public string GeneratedToken( int userId)
+        {
+            var data = $"{DateTime.Now.AddHours(1)}+{userId}+{Guid.NewGuid()}";
+            byte[] textoAsBytes = Encoding.ASCII.GetBytes(data);
+            string resultado = System.Convert.ToBase64String(textoAsBytes);
+            return resultado;
+        }
     }
 }

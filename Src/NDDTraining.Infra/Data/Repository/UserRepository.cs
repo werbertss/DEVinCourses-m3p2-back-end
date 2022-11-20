@@ -20,14 +20,18 @@ namespace NDDTraining.Infra.Data.Repository
             return(checkedUser);
         }
 
-        public bool VerifyLogin(Login login)
+        public User VerifyLogin(Login login)
         {
-            return _context.Users.Any(u => u.Email == login.Email && u.Password == login.Password);
+            return _context.Users.Where(u => u.Email == login.Email && u.Password == login.Password).FirstOrDefault();
         }
 
-        public User GetByToken(string id)
+        public User GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            return (_context.Users.FirstOrDefault(u => u.Email == email)); ;
+        }
+        public User CheckResetEmail(string email)
+        {
+           return _context.Users.Where(u => u.Email == email).FirstOrDefault();  
         }
     }
 }

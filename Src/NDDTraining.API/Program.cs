@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using NDDTraining.DI.IOC;
 using NDDTraining.API.Configs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using FluentValidation.AspNetCore;
+using NDDTraining.Domain.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterServices();
 builder.Services.RegisterRepositories();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+       .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserValidation>());
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -77,10 +80,6 @@ app.UseCors(opcoes => opcoes.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 
-app.UseCors(opcoes => opcoes.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -89,7 +88,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()) ;
 
 app.UseAuthentication();
 

@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace NDDTraining.Infra.Migrations
+namespace NDDTraining.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class ResetToken : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,8 @@ namespace NDDTraining.Infra.Migrations
                     PASSWORD = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     AGE = table.Column<int>(type: "INT", nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(11)", maxLength: 11, nullable: false),
-                    IMAGE = table.Column<string>(type: "VARCHAR", nullable: false)
+                    IMAGE = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true),
+                    TOKEN = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -92,53 +93,38 @@ namespace NDDTraining.Infra.Migrations
                         name: "FK_REGISTRATION_TRAININGS_TRAINING_ID",
                         column: x => x.TRAININGID,
                         principalTable: "TRAININGS",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_REGISTRATION_USER_USER_ID",
                         column: x => x.USERID,
                         principalTable: "USER",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegistrationDTO",
+                name: "COMPLETED_MODULE",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    TrainingId = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RegistrationId = table.Column<int>(type: "int", nullable: true),
-                    RegistrationId1 = table.Column<int>(type: "int", nullable: true),
-                    RegistrationId2 = table.Column<int>(type: "int", nullable: true),
-                    RegistrationId3 = table.Column<int>(type: "int", nullable: true)
+                    MODULEID = table.Column<int>(name: "MODULE_ID", type: "INT", nullable: false),
+                    REGISTRATIONID = table.Column<int>(name: "REGISTRATION_ID", type: "INT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegistrationDTO", x => x.Id);
+                    table.PrimaryKey("PK_COMPLETED_MODULE", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_RegistrationDTO_REGISTRATION_RegistrationId",
-                        column: x => x.RegistrationId,
-                        principalTable: "REGISTRATION",
-                        principalColumn: "ID");
+                        name: "FK_COMPLETED_MODULE_MODULES_MODULE_ID",
+                        column: x => x.MODULEID,
+                        principalTable: "MODULES",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RegistrationDTO_REGISTRATION_RegistrationId1",
-                        column: x => x.RegistrationId1,
+                        name: "FK_COMPLETED_MODULE_REGISTRATION_REGISTRATION_ID",
+                        column: x => x.REGISTRATIONID,
                         principalTable: "REGISTRATION",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_RegistrationDTO_REGISTRATION_RegistrationId2",
-                        column: x => x.RegistrationId2,
-                        principalTable: "REGISTRATION",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_RegistrationDTO_REGISTRATION_RegistrationId3",
-                        column: x => x.RegistrationId3,
-                        principalTable: "REGISTRATION",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -168,6 +154,16 @@ namespace NDDTraining.Infra.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_COMPLETED_MODULE_MODULE_ID",
+                table: "COMPLETED_MODULE",
+                column: "MODULE_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_COMPLETED_MODULE_REGISTRATION_ID",
+                table: "COMPLETED_MODULE",
+                column: "REGISTRATION_ID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MODULES_TrainingId",
                 table: "MODULES",
                 column: "TrainingId");
@@ -181,36 +177,16 @@ namespace NDDTraining.Infra.Migrations
                 name: "IX_REGISTRATION_USER_ID",
                 table: "REGISTRATION",
                 column: "USER_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrationDTO_RegistrationId",
-                table: "RegistrationDTO",
-                column: "RegistrationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrationDTO_RegistrationId1",
-                table: "RegistrationDTO",
-                column: "RegistrationId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrationDTO_RegistrationId2",
-                table: "RegistrationDTO",
-                column: "RegistrationId2");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrationDTO_RegistrationId3",
-                table: "RegistrationDTO",
-                column: "RegistrationId3");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MODULES");
+                name: "COMPLETED_MODULE");
 
             migrationBuilder.DropTable(
-                name: "RegistrationDTO");
+                name: "MODULES");
 
             migrationBuilder.DropTable(
                 name: "REGISTRATION");

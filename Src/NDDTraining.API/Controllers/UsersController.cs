@@ -59,5 +59,14 @@ namespace NDDTraining.API.Controllers
 
             return Ok(reset);
         }
+
+        [HttpPost]
+        [Route("token")]
+        public IActionResult VerifyToken([FromBody] string emailReset)
+        {
+            var reset = _userService.VerifyToken(emailReset);
+
+            return Ok(reset);
+        }
     }
 }

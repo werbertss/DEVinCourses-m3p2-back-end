@@ -13,8 +13,8 @@ namespace NDDTraining.Domain.Interfaces.Services
     public interface IRegistrationService
     {
         public IList<RegistrationDTO> GetAll();
-        public IList<RegistrationDTO> GetRegistrationsByUser(int userId, string status);
         public IList<RegistrationDTO> GetRegistrationsByUserMostRecent(int userId);
+        public IList<RegistrationDTO> GetRegistrationsByUser(int userId, string status, Paging paging);
         public void ValidateRegistration(RegistrationDTO registration);
         public void Insert(RegistrationDTO registration);
         public void Patch(int id, long refreshDate);

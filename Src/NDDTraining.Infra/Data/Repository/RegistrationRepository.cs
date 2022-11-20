@@ -55,9 +55,13 @@ namespace NDDTraining.Infra.Data.Repository
 
         }        
 
-        public IQueryable<Registration> GetRegistrationsByUser(int id)
+        public IQueryable<Registration> GetRegistrationsByUser(int id, Paging paging)
         {
-            return _context.Registrations.Where(r => r.UserId == id).Include(r => r.Training);
+            return _context.Registrations
+                .Where(r => r.UserId == id)
+                .Include(r => r.Training)
+                .Take(paging.Take)
+                .Skip(paging.Skip);
         }
 
         public IQueryable<Registration> GetRegistrationsByUserMostRecent(int id)

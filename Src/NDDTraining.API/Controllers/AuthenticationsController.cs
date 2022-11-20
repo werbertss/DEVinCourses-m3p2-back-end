@@ -7,11 +7,11 @@ namespace NDDTraining.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AutenticationsController : Controller
+    public class AuthenticationsController : Controller
     {
         private readonly IUserService _userService;
 
-        public AutenticationsController(IUserService userService)
+        public AuthenticationsController(IUserService userService)
         {
             _userService = userService;
         }

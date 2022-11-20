@@ -113,10 +113,10 @@ namespace NDDTraining.Domain.Services
             _registrationRepository.Delete(id);
         }
 
-       public IList<RegistrationDTO> GetRegistrationsByUser(int userId, string status)
+       public IList<RegistrationDTO> GetRegistrationsByUser(int userId, string status, Paging paging)
         {
             IEnumerable<Registration> trainingWithRegisters = _registrationRepository
-                    .GetRegistrationsByUser(userId);
+                    .GetRegistrationsByUser(userId, paging);
 
             if(!String.IsNullOrEmpty(status))
             {

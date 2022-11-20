@@ -36,11 +36,7 @@ namespace NDDTraining.Domain.Services
             if (user == null)
                 throw new NotFoundException("Email ou senha não encontrados");
 
-            // TODO Call TokenService
-
             var token = TokenService.GenerateToken(user);
-            //var refreshToken = TokenService.GenerateRefreshToken();
-            //TokenService.SaveRefreshToken(loginDTO.Email, refreshToken);
 
             return token;
         }

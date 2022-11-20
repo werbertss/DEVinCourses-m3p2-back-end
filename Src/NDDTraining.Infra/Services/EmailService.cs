@@ -38,7 +38,7 @@ namespace NDDTraining.Infra.Services
 
             MailMessage email = new MailMessage();           
 
-            email.From = new MailAddress("roel41@ethereal.email");
+            email.From = new MailAddress("rebekah.swaniawski66@ethereal.email");
 
             email.To.Add(new MailAddress(To));
 
@@ -52,7 +52,7 @@ namespace NDDTraining.Infra.Services
 
             using var smtp = new MailKit.Net.Smtp.SmtpClient();
             smtp.Connect("smtp.ethereal.email", 587);
-            smtp.Authenticate("roel41@ethereal.email", "zHmZ5seJ5aJH8vJvb6");
+            smtp.Authenticate("rebekah.swaniawski66@ethereal.email", "ktpB8RfAuCEN8Gb5Xj");
            
 
             // SmtpClient smtp = new SmtpClient("in-v3.mailjet.com",587);

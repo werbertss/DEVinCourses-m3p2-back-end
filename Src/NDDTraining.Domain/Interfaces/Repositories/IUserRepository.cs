@@ -18,5 +18,6 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         void Insert (User recordUser);
         User VerifyLogin(Login login);
         User CheckResetEmail(string email);
+ 
     }
 }

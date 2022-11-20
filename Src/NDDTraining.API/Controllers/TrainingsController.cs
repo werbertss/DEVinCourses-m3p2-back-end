@@ -48,9 +48,12 @@ public class TrainingsController : ControllerBase
     [HttpGet]
     [Route("~/api/Users/{userId}/Trainings")]
     public IActionResult GetByUser(
-    [FromRoute] int userId
+    [FromRoute] int userId,
+    int skip = 0,
+    int take = 20
     )
     {
-        return Ok(_trainingService.GetTrainingsByUser(userId));
+        var paging = new Paging(take, skip);
+        return Ok(_trainingService.GetTrainingsByUser(userId, paging));
     }
 }

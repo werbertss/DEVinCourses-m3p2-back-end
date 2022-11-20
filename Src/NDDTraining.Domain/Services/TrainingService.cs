@@ -64,9 +64,9 @@ namespace NDDTraining.Domain.Services
             throw new NotImplementedException();
         }
 
-        public IList<TrainingDTO> GetTrainingsByUser(int userId)
+        public IList<TrainingDTO> GetTrainingsByUser(int userId, Paging paging)
         {
-            var trainingWithRegisters = _registrationRepository.GetRegistrationsByUser(userId);
+            var trainingWithRegisters = _registrationRepository.GetRegistrationsByUser(userId, paging);
             var trainingsByUser = trainingWithRegisters.Select(r => new TrainingDTO(r.Training)).ToList();
 
             return trainingsByUser;

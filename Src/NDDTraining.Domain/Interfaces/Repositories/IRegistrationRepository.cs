@@ -8,10 +8,9 @@ namespace NDDTraining.Domain.Interfaces.Repositories
     {
         IList<Registration> GetAll();
         public void Delete(int id);
-
         bool RegistrationDuplicate(int id);
         public bool DeleteNoRegistration(int id);        
-        IQueryable<Registration> GetRegistrationsByUser(int id);
+        IQueryable<Registration> GetRegistrationsByUser(int id, Paging paging);
 
     }
 }

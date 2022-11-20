@@ -56,6 +56,9 @@ namespace NDDTraining.Infra.Data.Mappings
                 .HasColumnName("TOKEN")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
+            entity.HasData(new[] {
+                new User (1,"Admin", "admim@email.com", "adminadmin", 32, "39963055834"),
+             });
 
         }
     }

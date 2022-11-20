@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace NDDTraining.Infra.Migrations
+namespace NDDTraining.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class NDDTraining : Migration
+    public partial class AddSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -136,6 +136,11 @@ namespace NDDTraining.Infra.Migrations
                     { 2, true, "idioma", "Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis sobre Inlges o basico.", new TimeSpan(2, 22, 0, 0, 0), "Rodrigo Rosa", "Ingles Basico", "https://setcesp.org.br/wp-content/uploads/2019/08/treinamento.jpg" },
                     { 3, true, "educacao", "Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis.", new TimeSpan(0, 18, 0, 0, 0), "Maria Eduarda", "Redacao", "https://setcesp.org.br/wp-content/uploads/2019/08/treinamento.jpg" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "USER",
+                columns: new[] { "ID", "AGE", "CPF", "EMAIL", "IMAGE", "NAME", "PASSWORD", "TOKEN" },
+                values: new object[] { 1, 32, "39963055834", "admim@email.com", null, "Admin", "adminadmin", null });
 
             migrationBuilder.InsertData(
                 table: "MODULES",

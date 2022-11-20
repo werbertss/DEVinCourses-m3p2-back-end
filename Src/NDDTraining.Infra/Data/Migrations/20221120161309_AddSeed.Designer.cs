@@ -9,11 +9,11 @@ using NDDTraining.Infra.Data.Context;
 
 #nullable disable
 
-namespace NDDTraining.Infra.Migrations
+namespace NDDTraining.Infra.Data.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
-    [Migration("20221120141731_NDDTraining")]
-    partial class NDDTraining
+    [Migration("20221120161309_AddSeed")]
+    partial class AddSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -364,6 +364,17 @@ namespace NDDTraining.Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("USER", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 32,
+                            CPF = "39963055834",
+                            Email = "admim@email.com",
+                            Name = "Admin",
+                            Password = "adminadmin"
+                        });
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>

@@ -8,7 +8,7 @@ using NDDTraining.Infra.Data.Context;
 
 #nullable disable
 
-namespace NDDTraining.Infra.Migrations
+namespace NDDTraining.Infra.Data.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
     partial class NDDTrainingDbContextModelSnapshot : ModelSnapshot
@@ -361,6 +361,17 @@ namespace NDDTraining.Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("USER", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 32,
+                            CPF = "39963055834",
+                            Email = "admim@email.com",
+                            Name = "Admin",
+                            Password = "adminadmin"
+                        });
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.CompletedModule", b =>

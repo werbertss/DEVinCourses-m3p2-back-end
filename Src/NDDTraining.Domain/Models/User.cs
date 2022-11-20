@@ -28,7 +28,17 @@ namespace NDDTraining.Domain.Models
             CPF = userDTO.CPF;
             Image = userDTO.Image;
         }
-        
+
+        public User(int Id, string Name, string Email, string Password, int Age, string CPF)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Email = Email;
+            this.Password = Password;
+            this.Age = Age;
+            this.CPF = CPF;
+        }
+
     }
     
 }

@@ -10,6 +10,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         void Update(UserDTO changedUser, int id);
         String VerifyLogin (LoginDTO loginDTO);
         string Reset(string email);
-        string VerifyToken(string token, string password);
+        string VerifyToken(ResetDTO resetDTO);
     }
 }

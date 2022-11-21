@@ -47,13 +47,13 @@ namespace NDDTraining.Domain.Services
             var user = new User()
             {
                 Id = 0,
-                Age = 100,
-                Email = "lucas@gmail.com",
-                Name = "Lucas",
+                Age = 23,
+                Email = "user@gmail.com",
+                Name = "User",
 
             };
 
-            SendEMail(training.Title, user, training.Description, user.Name, training.Duration, training.Teacher, training.Url);
+            SendEMail(training.Title, user, training.Description, training.Duration, training.Teacher, training.Url);
 
 
         }
@@ -69,7 +69,6 @@ namespace NDDTraining.Domain.Services
              string nameCourse,
              User user,
              string description,
-             string nameUser,
              TimeSpan duration,
              string teacher,
              string url
@@ -83,7 +82,6 @@ namespace NDDTraining.Domain.Services
                 type = Enums.EmailType.Registration,
                 Parameters = new Dictionary<string, string>()
             {
-                {"user", nameUser},
                 {"training", nameCourse},
                 {"description", description},
                 {"duration", duration.ToString() },

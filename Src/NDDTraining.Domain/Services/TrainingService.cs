@@ -73,5 +73,9 @@ namespace NDDTraining.Domain.Services
             return trainingsByUser;
         }
 
+        public int ObterTotal()
+        {
+            return _trainingRepository.ObterTotal();
+        }
     }
 }

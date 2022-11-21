@@ -25,8 +25,17 @@ public class TrainingsController : ControllerBase
     )
     {
         var paging = new Paging(take, skip);
+        var totalRegistros = _trainingService.ObterTotal();
+
+        Response.Headers.Add("x-Paginacao-TotalRegistros", totalRegistros.ToString());
         return Ok(_trainingService.GetAll(category, paging));
     } 
+
+    [HttpGet("totalRegisters")]
+    public IActionResult GetTotalRegisters()
+    {
+        return Ok(_trainingService.ObterTotal());
+    }
 
     [HttpGet("{id}")]
     public IActionResult GetById(

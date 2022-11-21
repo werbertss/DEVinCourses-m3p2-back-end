@@ -8,6 +8,5 @@ namespace NDDTraining.Infra.Data.Repository
   {
     public TrainingRepository(NDDTrainingDbContext context) : base(context) { }
 
-
-  }
+    }
 }

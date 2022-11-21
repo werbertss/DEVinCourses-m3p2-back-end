@@ -1,0 +1,15 @@
+﻿using NDDTraining.Domain.DTOS;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NDDTraining.Domain.Interfaces.Services
+{
+    public interface IActivityService
+    {
+        void Insert(ActivityDTO activity);
+
+    }
+}

@@ -17,7 +17,7 @@ namespace NDDTraining.API.Controllers
         {
             _userService = userService;
             _emailService = emailService;
-                
+
         }
 
         [HttpPut("{id}")]
@@ -30,7 +30,7 @@ namespace NDDTraining.API.Controllers
 
             return NoContent();
         }
-    
+
         [HttpPost]
         public IActionResult Post(
             [FromBody] UserDTO newUser
@@ -41,7 +41,7 @@ namespace NDDTraining.API.Controllers
             return Created("registration", newUser.Id);
         }
 
-   
+
         [HttpGet]
         [Authorize]
         

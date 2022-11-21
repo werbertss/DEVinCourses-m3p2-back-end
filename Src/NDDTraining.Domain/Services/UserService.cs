@@ -153,10 +153,10 @@ namespace NDDTraining.Domain.Services
             return id;
         }
 
-        public bool ValidSize(string b64)
+        public bool InvalidSize(string b64)
         {
             var tamanho = b64.Length;
-            var sizeInBytes = 102000000;
+            var sizeInBytes = 10000000;
             if (tamanho > sizeInBytes)
                 return true;
             else

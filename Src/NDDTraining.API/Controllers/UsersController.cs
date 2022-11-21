@@ -40,7 +40,7 @@ namespace NDDTraining.API.Controllers
             [FromBody] UserDTO newUser
         )
         {
-            if (_userService.ValidSize(newUser.Image))
+            if (_userService.InvalidSize(newUser.Image))
             {
                 newUser.Image = String.Empty;
             }

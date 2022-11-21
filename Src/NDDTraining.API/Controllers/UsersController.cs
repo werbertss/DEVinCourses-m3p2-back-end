@@ -21,6 +21,7 @@ namespace NDDTraining.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(
             [FromBody] UserDTO changedUser,
             [FromRoute] int id
@@ -44,7 +45,6 @@ namespace NDDTraining.API.Controllers
    
         [HttpGet]
         [Authorize]
-        
         public IActionResult GetUser()
 
         {

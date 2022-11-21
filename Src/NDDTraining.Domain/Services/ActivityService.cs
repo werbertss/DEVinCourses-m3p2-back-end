@@ -27,5 +27,10 @@ namespace NDDTraining.Domain.Services
             _activityRepository.Insert(trainingActivity);
 
         }
+
+        public IList<TrainingActivity> getAll()
+        {
+            return _activityRepository.GetAll(new Paging(20,0));
+        }
     }
 }

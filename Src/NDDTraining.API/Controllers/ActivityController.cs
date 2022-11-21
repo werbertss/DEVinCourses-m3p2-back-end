@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models;
 
 namespace NDDTraining.API.Controllers
 {
@@ -25,5 +26,11 @@ namespace NDDTraining.API.Controllers
             return  Ok(activity);
         }
 
+
+        [HttpGet("getAll")]
+        public IActionResult GetAll()
+        {
+           return Ok(_activityService.getAll());
+        }
     }
 }

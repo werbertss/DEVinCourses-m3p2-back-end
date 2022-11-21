@@ -1,4 +1,5 @@
 ﻿using NDDTraining.Domain.DTOS;
+using NDDTraining.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace NDDTraining.Domain.Interfaces.Services
     public interface ITrainingActivityService
     {
         void Insert(TrainingActivityDTO activity);
-
+        IList<TrainingActivity> getAll();
     }
 }

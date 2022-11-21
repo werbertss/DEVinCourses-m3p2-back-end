@@ -19,7 +19,7 @@ public class NDDTrainingDbContext : DbContext
   public DbSet<Training> Trainings { get; set; }
   public DbSet<User> Users { get; set; } 
   public DbSet<CompletedModule> CompletedModule { get; set; }
-  public DbSet<Activity> Activities { get; set; }
+  public DbSet<TrainingActivity> Activities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
   {
@@ -40,7 +40,7 @@ public class NDDTrainingDbContext : DbContext
     modelBuilder.ApplyConfiguration(new RegistrationMap());
     modelBuilder.ApplyConfiguration(new ModuleMap());
     modelBuilder.ApplyConfiguration(new UserMap());
-    modelBuilder.ApplyConfiguration(new ActivityMap());
+    modelBuilder.ApplyConfiguration(new TrainingActivityMap());
 
     }
 }

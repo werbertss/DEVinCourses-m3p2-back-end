@@ -11,9 +11,9 @@ using NDDTraining.Domain.Models;
 
 namespace NDDTraining.Infra.Data.Mappings
 {
-    public class ActivityMap : IEntityTypeConfiguration<Activity>
+    public class TrainingActivityMap : IEntityTypeConfiguration<TrainingActivity>
     {
-        public void Configure(EntityTypeBuilder<Activity> entity)
+        public void Configure(EntityTypeBuilder<TrainingActivity> entity)
         {
             entity.ToTable("ACTIVITY");
 

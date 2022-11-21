@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace NDDTraining.Domain.DTOS
 {
-    public class ActivityDTO
+    public class TrainingActivityDTO
     {
         public int Id { get; set; }
 

@@ -12,19 +12,19 @@ using System.Threading.Tasks;
 
 namespace NDDTraining.Domain.Services
 {
-    public class ActivityService : IActivityService
+    public class TrainingActivityService : ITrainingActivityService
     {
-        private readonly IActivityRepository _activityRepository;
+        private readonly ITrainingActivityRepository _activityRepository;
 
-        public ActivityService (IActivityRepository activityService)
+        public TrainingActivityService (ITrainingActivityRepository activityService)
         {
             _activityRepository = activityService;
         }
 
-        public void Insert(ActivityDTO activity)
+        public void Insert(TrainingActivityDTO activity)
         {
-            //insere o curso no banco de dados
-            _activityRepository.Insert(new Activity(activity));
+            TrainingActivity trainingActivity = new(activity);
+            _activityRepository.Insert(trainingActivity);
 
         }
     }

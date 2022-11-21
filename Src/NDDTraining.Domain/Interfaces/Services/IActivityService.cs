@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NDDTraining.Domain.Interfaces.Services
 {
-    public interface IActivityService
+    public interface ITrainingActivityService
     {
-        void Insert(ActivityDTO activity);
+        void Insert(TrainingActivityDTO activity);
 
     }
 }

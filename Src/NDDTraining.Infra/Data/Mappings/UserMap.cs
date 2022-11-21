@@ -49,8 +49,8 @@ namespace NDDTraining.Infra.Data.Mappings
 
             entity.Property(u => u.Image)
                 .HasColumnName("IMAGE")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(255);
+                .HasColumnType("VARBINARY")
+                .HasMaxLength(8000);
 
             entity.Property(u => u.ResetToken)
                 .HasColumnName("TOKEN")

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
@@ -6,6 +7,7 @@ namespace NDDTraining.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class TrainingsController : ControllerBase
 {
     private readonly ITrainingService _trainingService;

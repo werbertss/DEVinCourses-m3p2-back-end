@@ -148,16 +148,26 @@ namespace NDDTraining.Domain.Services
             string[] splittedLast = splittedValues[1].Split('+');
             string result = splittedLast[0];
 
-            var id = Convert.ToInt32(result);
-
-            
+            var id = Convert.ToInt32(result);                    
 
             return id;
         }
+
 
         public bool validSize(string b64)
         {
             throw new NotImplementedException();
         }
+
+        public bool InvalidSize(string b64)
+        {
+            var tamanho = b64.Length;
+            var sizeInBytes = 10000000;
+            if (tamanho > sizeInBytes)
+                return true;
+            else
+                return false;
+        }
+
     }
 }

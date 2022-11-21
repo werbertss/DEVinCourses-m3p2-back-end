@@ -21,11 +21,16 @@ namespace NDDTraining.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(
             [FromBody] UserDTO changedUser,
             [FromRoute] int id
         )
         {
+            if (_userService.ValidSize(changedUser.Image))
+            {
+                changedUser.Image = String.Empty;
+            }
             _userService.Update(changedUser, id);
 
             return NoContent();
@@ -36,15 +41,17 @@ namespace NDDTraining.API.Controllers
             [FromBody] UserDTO newUser
         )
         {
+            if (_userService.InvalidSize(newUser.Image))
+            {
+                newUser.Image = String.Empty;
+            }
             _userService.InsertUser(newUser);
-
             return Created("registration", newUser.Id);
         }
 
 
         [HttpGet]
         [Authorize]
-        
         public IActionResult GetUser()
 
         {

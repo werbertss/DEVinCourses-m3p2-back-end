@@ -40,5 +40,10 @@ namespace NDDTraining.Infra.Data.Repository
       _context.Set<TEntity>().Remove(entity);
     }
 
+    public virtual int ObterTotal()
+    {
+        return _context.Set<TEntity>().Count();
+    }
+
   }
 }

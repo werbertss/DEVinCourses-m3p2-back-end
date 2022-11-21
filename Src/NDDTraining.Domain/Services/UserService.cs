@@ -155,6 +155,9 @@ namespace NDDTraining.Domain.Services
             return id;
         }
 
-      
+        public bool validSize(string b64)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

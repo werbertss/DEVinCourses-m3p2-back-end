@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NDDTraining.Domain.DTOS;
 using NDDTraining.Domain.Interfaces.Services;
 using NDDTraining.Domain.Models;
@@ -8,6 +9,7 @@ namespace NDDTraining.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
 
 
     public class RegistrationsController : Controller
@@ -20,14 +22,10 @@ namespace NDDTraining.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            try
-            {
+           
                 return Ok(_registrationService.GetAll());
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+           
+           
         }
 
         [HttpGet]

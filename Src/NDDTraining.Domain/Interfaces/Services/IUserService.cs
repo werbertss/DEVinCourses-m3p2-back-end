@@ -11,5 +11,6 @@ namespace NDDTraining.Domain.Interfaces.Services
         String VerifyLogin (LoginDTO loginDTO);
         string Reset(string email);
         string VerifyToken(ResetDTO resetDTO);
+        public bool ValidSize(string b64);
     }
 }

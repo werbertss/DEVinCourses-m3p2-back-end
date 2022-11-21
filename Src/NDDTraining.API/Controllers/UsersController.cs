@@ -26,6 +26,10 @@ namespace NDDTraining.API.Controllers
             [FromRoute] int id
         )
         {
+            if (_userService.ValidSize(changedUser.Image))
+            {
+                changedUser.Image = String.Empty;
+            }
             _userService.Update(changedUser, id);
 
             return NoContent();
@@ -36,8 +40,11 @@ namespace NDDTraining.API.Controllers
             [FromBody] UserDTO newUser
         )
         {
+            if (_userService.ValidSize(newUser.Image))
+            {
+                newUser.Image = String.Empty;
+            }
             _userService.InsertUser(newUser);
-
             return Created("registration", newUser.Id);
         }
 

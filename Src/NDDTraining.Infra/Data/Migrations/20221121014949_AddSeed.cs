@@ -43,7 +43,7 @@ namespace NDDTraining.Infra.Data.Migrations
                     PASSWORD = table.Column<string>(type: "VARCHAR(50)", maxLength: 50, nullable: false),
                     AGE = table.Column<int>(type: "INT", nullable: false),
                     CPF = table.Column<string>(type: "VARCHAR(11)", maxLength: 11, nullable: false),
-                    IMAGE = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true),
+                    IMAGE = table.Column<byte[]>(type: "VARBINARY(8000)", maxLength: 8000, nullable: true),
                     TOKEN = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>

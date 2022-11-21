@@ -18,15 +18,17 @@ namespace NDDTraining.Domain.Services
         private readonly IEmailService _emailService;
         private readonly IUserService _userService;
         private readonly ITrainingService _trainingService;
+        private readonly IUserRepository _user;
 
 
 
-        public RegistrationService(IRegistrationRepository registrationRepository, IEmailService emailService, ITrainingService trainingService
+        public RegistrationService(IRegistrationRepository registrationRepository, IEmailService emailService, ITrainingService trainingService,
+            IUserRepository user
             )
         {
             _registrationRepository = registrationRepository;
             _emailService = emailService;
-            // _userService = userService;
+            _user = user;
             _trainingService = trainingService;
         }
 
@@ -44,16 +46,13 @@ namespace NDDTraining.Domain.Services
             _registrationRepository.Insert(new Registration(registration));
 
             var training = _trainingService.GetById(registration.TrainingId);
-            var user = new User()
-            {
-                Id = 0,
-                Age = 100,
-                Email = "lucas@gmail.com",
-                Name = "Lucas",
 
-            };
+            var user = _user.GetAll();
 
-            SendEMail(training.Title, user, training.Description, user.Name, training.Duration, training.Teacher, training.Url);
+           
+
+      
+            SendEMail(training.Title, user, user.Name,user.Email, training.Description, training.Duration, training.Teacher, training.Url);
 
 
         }
@@ -68,8 +67,9 @@ namespace NDDTraining.Domain.Services
         public void SendEMail(
              string nameCourse,
              User user,
+             string name,
+             string email,
              string description,
-             string nameUser,
              TimeSpan duration,
              string teacher,
              string url
@@ -83,8 +83,9 @@ namespace NDDTraining.Domain.Services
                 type = Enums.EmailType.Registration,
                 Parameters = new Dictionary<string, string>()
             {
-                {"user", nameUser},
                 {"training", nameCourse},
+                {"email", email},
+                 {"name", name },
                 {"description", description},
                 {"duration", duration.ToString() },
                 {"teacher",teacher },

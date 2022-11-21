@@ -20,10 +20,9 @@ namespace NDDTraining.Domain.Services
             _emailService = emailService;
         }
         
-        public User GetUser(string token)
+        public User GetUser(string email)
         {
-            var email = new JwtSecurityToken(jwtEncodedString: token);
-            return _userRepository.GetByEmail(email.Claims.First(c => c.Type == "email").Value);
+            return _userRepository.GetByEmail(email);
         }
         
         public string VerifyLogin(LoginDTO loginDTO)
@@ -149,11 +148,25 @@ namespace NDDTraining.Domain.Services
             string[] splittedLast = splittedValues[1].Split('+');
             string result = splittedLast[0];
 
-            var id = Convert.ToInt32(result);
-
-            
+            var id = Convert.ToInt32(result);                    
 
             return id;
+        }
+
+
+        public bool validSize(string b64)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool InvalidSize(string b64)
+        {
+            var tamanho = b64.Length;
+            var sizeInBytes = 10000000;
+            if (tamanho > sizeInBytes)
+                return true;
+            else
+                return false;
         }
 
     }

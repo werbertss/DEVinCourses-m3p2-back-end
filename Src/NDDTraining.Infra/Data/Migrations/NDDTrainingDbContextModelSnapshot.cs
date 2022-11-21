@@ -336,9 +336,9 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("EMAIL");
 
-                    b.Property<string>("Image")
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR")
+                    b.Property<byte[]>("Image")
+                        .HasMaxLength(8000)
+                        .HasColumnType("VARBINARY")
                         .HasColumnName("IMAGE");
 
                     b.Property<string>("Name")

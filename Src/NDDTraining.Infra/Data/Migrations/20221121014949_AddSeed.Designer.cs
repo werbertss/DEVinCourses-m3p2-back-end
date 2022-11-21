@@ -12,7 +12,7 @@ using NDDTraining.Infra.Data.Context;
 namespace NDDTraining.Infra.Data.Migrations
 {
     [DbContext(typeof(NDDTrainingDbContext))]
-    [Migration("20221120161309_AddSeed")]
+    [Migration("20221121014949_AddSeed")]
     partial class AddSeed
     {
         /// <inheritdoc />
@@ -90,7 +90,7 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("TITLE_MODULE");
 
-                    b.Property<int>("TrainingId")
+                    b.Property<int?>("TrainingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -340,7 +340,7 @@ namespace NDDTraining.Infra.Data.Migrations
                         .HasColumnName("EMAIL");
 
                     b.Property<string>("Image")
-                        .HasMaxLength(255)
+                        .IsRequired()
                         .HasColumnType("VARCHAR")
                         .HasColumnName("IMAGE");
 
@@ -398,13 +398,9 @@ namespace NDDTraining.Infra.Data.Migrations
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Module", b =>
                 {
-                    b.HasOne("NDDTraining.Domain.Models.Training", "Training")
+                    b.HasOne("NDDTraining.Domain.Models.Training", null)
                         .WithMany("Modules")
-                        .HasForeignKey("TrainingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Training");
+                        .HasForeignKey("TrainingId");
                 });
 
             modelBuilder.Entity("NDDTraining.Domain.Models.Registration", b =>
@@ -434,11 +430,6 @@ namespace NDDTraining.Infra.Data.Migrations
             modelBuilder.Entity("NDDTraining.Domain.Models.Training", b =>
                 {
                     b.Navigation("Modules");
-                });
-
-            modelBuilder.Entity("NDDTraining.Domain.Models.User", b =>
-                {
-                    b.Navigation("Registrations");
                 });
 #pragma warning restore 612, 618
         }

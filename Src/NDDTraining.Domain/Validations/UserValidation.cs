@@ -23,7 +23,6 @@ namespace NDDTraining.Domain.Validations
                .NotNull()
                .Length(8, 50).WithMessage("O Password deve ter no minimo 8 caracter e no maximo 50 !");
 
-
         }
 
 

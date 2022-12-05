@@ -251,10 +251,9 @@ namespace NDDTraining.Domain.Services
             return descending;
         }
 
-        public int ObterTotal()
+        public IList<Training> ObterTotal()
         {
-            return 5;
-            //return _trainingRepository.ObterTotal();
+            return _trainingRepository.GetAll();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace NDDTraining.Domain.Interfaces.Services
         public void Suspend(string nameOrId);
         int Insert(TrainingDTO training);
         public IList<TrainingDTO> GetTrainingsByUser(int userId, Paging paging);
-        IList<Training> ObterTotal();
+        Training ObterTotal();
         public Training GetByNameOrId(string nameOrId);
         public TrainingUsersDetails GetUsersDetails(string nameOrId);
         IList<TrainingReportsDTO> GetTrainingsReport(bool isActive);

@@ -30,7 +30,7 @@ namespace NDDTraining.Infra.Data.Repository
         {
             return _context.Trainings.Where(x => x.Active == false).ToList();
         }
-        public IList<Training> GetAll()
+        public Training GetAll()
         {
             return _context.Trainings.First();
         }

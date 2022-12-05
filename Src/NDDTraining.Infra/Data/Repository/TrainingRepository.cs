@@ -1,6 +1,7 @@
 using NDDTraining.Domain.Models;
 using NDDTraining.Infra.Data.Context;
 using NDDTraining.Domain.Interfaces.Repositories;
+using NDDTraining.Domain.DTOS;
 
 namespace NDDTraining.Infra.Data.Repository
 {
@@ -28,6 +29,11 @@ namespace NDDTraining.Infra.Data.Repository
         public IList<Training> GetSuspendedTraining()
         {
             return _context.Trainings.Where(x => x.Active == false).ToList();
-        }      }
+        }
+        public Training GetAll()
+        {
+            return _context.Trainings.First();
+        }
+    }
 
 }

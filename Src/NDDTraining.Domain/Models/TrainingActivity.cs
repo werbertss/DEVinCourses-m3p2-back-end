@@ -12,13 +12,13 @@ namespace NDDTraining.Domain.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        TrainingActivity() {}
 
         public TrainingActivity(TrainingActivityDTO activity)
         {
             Id = activity.Id;
             Title = activity.Title;
             Description = activity.Description;
-
         }
     }
 

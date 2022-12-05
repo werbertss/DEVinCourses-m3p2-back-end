@@ -13,6 +13,7 @@ namespace NDDTraining.Domain.Interfaces.Repositories
         bool VerifyExistingName(string title);
         IList<Training> GetActiveTraining();
         IList<Training> GetSuspendedTraining();
+        Training GetAll();
 
     }
 }

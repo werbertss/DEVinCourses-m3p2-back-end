@@ -8,7 +8,7 @@ namespace NDDTraining.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [AllowAnonymous]
+    [Autorize]
     public class AuthenticationsController : Controller
     {
         private readonly IUserService _userService;

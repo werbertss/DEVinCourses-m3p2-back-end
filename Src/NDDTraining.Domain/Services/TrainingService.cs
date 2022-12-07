@@ -251,5 +251,10 @@ namespace NDDTraining.Domain.Services
             return descending;
         }
 
+        public Training ObterTotal()
+        {
+            return _trainingRepository.GetAll();
+        }
+
     }
 }
